@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kisan Market - Deals</title>
+
+<link rel="stylesheet" href="view-deal.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="navbar">
+
+<div class="left">
+
+<div class="menu-icon" onclick="toggleMenu()">
+<i class="fa-solid fa-bars"></i>
+</div>
+
+<h2 class="logo">KISAN MARKET</h2>
+
+<div class="location-btn" id="openPopup">
+Select Location <i class="fa-solid fa-chevron-down"></i>
+</div>
+
+</div>
+
+<div class="search">
+
+<input type="text" placeholder="Search crops">
+
+<button>Search</button>
+
+</div>
+
+<nav>
+
+<ul id="navMenu">
+
+<li><a href="./farmer.html"><i class="fa-solid fa-house"></i> Home</a></li>
+
+<li><a href="./add.html"><i class="fa-solid fa-plus"></i> Add</a></li>
+
+<li><a href="#"><i class="fa-solid fa-handshake"></i> Deals</a></li>
+
+<li><a href="./contact.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+
+<li><a href="./farmer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+</ul>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- LOCATION POPUP -->
+
+<div class="overlay" id="locationPopup">
+
+<div class="location-popup">
+
+<div class="popup-header">
+
+<h3>Your Location</h3>
+
+<i class="fa-solid fa-xmark close"></i>
+
+</div>
+
+<input type="text" placeholder="Search location">
+
+<button class="enable-btn">Use Current Location</button>
+
+</div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<section class="main">
+
+<h2 class="page-title">Farmer – Vendor Deals</h2>
+
+
+<!-- DEAL CARD -->
+
+<div class="deal-card">
+
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+
+<div class="deal-info">
+
+<p><b>Vendor Ravi Kumar</b> wants to make a deal for <b>Fruits and Dry Fruits</b></p>
+
+<div class="actions">
+
+<button class="accept" onclick="handleDeal(this,'accepted')">Accept Deal</button>
+
+<button class="reject" onclick="handleDeal(this,'rejected')">Reject Deal</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="deal-card">
+
+<img src="https://randomuser.me/api/portraits/women/45.jpg">
+
+<div class="deal-info">
+
+<p><b>Vendor Anjali Reddy</b> wants to make a deal for <b>Cereals and Vegetables</b></p>
+
+<div class="actions">
+
+<button class="accept" onclick="handleDeal(this,'accepted')">Accept Deal</button>
+
+<button class="reject" onclick="handleDeal(this,'rejected')">Reject Deal</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="deal-card">
+
+<img src="https://randomuser.me/api/portraits/men/76.jpg">
+
+<div class="deal-info">
+
+<p><b>Vendor Manik Malhotra</b> wants a bulk deal for <b>Oilseeds and Millets</b></p>
+
+<div class="actions">
+
+<button class="accept" onclick="handleDeal(this,'accepted')">Accept Deal</button>
+
+<button class="reject" onclick="handleDeal(this,'rejected')">Reject Deal</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+
+© 2024 Kisan Market  
+All Rights Reserved  
+
+<br><br>
+
+Designed and Developed by QTC Infotech
+
+</p>
+
+</footer>
+
+<script src="view-deal.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul id="navMenu">
+        <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="../profile/buyer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+ <div id="cartDrawer" aria-label="Shopping cart">
+    <header>
+      <h2>Your Cart</h2>
+      <button id="closeCart" aria-label="Close cart">✕</button>
+    </header>
+    <div id="cartItems">
+      <!-- Example items, could be dynamically populated -->
+      <!-- <div class="cart-item">
+        <img
+          src="https://www.ugaoo.com/cdn/shop/files/8_209ea858-52db-476f-919d-857a374efd4c.jpg?v=1756482289&width=1000"
+          alt="Fresh carrot"
+        />
+        <div class="cart-item-details">
+          <h3>Fresh carrot</h3>
+          <p>Quantity: 2 kg</p>
+          <p class="price">₹150</p>
+        </div>
+        <div class="remove-item" title="Remove item">✖</div>
+      </div>
+      <div class="cart-item">
+        <img
+          src="https://www.urbangroc.com/wp-content/uploads/2021/04/tomato-1-01.jpg"
+          alt="Fresh tomato"
+        />
+        <div class="cart-item-details">
+          <h3>Fresh tomato</h3>
+          <p>Quantity: 2 kg</p>
+          <p class="price">₹100</p>
+        </div>
+        <div class="remove-item" title="Remove item">✖</div>
+      </div> -->
+    </div>
+
+    <div id="cartFooter">
+      <div class="total-row">
+        <span>Total</span>
+        <span>₹0</span>
+      </div>
+      <button id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+ <h2>PULSES</h2>
+    <div class="product">
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/balckgram.html"><img src="../images/PULSES/splitblackgram.png" alt=" grapes"></a>
+             <h3> Split black gram</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹155.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/blackeye.html"><img src="../images/PULSES/blackeyebeans.png" alt="black eye beans"></a>
+             <h3> Black Eye beans - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹135.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/splitredlentils.html"><img src="../images/PULSES/splitredlentils.png" alt="spilt red lentils"></a>
+             <h3>  Red Lentils- 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹150.00</span>
+                <span class="new-price">₹100.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/splitbengal.html"><img src="../images/PULSES/splitbengal.png" alt="Split Bengal fresh"></a>
+             <h3>"Split Bengal fresh"- 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹100.00</span>
+                <span class="new-price">₹80.00</span>
+             </div>
+            <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/mungbeans.html"><img src="../images/PULSES/mungbeans.png" alt="mung beans"></a>
+             <h3>Mung Beans - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹100.00</span>
+                <span class="new-price">₹80.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/tricolourquinoa.html"><img src="../images/PULSES/tricolourquinoa.png" alt="tricolour "></a>
+             <h3>  Tricolor Quinoa - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹120.00</span>
+                <span class="new-price">₹100.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+        
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/pintobbeans.html"><img src="../images/PULSES/pintobbeans.png" alt="pinto beans"></a>
+             <h3> Pinto Beans- 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹40.00</span>
+                <span class="new-price">₹25.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/whitepeas.html"><img src="../images/PULSES/whitepeas.png" alt="white peans"></a>
+             <h3>White Peans - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹70.00</span>
+                <span class="new-price">₹50.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/greenpeas.html"><img src="../images/PULSES/greenpeas.png" alt="green peans "></a>
+             <h3>Green Peans - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹140.00</span>
+                <span class="new-price">₹110.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/redbeans.html"><img src="../images/PULSES/redbeans.png" alt="red beans"></a>
+             <h3>Red Beans  - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹140.00</span>
+                <span class="new-price">₹110.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/soybean.html"><img src="../images/PULSES/soybean.png" alt="soy beans"></a>
+             <h3>Soybeans - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹150.00</span>
+                <span class="new-price">₹120.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/pulses_details/mixedpulses.html"><img src="../images/PULSES/mixedpulses.png" alt="mixed pulses"></a>
+             <h3> Mixed pulses- 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹90.00</span>
+                <span class="new-price">₹50.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+    </div>
+<footer>
+  <div>
+    <h3>Kisan Market</h3>
+    <p>Fresh organic food directly from farmers.</p>
+  </div>
+
+  <div>
+    <h3>Quick Links</h3>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Help</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Contact</h3>
+    <p>Email: support@kisanmarket.com</p>
+    <p>Phone: +91 90000 90000</p>
+  </div>
+</footer>
+
+<div class="copy">
+  © 2024 Kisan Market – All Rights Reserved
+</div>
+
+
+<script src="./script.js"></script>
+</body>
+</html>

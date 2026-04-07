@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="./style.css">
+    
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+<header>
+  
+  <section class="logo">
+
+    <!-- MENU ICON
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div> -->
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="#"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contact/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="../profile/buyer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header> 
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+    <div class="page">
+
+    <!-- CHAT -->
+<div id="chatBox"></div>
+
+<div class="inputArea">
+    <input type="text" id="input" placeholder="Type message..." onkeypress="enterKey(event)">
+    <button onclick="send()">➤</button>
+</div>
+
+    </div>
+
+
+
+<script src="./script.js"></script>
+</body>
+</html>

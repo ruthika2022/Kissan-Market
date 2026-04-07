@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>user page</title>
+
+    <link rel="stylesheet" href="./style.css" />
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    </head>
+<body>
+
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="./chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="./contact/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="./login/log.html"><button class="element">Log in</button></a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+
+<div class="categories-wrapper" style="position: relative; overflow: hidden; max-width: 100%;">
+  <button class="nav-btn left-btn" onclick="scrollCategories(-200)"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="nav-btn right-btn" onclick="scrollCategories(200)"><i class="fa-solid fa-chevron-right"></i></button>
+<div class="categories" id="categoriesDiv">
+  <div class="category">
+    <a href="./categories/veg.html"><img src="https://livpure.com/cdn/shop/articles/List-of-Factors-to-Take-Into-Account-When-Buying-a-Water-Purifier-1_a38146ba-32c6-4d44-989a-54619dd25745-166624.png?v=1726726136" >
+    <p> Vegetables</p>
+   </a>
+  </div>
+  <div class="category">
+    <a href="./categories/fruits.html"><img src="https://hips.hearstapps.com/hmg-prod/images/assortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-1747173002.pjpeg?crop=1.00xw:0.751xh;0,0.0839xh&resize=640:*">
+    <p>Fruits</p></a>
+  </div>
+  <div class="category">
+    <a href="./categories/spices.html"><img src="https://deliciousfoods.in/cdn/shop/articles/spices_1100x.jpg?v=1742457010">
+    <p>Spice</p></a>
+  </div>
+  <div class="category">
+    <a href="./categories/cereals.html"><img src="https://fitandflex.in/cdn/shop/articles/istockphoto-157581211-612x612_1445x.jpg?v=1719222075">
+    <p>Cereals</p></a>
+  </div>
+  <div class="category">
+   <a href="./categories/pulses.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuXY68XPUbAStc3kagxWDAOby1kOdRIX2sng&s">
+    <p>Pulses</p></a>
+  </div>
+  <div class="category">
+    <a href="./categories/oilseeds.html"><img src="https://in.thedollarbusiness.com/assets/articles/2015/10/shutterstock_93239791_650.jpg">
+    <p>Oil seeds</p></a>
+  </div>
+  <div class="category">
+    <a href="./categories/flowers.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnOpaHUEDa-UcMvbEtgRz9chb_xB6TdT2E_A&s">
+    <p>Flowers</p></a>
+  </div>
+  <div class="category">
+   <a href="./categories/herbs.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM4ag_F2W9UIPvNBWMxl9Y8FTj7rBWSuO1eA&s">
+    <p>Herbs</p></a>
+  </div>
+  <div class="category">
+    <a href="./categories/roots.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Hem_Root.jpg/250px-Hem_Root.jpg">
+    <p>Roots Tuber</p></a>
+  </div>
+</div>
+</div>
+<br><br>
+
+   <h2 class="title"></h2>
+
+  <div class="carousel-wrapper" style="position: relative; overflow: hidden; width: 100%;">
+    <button class="nav-btn left-btn" onclick="scrollCarousel(-600)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="nav-btn right-btn" onclick="scrollCarousel(600)"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="carousel" id="carouselDiv">
+      <div class="carousel-track">
+        <!-- Images -->
+        <img src="./images/background/2.png" alt="Farmer">
+
+        <img src="./images/background/1.png" alt="Farmer">
+
+        <img src="./images/background/3.png" alt="Farmer">
+
+        <img src="./images/background/4.png" alt="Farmer">
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- CART DRAWER -->
+ <div id="cartDrawer" aria-label="Shopping cart">
+    <header>
+      <h2>Your Cart</h2>
+      <button id="closeCart" aria-label="Close cart">✕</button>
+    </header>
+    <div id="cartItems">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div id="cartFooter">
+      <div class="total-row">
+        <span>Total</span>
+        <span>₹0</span>
+      </div>
+      <button id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+
+<!-- <div class="best-seller">
+    <h1 >BEST SELLER</h1>
+
+</div> -->
+<section class="product-grid">
+
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiYOs0p9EXF4zIbpBgEWqQho60pYdyA1K9EE_3vKozlLvFaoyNEsUxT77nsf9kPA7zP4M&usqp=CAU">
+    <h3>Bitter Gourd | Karela, 1 kg</h3>
+    <div class="rating">★★★★★ (5)</div>
+    <div class="price"><span class="old">₹132</span> <span class="new">₹64</span></div>
+    <a href="../login/index.html"><button>Add to cart</button></a>
+  </div>
+
+  <div class="card">
+    <img src="https://www.jiomart.com/images/product/original/590002355/onion-2-kg-pack-product-images-o590002355-p611632409-1-202506100435.jpg?im=Resize=(420,420)">
+    <h3>Onion | Pyaz, 1 kg</h3>
+    <div class="rating">★★★★ (4)</div>
+    <div class="price"><span class="old">₹99</span> <span class="new">₹29</span></div>
+    <a href="../login/index.html"><button>Add to cart</button></a>
+  </div>
+
+  <div class="card">
+    <img src="https://kyssafarms.com/cdn/shop/products/lady-finger.jpg?v=1600955405">
+    <h3>Lady Finger | Bhindi, 1 kg</h3>
+    <div class="rating">★★★ (3)</div>
+    <div class="price"><span class="old">₹75</span> <span class="new">₹25</span></div>
+    <a href="../login/index.html"><button>Add to cart</button></a>
+  </div>
+
+  <div class="card">
+  <img src="./images/fruits/appleground.png">
+  <h3>Apple Gourd | Tinda, 1 kg</h3>
+  <div class="rating">★★★★★ (5)</div>
+  <div class="price"><span class="old">₹22</span> <span class="new">₹10</span></div>
+ <a href="../login/index.html"><button>Add to cart</button></a>
+</div>
+
+<div class="card">
+  <img src="./images/fruits/banana.png">
+  <h3>Banana | Kela, 1 kg</h3>
+  <div class="rating">★★★★ (4)</div>
+  <div class="price"><span class="old">₹134</span> <span class="new">₹50</span></div>
+  <a href="../login/index.html"><button>Add to cart</button></a>
+</div>
+
+<div class="card">
+  <img src="./images/vegtables/BottleGourd.png">
+  <h3>Bottle Gourd | Lauki, 1 kg</h3>
+  <div class="rating">★★★★ (4)</div>
+  <div class="price"><span class="old">₹42</span> <span class="new">₹15</span></div>
+  <a href="../login/index.html"><button>Add to cart</button></a>
+</div>
+
+<div class="card">
+  <img src="./images/vegtables/cabbage.png">
+  <h3>Cabbage | Patta Gobhi, 1 kg</h3>
+  <div class="rating">★★★★★ (4)</div>
+  <div class="price"><span class="old">₹33</span> <span class="new">₹15</span></div>
+  <a href="../login/index.html"><button>Add to cart</button></a>
+</div>
+
+<div class="card">
+  <img src="./images/vegtables/Capsicum.png">
+  <h3>Capsicum | Shimla Mirch, 1 kg</h3>
+  <div class="rating">★★★★★ (5)</div>
+  <div class="price"><span class="old">₹132</span> <span class="new">₹64</span></div>
+  <a href="../login/index.html"><button>Add to cart</button></a>
+</div>
+
+</section>
+<!-- *********************************** -->
+
+<div class="banner-wrapper">
+    <div class="banner-track">
+
+      <!-- Banner images -->
+      <img src="https://www.wbcsd.org/wp-content/uploads/2023/11/Farmers-stand-to-see-increase-crop-yields-and-profits-with-15-25-return-on-investment-by-transitioning-to-regenerative-farming-practices_i1140-1024x576.webp" alt="Banner 1">
+
+      <img src="https://images.nationalgeographic.org/image/upload/v1638892233/EducationHub/photos/crops-growing-in-thailand.jpg" alt="Banner 2">
+
+      <!-- Duplicate for infinite loop -->
+      <img src="https://www.wbcsd.org/wp-content/uploads/2023/11/Farmers-stand-to-see-increase-crop-yields-and-profits-with-15-25-return-on-investment-by-transitioning-to-regenerative-farming-practices_i1140-1024x576.webp" alt="Banner 1">
+
+      <img src="https://images.nationalgeographic.org/image/upload/v1638892233/EducationHub/photos/crops-growing-in-thailand.jpg" alt="Banner 2">
+    </div>
+  </div>
+
+
+  <!-- ABOUT -->
+
+<section class="about-section">
+    <h1>About Kisan Market</h1>
+  <div class="about-container">
+    <!-- <h1>About Kisan Market</h1> -->
+
+    <p>
+      <strong>Kisan Market</strong> is an online platform designed to connect
+      farmers directly with buyers. Our aim is to provide fresh, high-quality
+      agricultural products at fair prices while supporting farmers with better
+      income opportunities.
+    </p>
+
+    <p>
+      By removing middlemen, Kisan Market ensures transparency, freshness, and
+      affordability. Buyers get farm-fresh produce, and farmers receive the
+      value they truly deserve.
+    </p>
+
+    <p>
+      We offer a wide range of products including vegetables, fruits, cereals,
+      pulses, spices, oil seeds, flowers, and herbs. Our platform makes buying
+      and selling easy, reliable, and secure.
+    </p>
+
+    <h3>Our Mission</h3>
+    <ul>
+      <li>Empower farmers with fair pricing</li>
+      <li>Deliver fresh produce directly to buyers</li>
+      <li>Support sustainable and local farming</li>
+    </ul>
+
+    <h3>Our Vision</h3>
+    <p>
+      To build a trusted digital marketplace that strengthens the connection
+      between farmers and consumers across India.
+    </p>
+  </div>
+</section>
+
+  <h1 class="section-title">Kisan Community</h1>
+
+  <div class="card-scroll">
+    
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://www.shutterstock.com/image-photo/indian-happy-rural-farmer-man-260nw-2451683955.jpg" alt="Farmer">
+      </div>
+      <h3>Arjun</h3>
+      <p class="farm">Mushtaq Ahmad</p>
+      <p class="location">(Telangana,vikarabad)</p>
+      <a href="../farmer_details/fam1.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://www.shutterstock.com/image-photo/happy-indian-farmer-standing-agriculture-260nw-2237896465.jpghttps://www.shutterstock.com/image-photo/portrait-young-indian-farmer-wearing-260nw-1568818228.jpg" alt="Farmer">
+      </div>
+      <h3>Balu</h3>
+      <p class="farm">Mulay Farms</p>
+      <p class="location">(Telangana,vikarabad)</p>
+      <a href="../farmer_details/fam2.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://media.istockphoto.com/id/1125873507/photo/indian-farmer-standing-in-agricultural-field.jpg?s=612x612&w=0&k=20&c=xUOD14TAn0JL2vNE84M8VbEl7Yc_PiFupHO0BoQytNc=" alt="Farmer">
+      </div>
+      <h3>WALE KIRAN ARJUN</h3>
+      <p class="farm">Wale Farms</p>
+      <p class="location">(Ahilyanagar, Maharashtra)</p>
+     <a href="../farmer_details/fam3.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://media.istockphoto.com/id/939194718/photo/old-age-indian-man-portrait-at-outdoor.jpg?s=612x612&w=0&k=20&c=874l6agIVEXT22fjC6LfdFpjf6J_AZjH-XtRRsAWIao=" alt="Farmer">
+      </div>
+      <h3> Kiran</h3>
+      <p class="farm">Athave Rasta</p>
+      <p class="location">(Telangana,vikarabad)</p>
+      <a href="../farmer_details/fam4.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://i.pinimg.com/474x/91/ac/57/91ac5704e2eda1ab1f504c7b03a9e455.jpg" alt="Farmer">
+      </div>
+      <h3>Raju</h3>
+      <p class="farm">Athave Rasta</p>
+      <p class="location">(Telangana,vikarabad)</p>
+      <a href="../farmer_details/fam5.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://plus.unsplash.com/premium_photo-1682092047778-a5ebda1804e8?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kaWFuJTIwZmFybXxlbnwwfHwwfHx8MA%3D%3D" alt="Farmer">
+      </div>
+      <h3>Mushtaq Ahmad Naiko</h3>
+      <p class="farm">Athave Rasta</p>
+      <p class="location">(Telangana,vikarabad)</p>
+      <a href="../farmer_details/fam6.html"><button>View My Story</button></a>
+    </div>
+
+    <!-- Card 4
+    <div class="card">
+      <div class="profile-img">
+        <img src="https://media.istockphoto.com/id/939194718/photo/old-age-indian-man-portrait-at-outdoor.jpg?s=612x612&w=0&k=20&c=874l6agIVEXT22fjC6LfdFpjf6J_AZjH-XtRRsAWIao=" alt="Farmer">
+      </div>
+      <h3>SANTOSH SHIVAJI GADAKH</h3>
+      <p class="farm">Athave Rasta</p>
+      <p class="location">(Nashik, Maharashtra)</p>
+      <button>View My Story</button>
+    </div> -->
+
+  </div>
+
+<h1 class="section-title">Kind Words</h1>
+
+  <div class="review-container">
+
+    <!-- Card 1 -->
+    <div class="review-card">
+      <div class="logo">kisan<br>MARKET</div>
+
+      <div class="profile">
+        <img src="https://www.shutterstock.com/image-photo/gardening-research-on-tablet-black-260nw-2346232433.jpg" alt="User">
+      </div>
+
+      <div class="stars">★★★★★</div>
+
+      <p class="review-text">
+        “Excellent app and excellent service. I ordered mangoes and the
+        quality was very good.”
+      </p>
+
+      <h4 class="name">Pankaj Tambe</h4>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="review-card">
+      <div class="logo">kisan<br>MARKET</div>
+
+      <div class="profile">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCEf7Yd_Wx_IFWXlBxWTzG1t8n65ibVnuUCA&s" alt="User">
+      </div>
+
+      <div class="stars">★★★★★</div>
+
+      <p class="review-text">
+        “This grocery delivery app is a lifesaver.
+        The produce is always fresh.”
+      </p>
+
+      <h4 class="name">Yash Chauhan</h4>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="review-card">
+      <div class="logo">kisan<br>MARKET</div>
+
+      <div class="profile">
+        <img src="https://cbx-prod.b-cdn.net/COLOURBOX62420521.jpg?width=800&height=800&quality=70" alt="User">
+      </div>
+
+      <div class="stars">★★★★★</div>
+
+      <p class="review-text">
+        “Loved the experience in Mumbai.
+        Delivery is fast and prices are reasonable.”
+      </p>
+
+      <h4 class="name">Vishal Yadav</h4>
+    </div>
+
+  </div>
+
+  <div class="bottom">
+    <h2></h2>
+
+  </div>
+
+
+
+  <!-- &&&&&&&&&&&&&&&&&&&&&&&&&& -->
+           <!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+    
+
+
+ <!-- FOOTER -->
+  <footer class="footer">
+
+    <!-- TOP FOOTER -->
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>For Farmers</h4>
+        <ul>
+          <li>Sell Produce</li>
+          <li>Crop Prices</li>
+          <li>Payment Info</li>
+          <li>Farmer Support</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>For Buyers</h4>
+        <ul>
+          <li>Browse Products</li>
+          <li>Bulk Orders</li>
+          <li>Order Tracking</li>
+          <li>Buyer Help</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Company</h4>
+        <ul>
+          <li>About Us</li>
+          <li>Our Mission</li>
+          <li>Terms & Conditions</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MIDDLE FOOTER -->
+    <div class="footer-middle">
+      <div class="brand">
+        <span class="leaf">🌿</span>
+        <h2>Kisan Market</h2>
+      </div>
+    </div>
+
+    <!-- TAGLINE -->
+    <p class="tagline">Fair prices. Fresh produce. Direct from farmers.</p>
+
+    <!-- SOCIAL & COPYRIGHT -->
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+      <p>© 2026 Kisan Market</p>
+    </div>
+
+  </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>

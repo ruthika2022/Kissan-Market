@@ -1,0 +1,187 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================
+   BODY
+========================= */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #ece5dd; /* WhatsApp background */
+}
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+header {
+  background: #ffffff;
+  padding: 12px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* LOGO TEXT */
+.logo h2 {
+  color: #8b4a2b;
+  font-size: 20px;
+}
+
+/* MENU ICON */
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* LOCATION */
+.select-location {
+  color: #555;
+  cursor: pointer;
+}
+
+/* SEARCH BAR */
+.search {
+  margin-left: auto;
+  display: flex;
+}
+
+.search input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+}
+
+.search button {
+  background: #8b4a2b;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* NAV LINKS */
+.child2 ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+.child2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* =========================
+   CHAT CONTAINER
+========================= */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+/* CHAT BOX */
+#chatBox {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   MESSAGE BUBBLES
+========================= */
+.msg {
+  max-width: 65%;
+  padding: 10px 12px;
+  margin: 6px 0;
+  /* border-radius: 10px; */
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* USER MESSAGE (RIGHT SIDE) */
+.user {
+  background: #dcf8c6;
+  align-self: flex-end;
+  border-top-right-radius: 0;
+}
+
+/* BOT MESSAGE (LEFT SIDE) */
+.bot {
+  background: #ffffff;
+  align-self: flex-start;
+  border-top-left-radius: 0;
+}
+
+/* =========================
+   INPUT AREA
+========================= */
+.inputArea {
+  display: flex;
+  padding: 10px;
+  background: #f0f0f0;
+}
+
+/* INPUT FIELD */
+#input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* SEND BUTTON */
+.inputArea button {
+  margin-left: 10px;
+  padding: 10px 14px;
+  border: none;
+  background: #8b4a2b;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* =========================
+   SCROLLBAR (OPTIONAL)
+========================= */
+#chatBox::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chatBox::-webkit-scrollbar-thumb {
+  background: #ccc;
+  /* border-radius: 5px; */
+}
+
+/* =========================
+   RESPONSIVE (MOBILE)
+========================= */
+@media (max-width: 600px) {
+
+  .logo {
+    flex-wrap: wrap;
+  }
+
+  .search {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .child2 ul {
+    display: none; /* hide menu */
+  }
+
+  .msg {
+    max-width: 80%;
+    font-size: 13px;
+  }
+}

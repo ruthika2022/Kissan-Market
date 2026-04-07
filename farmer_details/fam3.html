@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<button class="back-btn">
+ <a href="../home/index.html"> <i class="fa-solid fa-arrow-left"></i></a> 
+</button>
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FARMER IMAGE -->
+<section class="farmer-image">
+    <img src="https://media.istockphoto.com/id/1125873507/photo/indian-farmer-standing-in-agricultural-field.jpg?s=612x612&w=0&k=20&c=xUOD14TAn0JL2vNE84M8VbEl7Yc_PiFupHO0BoQytNc=" alt="Farmer">
+</section>
+
+<!-- FARMER DETAILS -->
+<section class="farmer-details">
+    <h1>Shiva kumar</h1>
+    <p class="location">(Telangana,vikarabad)</p>
+
+    <ul>
+        <li><strong>Total Area:</strong> 1</li>
+        <li><strong>Area Under Cultivation:</strong> 1</li>
+        <li><strong>Crop Cycle:</strong> Tomato, Onion and Cabbage</li>
+        <li><strong>Agriculture Method:</strong> Modern and traditional methods</li>
+    </ul>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="farmer-description">
+    <p>
+        Kisan Market is a digital platform designed to empower farmers by connecting them directly with consumers. The main goal of Kisan Market is to remove middlemen and ensure farmers receive fair prices for their produce. This platform helps farmers list their crops easily and sell them without depending on traditional markets.
+    </p>
+
+    <p>
+       Through Kisan Market, farmers can upload details such as crop type, quantity, price, and product images. Consumers can browse available products, compare prices, and purchase fresh produce directly from farmers. This system increases transparency and builds trust between farmers and buyers.
+    </p>
+
+    <p>
+        One of the key features of Kisan Market is direct communication. Buyers can chat with farmers to ask questions, negotiate prices, and confirm orders. This makes the buying and selling process simple and efficient. Farmers also gain better visibility and access to a wider market beyond their local area.
+    </p>
+
+    <p>
+        Kisan Market supports sustainable farming practices by encouraging the use of organic products and fair trade. It also helps farmers stay updated with modern agricultural techniques and market trends. By using technology, the platform improves productivity, reduces losses, and increases farmers’ income.
+    </p>
+
+    <p>
+        Overall, Kisan Market is not just a business platform; it is a step toward strengthening the agricultural community. It aims to improve farmers’ livelihoods, provide fresh and affordable food to consumers, and inspire future generations to embrace agriculture with confidence.
+    </p>
+</section>
+
+<script src="./script.js"></script>
+</body>
+</html>

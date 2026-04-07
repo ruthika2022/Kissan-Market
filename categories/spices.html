@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul id="navMenu">
+       <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="../profile/buyer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+ <div id="cartDrawer" aria-label="Shopping cart">
+    <header>
+      <h2>Your Cart</h2>
+      <button id="closeCart" aria-label="Close cart">✕</button>
+    </header>
+    <div id="cartItems">
+      <!-- Example items, could be dynamically populated -->
+      <!-- <div class="cart-item">
+        <img
+          src="https://www.ugaoo.com/cdn/shop/files/8_209ea858-52db-476f-919d-857a374efd4c.jpg?v=1756482289&width=1000"
+          alt="Fresh carrot"
+        />
+        <div class="cart-item-details">
+          <h3>Fresh carrot</h3>
+          <p>Quantity: 2 kg</p>
+          <p class="price">₹150</p>
+        </div>
+        <div class="remove-item" title="Remove item">✖</div>
+      </div>
+      <div class="cart-item">
+        <img
+          src="https://www.urbangroc.com/wp-content/uploads/2021/04/tomato-1-01.jpg"
+          alt="Fresh tomato"
+        />
+        <div class="cart-item-details">
+          <h3>Fresh tomato</h3>
+          <p>Quantity: 2 kg</p>
+          <p class="price">₹100</p>
+        </div>
+        <div class="remove-item" title="Remove item">✖</div>
+      </div> -->
+    </div>
+
+    <div id="cartFooter">
+      <div class="total-row">
+        <span>Total</span>
+        <span>₹0</span>
+      </div>
+      <button id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+ <h2>SPICES</h2>
+    <div class="product">
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/allspice.html"><img src="../images/spices/allspice.png" alt="Allspice Spices"></a>
+             <h3> Allspice Spices </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹300.00</span>
+                <span class="new-price">₹220.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/blackpepper.html"><img src="../images/spices/blackpepper.png" alt="Black pepper"></a>
+             <h3> Black pepper</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹150.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/cardamom.html"><img src="../images/spices/cardamom.png" alt="Cardamom"></a>
+             <h3> Cardamom - 100 % Natural & Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹150.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/cinnamon.html"><img src="../images/spices/cinnamon.png" alt="Cinnamon "></a>
+             <h3> Cinnamon  - 100 % Natural </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹150.00</span>
+                <span class="new-price">₹110.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/cloves.html"><img src="../images/spices/cloves.png" alt="Cloves"></a>
+             <h3>Cloves 100 % Natural &  Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹140.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/coriander.html"><img src="../images/spices/coriander.png" alt="Coriande"></a>
+             <h3> Coriande - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹150.00</span>
+                <span class="new-price">₹100.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+        
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/cumin.html"><img src="../images/spices/cumin.png" alt="Cumin"></a>
+             <h3> Cumin - 100 % Natural &  Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹100.00</span>
+                <span class="new-price">₹80.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/pistachio.html"><img src="../images/spices/pistachio.png" alt="pistachio"></a>
+             <h3>Pistachio  - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹70.00</span>
+                <span class="new-price">₹50.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/fennel.html"><img src="../images/spices/fennel.png" alt="Fennel"></a>
+             <h3>Fennel - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹130.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/mace.html"><img src="../images/spices/mace.png" alt="Mace"></a>
+             <h3>Mace - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹300.00</span>
+                <span class="new-price">₹150.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/nutmeg.html"><img src="../images/spices/nutmeg.png" alt="Nutmeg"></a>
+             <h3>Nutmeg - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹100.00</span>
+                <span class="new-price">₹70.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/spices_details/saffron.html"><img src="../images/spices/saffron.png" alt="Saffron"></a>
+             <h3> Saffron - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹500.00</span>
+                <span class="new-price">₹250.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+    </div>
+<footer>
+  <div>
+    <h3>Kisan Market</h3>
+    <p>Fresh organic food directly from farmers.</p>
+  </div>
+
+  <div>
+    <h3>Quick Links</h3>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Help</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Contact</h3>
+    <p>Email: support@kisanmarket.com</p>
+    <p>Phone: +91 90000 90000</p>
+  </div>
+</footer>
+
+<div class="copy">
+  © 2024 Kisan Market – All Rights Reserved
+</div>
+
+
+<script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Playfair Display", serif;
+}
+
+body {
+  background: #f6f1ec;
+}
+
+/* HEADER */
+header {
+  background-color: #fff;
+  padding: 15px 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+}
+
+/* MENU ICON */
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+/* LOGO */
+.logo h2 {
+  color: #8b4a2b;
+}
+
+/* LOCATION */
+.select-location {
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b4b3e;
+}
+
+/* SEARCH */
+.search {
+  margin-left: auto;
+  display: flex;
+  margin-right: 250px;
+}
+
+.search input {
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+
+.search button {
+  padding: 7px 16px;
+  border: none;
+  background: #8b4a2b;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* NAV LINKS */
+.child2 ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin-left: 20px;
+}
+
+.child2 a {
+  text-decoration: none;
+  color: black;
+}
+
+/* POPUP */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-popup {
+  background: #fff;
+  width: 350px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* POPUP HEADER */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SEARCH BOX */
+.search-box {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+/* CURRENT LOCATION */
+.current-location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-left {
+  display: flex;
+  gap: 10px;
+}
+
+.enable-btn {
+  background: #4caf50;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+/* MAP ICON */
+.map-area {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 40px;
+  color: #8b4a2b;
+}
+button a {
+  color: white;
+}
+.element {
+  width: 50px;
+  height: 25px;
+  border: 1px solid;
+  background-color: rgb(175, 70, 70);
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ===============================
+   HAMBURGER ICON
+=================================*/
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  color: #8b4a2b;
+  z-index: 2100;
+}
+
+/* ===============================
+   DESKTOP
+=================================*/
+.child2 ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* RESPONSIVE */
+
+/* ===============================
+   DESKTOP (Above 901px)
+=================================*/
+@media (min-width: 901px) {
+  .menu-icon {
+    display: none;
+  }
+  .logo {
+    flex-wrap: nowrap;
+  }
+  /* SEARCH BAR */
+  .search {
+    display: flex;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+  /* NAV LINKS */
+  .child2 ul {
+    position: static;
+    flex-direction: row;
+    display: flex !important;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+/* ===============================
+   TABLET (600px – 900px)
+=================================*/
+@media (min-width: 601px) and (max-width: 900px) {
+  .menu-icon {
+    display: block;
+  }
+  .logo {
+    flex-wrap: wrap;
+  }
+  /* SEARCH BAR */
+  .search {
+    width: 100%;
+    margin: 12px 0;
+  }
+  .search input {
+    width: 75%;
+  }
+  .search button {
+    width: 25%;
+  }
+  /* slide drawer menu */
+  .child2 ul {
+    position: fixed;
+    top: 70px;
+    right: -260px;
+    width: 220px;
+    height: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 25px;
+    gap: 18px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    transition: right 0.35s ease;
+    z-index: 2000;
+  }
+  .child2 ul.show {
+    right: 0px;
+  }
+  .child2 ul li {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  .child2 a {
+    font-size: 17px;
+    color: #3b2f2f;
+  }
+}
+
+/* ===============================
+   MOBILE (Below 600px)
+=================================*/
+@media (max-width: 600px) {
+  header {
+    padding: 12px 15px;
+  }
+  .logo {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  /* MENU ICON */
+  .menu-icon {
+    display: block;
+  }
+  /* LOGO */
+  .logo h2 {
+    font-size: 18px;
+  }
+  /* LOCATION */
+  .select-location {
+    font-size: 13px;
+  }
+  /* SEARCH BAR - FULL WIDTH */
+  .search {
+    width: 100%;
+    margin: 10px 0 0 0;
+    order: 3;
+  }
+  .search input {
+    width: 70%;
+  }
+  .search button {
+    width: 30%;
+  }
+  /* full width mobile drawer */
+  .child2 ul {
+    position: fixed;
+    width: 200px;
+    right: -250px;
+    top: 60px;
+    height: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 20px;
+    gap: 18px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    transition: right 0.35s ease;
+    z-index: 2000;
+  }
+  .child2 ul.show {
+    right: 0px;
+  }
+  .child2 ul li {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  .child2 a {
+    font-size: 16px;
+    color: #3b2f2f;
+  }
+}
+/* --- CART DRAWER STYLES --- */
+#cartDrawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -3px 0 15px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+#cartDrawer.active {
+  right: 0;
+}
+
+#cartDrawer header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#cartDrawer header h2 {
+  margin: 0;
+}
+#closeCart {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+#cartItems {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 6px;
+}
+.cart-item-details h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+.cart-item-details p {
+  margin: 4px 0;
+}
+.cart-item-details .price {
+  font-weight: bold;
+  color: #4caf50;
+}
+.remove-item {
+  cursor: pointer;
+  color: #888;
+  font-size: 20px;
+  align-self: flex-start;
+  margin-left: auto;
+  padding-left: 10px;
+}
+.remove-item:hover {
+  color: red;
+}
+
+#cartFooter {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+#cartFooter .total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+#checkoutBtn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#checkoutBtn:hover {
+  background-color: #4caf50;
+}
+
+/* Overlay for background dim */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+#overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =====================
+   TITLE
+===================== */
+h2 {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 36px;
+  color: #8b4a2b;
+}
+
+/* =====================
+   PRODUCT GRID
+===================== */
+.product {
+  display: grid;
+  gap: 25px;
+  padding: 0 20px 60px;
+}
+
+/* CARD */
+.v1 {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e4dad2;
+  transition: 0.3s;
+}
+
+.v1:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.v1 img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.price {
+  display: flex;
+  gap: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.new-price {
+  color: #8b4a2b;
+  font-weight: bold;
+}
+
+.v1 button {
+  width: 100%;
+  padding: 12px;
+  background: #8b4a2b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* =====================
+   RESPONSIVE BREAKPOINTS
+===================== */
+
+/* 📱 MOBILE */
+@media (max-width: 480px) {
+
+  .product {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 📱 TABLET */
+@media (min-width: 481px) and (max-width: 768px) {
+
+  .product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 💻 LAPTOP */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 🖥️ DESKTOP */
+@media (min-width: 1025px) {
+  .product {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #8b4a2b;
+  color: white;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li {
+  margin: 8px 0;
+}
+
+.copy {
+  background: #d1ccc4;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.qty-control button {
+  background: #8b4a2b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.qty-control span {
+  font-weight: bold;
+}

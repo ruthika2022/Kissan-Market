@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Farmer Profile</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="farmer-profile.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <h2>KISAN MARKET</h2>
+
+        <div class="select-location" id="openPopup">
+          Select Location <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="search">
+          <input type="text" placeholder="Search products" />
+          <button>Search</button>
+        </div>
+
+        <nav class="child2">
+          <ul id="navMenu">
+            <li>
+              <a href="./farmer.html"><i class="fa-solid fa-house"></i> Home</a>
+            </li>
+            <li>
+              <a href="./add.html"><i class="fa-solid fa-plus"></i> Add</a>
+            </li>
+            <li>
+              <a href="./view-deal.html"
+                ><i class="fa-solid fa-handshake"></i> Deals</a
+              >
+            </li>
+            <li>
+              <a href="./newcontact.html"
+                ><i class="fa-solid fa-phone"></i> Contact</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- LOCATION POPUP -->
+
+    <!-- <div class="overlay" id="locationPopup">
+      <div class="location-popup">
+        <div class="popup-header">
+          <h3>Your Location</h3>
+          <i class="fa-solid fa-xmark close"></i>
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Search address" />
+        </div>
+
+        <div class="current-location">
+          <span>Use Current Location</span>
+          <button class="enable-btn">Enable</button>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- PROFILE SECTION -->
+
+    <div class="profile-container">
+      <div class="orders">
+        <h2>Recent Sold Orders</h2>
+
+        <div class="order">
+          <img
+            src="../images/vegtables/tomato.png"
+          />
+          <div class="order-details">
+            <p><b>Order #10251</b></p>
+            <p>Tomato – ₹850</p>
+          </div>
+          <span class="status delivered">Delivered</span>
+        </div>
+        <br />
+        <div class="order">
+          <img
+            src="../images/vegtables/carrot.png"
+          />
+          <div class="order-details">
+            <p><b>Order #10255</b></p>
+            <p>Carrot – ₹600</p>
+          </div>
+          <span class="status pending">Pending</span>
+        </div>
+        <br />
+        <div class="order">
+          <img
+            src="../images/vegtables/onion.png"
+          />
+          <div class="order-details">
+            <p><b>Order #10260</b></p>
+            <p>Onion – ₹950</p>
+          </div>
+          <span class="status delivered">Delivered</span>
+        </div>
+        <br />
+        <div class="order">
+          <img
+            src="../images/PULSES/soybean.png"
+          />
+          <div class="order-details">
+            <p><b>Order #10263</b></p>
+            <p>Soybean – ₹500</p>
+          </div>
+          <span class="status cancelled">Cancelled</span>
+        </div>
+        <br />
+        <div class="order">
+          <img
+            src="../images/fruits/orange.png"
+          />
+          <div class="order-details">
+            <p><b>Order #10227</b></p>
+            <p>Orange – ₹700</p>
+          </div>
+          <span class="status pending">Pending</span>
+        </div>
+      </div>
+
+      <!-- PROFILE CARD -->
+
+      <div class="profile-card">
+        <div class="profile-img"></div>
+
+        <h3>Farmer Profile</h3>
+
+        <div class="details-section">
+          <div class="details">
+            <p class="name"><b>Name:</b> Rakesh Sharma</p>
+            <p class="location"><b>Location:</b> Warangal</p>
+            <p class="phone"><b>Phone:</b> 1234567890</p>
+            <p class="crops"><b>Crops:</b> Vegetables, Pulses</p>
+            <p class="experience"><b>Experience:</b> 5 Years</p>
+          </div>
+
+          <div class="action">
+            <button id="editBtn" class="edit-btn">Edit Profile</button>
+            <button class="logout-btn"><a href="../index.html">Logout</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTHLY SALES -->
+
+    <div class="table-card">
+      <h2>Monthly Sold Orders</h2>
+
+      <table>
+        <tr>
+          <th>Month</th>
+          <th>Total Orders</th>
+          <th>Total Sales</th>
+        </tr>
+
+        <tr>
+          <td>January</td>
+          <td>35</td>
+          <td>₹12000</td>
+        </tr>
+
+        <tr>
+          <td>February</td>
+          <td>40</td>
+          <td>₹15000</td>
+        </tr>
+
+        <tr>
+          <td>March</td>
+          <td>30</td>
+          <td>₹11000</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- YEARLY SALES -->
+
+    <div class="table-card">
+      <h2>Yearly Sales</h2>
+
+      <table>
+        <tr>
+          <th>Year</th>
+          <th>Total Orders</th>
+          <th>Total Revenue</th>
+        </tr>
+
+        <tr>
+          <td>2023</td>
+          <td>420</td>
+          <td>₹140000</td>
+        </tr>
+
+        <tr>
+          <td>2024</td>
+          <td>500</td>
+          <td>₹190000</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- EDIT PROFILE OVERLAY -->
+    <div class="overlay" id="editPopup">
+      <div class="edit-popup">
+        <div class="popup-header">
+          <h3>Edit Profile</h3>
+          <i class="fa-solid fa-xmark close-edit"></i>
+        </div>
+
+        <div class="edit-form">
+          <label>Name</label>
+          <input type="text" id="editName" />
+
+          <label>Location</label>
+          <input type="text" id="editLocation" />
+
+          <label>Phone</label>
+          <input type="text" id="editPhone" />
+
+          <label>Crops</label>
+          <input type="text" id="editCrops" />
+
+          <label>Experience</label>
+          <input type="text" id="editExperience" />
+
+          <button class="save-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+    <script src="farmer-profile.js"></script>
+  </body>
+</html>

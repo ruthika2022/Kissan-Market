@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyer Profile</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="buyer-profile.css" />
+  </head>
+
+  <body>
+    <header>
+      <section class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <h2>KISAN MARKET</h2>
+
+        <div class="select-location" id="openPopup">
+          Select Location <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="search">
+          <input type="text" placeholder="Search products" />
+          <button>Search</button>
+        </div>
+
+        <nav class="child2">
+          <ul class="content" id="navMenu">
+            <li>
+              <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-comments"></i> Chat</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-phone"></i> Contact</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <div class="overlay" id="locationPopup">
+      <div class="location-popup">
+        <div class="popup-header">
+          <h3>Your Location</h3>
+          <i class="fa-solid fa-xmark close"></i>
+        </div>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search a new address" />
+        </div>
+
+        <div class="current-location">
+          <div class="location-left">
+            <i class="fa-solid fa-location-crosshairs"></i>
+            <div>
+              <h4>Use My Current Location</h4>
+              <p>Enable your location</p>
+            </div>
+          </div>
+
+          <button class="enable-btn">Enable</button>
+        </div>
+
+        <div class="map-area">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <div class="orders-card">
+        <h3>Recent Orders</h3>
+
+        <div class="order-item">
+          <div class="order-left">
+            <img
+              src="../images/vegtables/tomato.png"
+            />
+            <div>
+              <h4>Order #10245</h4>
+              <p>Tomato</p>
+            </div>
+          </div>
+          <span class="status delivered">Delivered</span>
+        </div>
+
+        <div class="order-item">
+          <div class="order-left">
+            <img
+              src="../images/fruits/orange.png"
+            />
+            <div>
+              <h4>Order #10232</h4>
+              <p>Orange</p>
+            </div>
+          </div>
+          <span class="status pending">Pending</span>
+        </div>
+
+        <div class="order-item">
+          <div class="order-left">
+            <img
+              src="../images/vegtables/chilli.png"
+            />
+            <div>
+              <h4>Order #10218</h4>
+              <p>Chilli Powder</p>
+            </div>
+          </div>
+          <span class="status cancelled">Cancelled</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="profile-card">
+          <img src="../images/profile/buyer.png" />
+
+          <h2>Archana</h2>
+
+          <p class="role">Buyer</p>
+
+          <div class="stats">
+            <div>
+              <h4>24</h4>
+              <span>Orders</span>
+            </div>
+
+            <div>
+              <h4>12</h4>
+              <span>Wishlist</span>
+            </div>
+
+            <div>
+              <h4>5</h4>
+              <span>Reviews</span>
+            </div>
+          </div>
+
+          <div class="profile-details">
+            <h3>Personal Information</h3>
+
+            <div class="info-row">
+              <span>Email:</span>
+              <p>ravi.kumar@email.com</p>
+            </div>
+
+            <div class="info-row">
+              <span>Phone:</span>
+              <p>+91 98765 43210</p>
+            </div>
+
+            <div class="info-row">
+              <span>Address:</span>
+              <p>Bangalore, India</p>
+            </div>
+
+            <div class="info-row">
+              <span>Member Since:</span>
+              <p>March 2024</p>
+            </div>
+          </div>
+
+          <div class="action">
+            <button class="button">Edit Profile</button>
+
+            <button class="secondary"><a href="../index.html">Logout</a></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="purchase-history">
+        <h3>Purchase History</h3>
+
+        <div class="table-card">
+          <h4>Monthly Purchases</h4>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Orders</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+
+            <tbody id="monthlyData"></tbody>
+          </table>
+        </div>
+
+        <div class="table-card">
+          <h4>Yearly Purchases</h4>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Total Orders</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+
+            <tbody id="yearlyData"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT PROFILE OVERLAY -->
+    <div class="overlay" id="editPopup">
+      <div class="edit-popup">
+        <div class="popup-header">
+          <h3>Edit Profile</h3>
+          <span class="close-edit">&times;</span>
+        </div>
+
+        <div class="edit-form">
+          <label>Name</label>
+          <input type="text" id="editName" />
+
+          <label>Email</label>
+          <input type="text" id="editEmail" />
+
+          <label>Phone</label>
+          <input type="text" id="editPhone" />
+
+          <label>Address</label>
+          <input type="text" id="editAddress" />
+
+          <!-- Member Since (readonly) -->
+          <label>Member Since</label>
+          <input type="text" id="editMember" disabled />
+
+          <button class="save-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="buyer-profile.js"></script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+<button class="back-btn">
+ <a href="../home/index.html"> <i class="fa-solid fa-arrow-left"></i></a> 
+</button>
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FARMER IMAGE -->
+<section class="farmer-image">
+    <img src="https://media.istockphoto.com/id/939194718/photo/old-age-indian-man-portrait-at-outdoor.jpg?s=612x612&w=0&k=20&c=874l6agIVEXT22fjC6LfdFpjf6J_AZjH-XtRRsAWIao=" alt="Farmer">
+</section>
+
+<!-- FARMER DETAILS -->
+<section class="farmer-details">
+    <h1> Kiran </h1>
+    <p class="location">(Telangana,vikarabad)</p>
+
+    <ul>
+        <li><strong>Total Area:</strong> 5</li>
+        <li><strong>Area Under Cultivation:</strong> 5</li>
+        <li><strong>Crop Cycle:</strong> Cauliflower, Sugarcane, Onions and Cabbage</li>
+        <li><strong>Agriculture Method:</strong> Modern and traditional methods</li>
+    </ul>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="farmer-description">
+    <p>
+        My name is Santosh Shivaji Gadhakh, a 42-year-old farmer from a village in India. I am the proud owner of my family farm and the first generation in my family to take up farming. Since 2009, I have been actively involved in agriculture and have gained valuable experience through years of hard work and learning.
+    </p>
+
+    <p>
+       Kisan Market plays an important role in supporting farmers like me by providing a digital platform to sell crops directly to consumers. When I started farming, I focused on crops such as cauliflower, wheat, and sugarcane. Over time, based on market demand and profitability, I shifted my focus mainly to cauliflower, onions, and sugarcane. Kisan Market helps farmers understand market demand and make better crop decisions.
+    </p>
+
+    <p>
+        Farming involves many challenges, such as pest control, crop security, and proper cultivation techniques. With the help of modern farming tools like tractors and sustainable methods, productivity has improved. Through Kisan Market, farmers can also learn about modern agricultural practices, pest management techniques, and organic farming methods that help maintain soil fertility, especially in black soil regions.
+    </p>
+
+    <p>
+Our farm, known as Athave Rasta, is a family-run farm where my three brothers, my wife, and even my children contribute. Kisan Market supports family farmers by giving them wider market access and fair pricing without depending on middlemen. Farmers can list their produce, upload crop details, and connect directly with buyers.
+    </p>
+
+    <p>
+        Managing labor wages and daily expenses is one of the biggest challenges in farming. Kisan Market helps reduce financial stress by offering better price transparency and stable income opportunities. Selling directly to consumers increases profit margins and ensures timely payments
+    </p>
+    <p>
+        Environmental sustainability is a core value of both our farm and Kisan Market. We use organic fertilizers, practice sustainable farming, and raise cows that provide natural manure. Kisan Market encourages eco-friendly agriculture and promotes healthy, chemical-free produce.
+    </p>
+    <p>
+        During the off-season, I visit the Department of Agriculture and consult agricultural advisors to improve my knowledge. Similarly, Kisan Market acts as a knowledge hub where farmers can stay updated with the latest farming trends and technologies.
+    </p>
+
+    <p>
+        In conclusion, Kisan Market is more than just a platform—it is a support system for farmers. It empowers farmers, strengthens rural livelihoods, and connects communities through agriculture. Seeing crops grow successfully and reaching consumers directly gives immense satisfaction and motivation to continue farming with pride.
+    </p>
+</section>
+
+<script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer Dashboard</title>
+
+    <link rel="stylesheet" href="./farmer.css" />
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    </head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="./add.html"><i class="fa-solid fa-plus"></i> Add</a></li>
+       <li><a href="./view-deal.html"><i class="fa-solid fa-handshake"></i> Deals</a></li>
+        <li><a href="./chat.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="./newcontact.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="./farmer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+    <!-- ================= PRODUCTS ================= -->
+    <div class="products">
+      <!-- CARD 1 -->
+      <div class="cards">
+        <img
+          src="../images/vegtables/apple-gourd.png"
+        />
+        <h3>Apple Gourd | Tinda, 1 kg</h3>
+        <div class="rating">★★★★ <span>(4)</span></div>
+        <div class="price">
+          <span class="old-price">₹22.00</span>
+          <span class="new-price">₹10.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/fruits/banana.png"
+        />
+        <h3>Banana | Kela, Dozen</h3>
+        <div class="rating">★★★ <span>(3)</span></div>
+        <div class="price">
+          <span class="old-price">₹60.00</span>
+          <span class="new-price">₹50.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/beans.png"
+        />
+        <h3>Beans | Failyan, 1 kg</h3>
+        <div class="rating">★★★★<span>(4)</span></div>
+        <div class="price">
+          <span class="old-price">₹44.00</span>
+          <span class="new-price">₹30.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/bittergourd.png"
+        />
+        <h3>Bitter Gourd | Karela, 1 kg</h3>
+        <div class="rating">★★★★★ <span>(5)</span></div>
+        <div class="price">
+          <span class="old-price">₹132.00</span>
+          <span class="new-price">₹64.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/BottleGourd.png"
+        />
+        <h3>Bottle Gourd | Lauki, 1 kg</h3>
+        <div class="rating">★★★ <span>(3)</span></div>
+        <div class="price">
+          <span class="old-price">₹42.00</span>
+          <span class="new-price">₹15.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/cabbage.png"
+        />
+        <h3>Cabbage | Patta Gobhi, 1 kg</h3>
+        <div class="rating">★★★★<span>(4)</span></div>
+        <div class="price">
+          <span class="old-price">₹33.00</span>
+          <span class="new-price">₹15.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/capsicum.png"
+        />
+        <h3>Capsicum | Shimla Mirch, 1 kg</h3>
+        <div class="rating">★★★★★ <span>(4.8)</span></div>
+        <div class="price">
+          <span class="old-price">₹132.00</span>
+          <span class="new-price">₹64.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/roots/potato.png"
+        />
+        <h3>Potato | Aloo, 1 kg</h3>
+        <div class="rating">★★★★<span>(4)</span></div>
+        <div class="price">
+          <span class="old-price">₹60.00</span>
+          <span class="new-price">₹45.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+
+      <div class="cards">
+        <img
+          src="../images/vegtables/onion.png"
+        />
+        <h3>Onion | Pyaaz, 1 kg</h3>
+        <div class="rating">★★★★<span>(4)</span></div>
+        <div class="price">
+          <span class="old-price">₹99.00</span>
+          <span class="new-price">₹29.00</span>
+        </div>
+        <button>Edit</button>
+      </div>
+    </div>
+
+    <footer>
+  <div>
+    <h3>Kisan Market</h3>
+    <p>Fresh organic food directly from farmers.</p>
+  </div>
+
+  <div>
+    <h3>Quick Links</h3>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Help</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Contact</h3>
+    <p>Email: support@kisanmarket.com</p>
+    <p>Phone: +91 90000 90000</p>
+  </div>
+</footer>
+
+<div class="copy">
+  © 2024 Kisan Market – All Rights Reserved
+</div>
+
+    <script src="./farmer.js"></script>
+  </body>
+</html>

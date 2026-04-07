@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul id="navMenu">
+       <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="../profile/buyer-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+ <div id="cartDrawer" aria-label="Shopping cart">
+    <header>
+      <h2>Your Cart</h2>
+      <button id="closeCart" aria-label="Close cart">✕</button>
+    </header>
+    <div id="cartItems">
+ 
+    </div>
+
+    <div id="cartFooter">
+      <div class="total-row">
+        <span>Total</span>
+        <span>₹0</span>
+      </div>
+      <button id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+<h2>OIL SEDDS</h2>
+    <div class="product">
+        <div class="v1">
+             <img src="../images/oilseeds/groundnutoil.png" alt="groundnut oil">
+             <h3> Groundnut oil </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹500.00</span>
+                <span class="new-price">₹335.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/soyabean.html"><img src="../images/oilseeds/soyabeans.png" alt="soybean oil"></a>
+             <h3> soybean oil</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹180.00</span>
+                <span class="new-price">₹140.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/sunflower.html"><img src="../images/oilseeds/sunflower.png" alt="sunflower oil"></a>
+             <h3> sunflower oil - 100 % Natural </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹150.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/safflower.html"><img src="../images/oilseeds/safflower.png" alt="safflower oil "></a>
+             <h3> safflower oil - 100 % Natural </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹500.00</span>
+                <span class="new-price">₹330.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/sesame.html"><img src="../images/oilseeds/sesameoil.png" alt="sesame oil"></a>
+             <h3>sesame oil 100 % Natural </h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹347.00</span>
+                <span class="new-price">₹280.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/flax.html"><img src="../images/oilseeds/flaxseeds.png" alt="Flax Seed Oil"></a>
+             <h3> Flax Seed Oil - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹350.00</span>
+                <span class="new-price">₹200.00</span>
+             </div>
+            <button class="add-cart">Add to cart</button>
+        </div>
+        
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/pumpkin.html"><img src="../images/oilseeds/pumpkinseeds.png" alt="pumpkin seeds oil"></a>
+             <h3> pumpkin seeds oil - 100 % Natural &  Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹300.00</span>
+                <span class="new-price">₹280.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/corn.html"><img src="../images/oilseeds/cornoil.png" alt="corn seeds oil"></a>
+             <h3>corn seeds oil  - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹270.00</span>
+                <span class="new-price">₹250.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+         <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/cotton.html"><img src="../images/oilseeds/cottonseeds.png" alt="cotton seeds oil"></a>
+             <h3>cotton seeds oil - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐<span>(4)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹200.00</span>
+                <span class="new-price">₹130.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/niger.html"><img src="../images/oilseeds/nigeseeds.png" alt="niger seeds oil"></a>
+             <h3>Niger seeds oil - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹300.00</span>
+                <span class="new-price">₹250.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/castor.html"><img src="../images/oilseeds/castorseeds.png" alt="castor seeds oil"></a>
+             <h3>castor seeds oil - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹300.00</span>
+                <span class="new-price">₹270.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+
+        <div class="v1">
+             <a href="../cart-details/cetegoires/oilseeds_details/rapeseed.html"><img src="../images/oilseeds/rapeseeds.png" alt="rapeseed seeds oil"></a>
+             <h3> Rapeseed seeds oil - 100 % Natural & Farm Fresh</h3>
+             <div class="r1">
+                ⭐⭐⭐⭐⭐<span>(5)</span>
+             </div>
+             <div class="price">
+                <span class="old-price">₹500.00</span>
+                <span class="new-price">₹450.00</span>
+             </div>
+             <button class="add-cart">Add to cart</button>
+        </div>
+    </div>
+<footer>
+  <div>
+    <h3>Kisan Market</h3>
+    <p>Fresh organic food directly from farmers.</p>
+  </div>
+
+  <div>
+    <h3>Quick Links</h3>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Help</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Contact</h3>
+    <p>Email: support@kisanmarket.com</p>
+    <p>Phone: +91 90000 90000</p>
+  </div>
+</footer>
+
+<div class="copy">
+  © 2024 Kisan Market – All Rights Reserved
+</div>
+
+
+<script src="./script.js"></script>
+</body>
+</html>

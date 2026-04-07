@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Market Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#" id="cartToggle"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+        <li><a href="./chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="./contact/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="./login/index.html"><button class="element">Log in</button></a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+
+<div class="container">
+    <div class="form-box">
+        <h2>Kissan Market</h2>
+        <p class="subtitle">Register your account</p>
+
+        <form id="registerForm">
+
+            <!-- Role Selection -->
+            <label>Select Role</label>
+            <select  required id="select">
+                <option value="">-- Select Role --</option>
+                <option value="buyer">Buyer</option>
+                <option value="farmer">Farmer</option>
+                <option value="vendor">Vendor</option>
+            </select>
+
+            <!-- Common Fields -->
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+
+            <!-- Buyer Fields -->
+            <div id="buyerFields" class="hidden">
+                <input type="text" placeholder="Delivery Address">
+            </div>
+
+            <!-- Farmer Fields -->
+            <div id="farmerFields" class="hidden">
+                <input type="text" placeholder="Farm Location">
+                <input type="text" placeholder="Crop Type">
+            </div>
+
+            <!-- Vendor Fields -->
+            <div id="vendorFields" class="hidden">
+                <input type="text" placeholder="Shop Name">
+                <input type="text" placeholder="Business Address">
+            </div>
+
+            <button type="submit" class="reg" >Register</button>
+            <br>
+            <br>
+
+            <p class="switch">
+            you have an account?
+            <a href="./log.html">Login</a>
+          </p>
+        </form>
+    </div>
+</div>
+
+<script src="reg.js"></script>
+<script>
+ 
+// document.getElementById("registerForm").addEventListener("submit", function(e) {
+
+//     e.preventDefault(); // stop refresh
+
+//     let role = document.getElementById("select").value;
+
+//     if (role === "buyer") {
+//         window.location.href = "home/index.html";
+//     } 
+//     // else if (role === "farmer") {
+//     //     window.location.href = "farmer/dashboard.html";
+//     // } 
+//     // else if (role === "vendor") {
+//     //     window.location.href = "vendor/dashboard.html";
+//     // } 
+//     else {
+//         alert("Please select a role");
+//     }
+// });
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let role = document.getElementById("select").value;
+
+    if (role === "buyer") {
+        window.location.href = "../home/index.html";
+    } 
+    else if (role === "farmer") {
+        window.location.href = "../Farmer/farmer.html";
+    } 
+    else if (role === "vendor") {
+        window.location.href = "../vender/vender.html";
+    }
+    else {
+        alert("Please select a role");
+    }
+    
+});
+
+</script>
+</body>
+</html>

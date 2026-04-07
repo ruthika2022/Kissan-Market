@@ -1,0 +1,340 @@
+.back-btn {
+  font-size: 23px;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn i {
+  color: black;
+}
+
+/* IMAGE SECTION */
+.farmer-image {
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+}
+
+.farmer-image img {
+  width: 260px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* DETAILS */
+.farmer-details {
+  width: 100%;
+  padding: 0 80px 30px;
+}
+
+.farmer-details h1 {
+  color: #8b4a2b;
+  margin-bottom: 6px;
+}
+
+.location {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.farmer-details ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.farmer-details li {
+  margin-bottom: 10px;
+}
+
+/* DESCRIPTION */
+.farmer-description {
+  width: 100%;
+  padding: 0 80px 60px;
+  max-width: 1100px;
+}
+
+.farmer-description p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  color: #444;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f6f1ec;
+}
+
+/* HEADER */
+header {
+  background: #fff;
+  padding: 15px 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* MENU ICON */
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+/* LOGO */
+.logo h2 {
+  color: #8b4a2b;
+}
+
+/* LOCATION */
+.select-location {
+  cursor: pointer;
+  font-weight: 500;
+  color: #8b4a2b;
+}
+
+/* SEARCH */
+.search {
+  margin-left: auto;
+  display: flex;
+  margin-right: 250px;
+}
+
+.search input {
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+
+.search button {
+  padding: 7px 16px;
+  border: none;
+  background: #8b4a2b;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* NAV LINKS */
+.child2 ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin-left: 20px;
+}
+
+.child2 a {
+  text-decoration: none;
+  color: black;
+}
+
+/* POPUP */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-popup {
+  background: #fff;
+  width: 350px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* POPUP HEADER */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SEARCH BOX */
+.search-box {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+/* CURRENT LOCATION */
+.current-location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-left {
+  display: flex;
+  gap: 10px;
+}
+
+.enable-btn {
+  background: #4caf50;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+/* MAP ICON */
+.map-area {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 40px;
+  color: #8b4a2b;
+}
+
+/* RESPONSIVE */
+
+@media (min-width: 901px) {
+
+  .menu-icon {
+    display: none;
+  }
+
+  .logo {
+    flex-wrap: nowrap;
+  }
+
+  /* SEARCH BAR */
+  .search {
+    display: flex;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+
+  /* NAV LINKS */
+  .child2 ul {
+    position: static;
+    flex-direction: row;
+    display: flex !important;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .menu-icon {
+    display: block;
+  }
+
+  .logo {
+    flex-wrap: wrap;
+  }
+
+  /* SEARCH BAR */
+  .search {
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  .search input {
+    width: 75%;
+  }
+
+  .search button {
+    width: 25%;
+  }
+
+  /* NAV MENU */
+  .child2 ul {
+    position: absolute;
+    top: 70px;
+    right: 25px;
+    background: #fff;
+    flex-direction: column;
+    width: 200px;
+    padding: 18px;
+    border-radius: 14px;
+    display: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .child2 ul.show {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 12px 15px;
+  }
+
+  .logo {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* MENU ICON */
+  .menu-icon {
+    display: block;
+  }
+
+  /* LOGO */
+  .logo h2 {
+    font-size: 18px;
+  }
+
+  /* LOCATION */
+  .select-location {
+    font-size: 13px;
+  }
+
+  /* SEARCH BAR - FULL WIDTH */
+  .search {
+    width: 100%;
+    margin: 10px 0 0 0;
+    order: 3;
+  }
+
+  .search input {
+    width: 70%;
+  }
+
+  .search button {
+    width: 30%;
+  }
+
+  /* NAV MENU */
+  .child2 ul {
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    background: #fff;
+    flex-direction: column;
+    width: 180px;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .child2 ul.show {
+    display: flex;
+  }
+
+  .child2 li {
+    padding: 8px 0;
+  }
+}

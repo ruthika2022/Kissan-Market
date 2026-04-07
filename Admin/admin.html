@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kisan Market Admin</title>
+
+<link rel="stylesheet" href="admin.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h2>Kisan Market</h2>
+
+    <a onclick="openPage(event,'dashboard')" class="active"><i class="fa fa-home"></i> Dashboard</a>
+    <a onclick="openPage(event,'farmers')"><i class="fa fa-user"></i> Farmers</a>
+    <a onclick="openPage(event,'buyers')"><i class="fa fa-users"></i> Buyers</a>
+    <a onclick="openPage(event,'orders')"><i class="fa fa-box"></i> Orders</a>
+    <a onclick="openPage(event,'complaints')"><i class="fa fa-comments"></i> Complaints</a>
+    <a onclick="openPage(event,'reports')"><i class="fa fa-chart-line"></i> Reports</a>
+    <a onclick="openPage(event,'settings')"><i class="fa fa-gear"></i> Settings</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+    <div class="top-left">
+        <i class="fa fa-bars menu-toggle" onclick="toggleMenu()"></i>
+        <h1 id="pageTitle">Dashboard</h1>
+    </div>
+    <div class="admin">
+        <i class="fa fa-user-circle"></i> Admin Panel
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
+<div class="cards">
+    <div class="card"><h3>Total Farmers</h3><p id="farmerCount">1250</p><small>Active farmers</small></div>
+    <div class="card"><h3>Total Buyers</h3><p>3800</p><small>Registered buyers</small></div>
+    <div class="card"><h3>Total Orders</h3><p>5430</p><small>Orders this month</small></div>
+    <div class="card"><h3>Revenue</h3><p>₹9,76,500</p><small>Monthly revenue</small></div>
+</div>
+</section>
+
+<!-- FARMERS -->
+<section id="farmers" class="page">
+<h2>Farmers Management</h2>
+<input type="text" id="farmerSearch" placeholder="Search Farmer...">
+
+<div class="table-container">
+<table id="farmersTable">
+<tr>
+<th>Name</th>
+<th>Village</th>
+<th>Mobile</th>
+<th>Crop</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>Ramesh</td>
+<td>Guntur</td>
+<td>9876543210</td>
+<td>Tomato</td>
+<td><span class="status pending">Pending</span></td>
+<td>
+<button class="btn green approve-btn">Approve</button>
+<button class="btn red remove-btn">Remove</button>
+</td>
+</tr>
+
+<tr>
+<td>Suresh</td>
+<td>Vijayawada</td>
+<td>9123456780</td>
+<td>Chilli</td>
+<td><span class="status active-status">Approved</span></td>
+<td>
+<button class="btn red remove-btn">Remove</button>
+</td>
+</tr>
+
+</table>
+</div>
+</section>
+
+<!-- BUYERS -->
+<section id="buyers" class="page">
+<h2>Buyers Management</h2>
+<input type="text" id="buyerSearch" placeholder="Search Buyer...">
+
+<div class="table-container">
+<table id="buyersTable">
+<tr>
+<th>Name</th>
+<th>City</th>
+<th>Email</th>
+<th>Orders</th>
+<th>Status</th>
+</tr>
+<tr>
+<td>Anita</td>
+<td>Hyderabad</td>
+<td>anita@gmail.com</td>
+<td>12</td>
+<td><span class="status active-status">Active</span></td>
+</tr>
+<tr>
+<td>Ravi Kumar</td>
+<td>Guntur</td>
+<td>ravi@gmail.com</td>
+<td>3</td>
+<td><span class="status pending">New</span></td>
+</tr>
+</table>
+</div>
+</section>
+
+<!-- ORDERS -->
+<section id="orders" class="page">
+<h2>Orders Management</h2>
+<p>Total Active Orders: 120</p>
+
+<div class="table-container">
+<table>
+<tr>
+<th>Order ID</th>
+<th>Buyer</th>
+<th>Product</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+<tr>
+<td>#1024</td>
+<td>Ravi</td>
+<td>Onion 10kg</td>
+<td>₹600</td>
+<td><span class="status pending">Pending</span></td>
+<td><button class="btn green deliver-btn">Mark Delivered</button></td>
+</tr>
+</table>
+</div>
+</section>
+
+<!-- COMPLAINTS -->
+<section id="complaints" class="page">
+<h2>Customer Complaints</h2>
+
+<div class="card">
+<h3>Complaint #1</h3>
+<p>Buyer reported delayed delivery.</p>
+<button class="btn blue resolve-btn">Mark Resolved</button>
+</div>
+
+<div class="card">
+<h3>Complaint #2</h3>
+<p>Product quality issue reported.</p>
+<button class="btn blue resolve-btn">Mark Resolved</button>
+</div>
+</section>
+
+<!-- REPORTS -->
+<section id="reports" class="page">
+<h2>Reports & Analytics</h2>
+
+<div class="cards">
+<div class="card"><h3>Monthly Growth</h3><p>12%</p></div>
+<div class="card"><h3>Top Product</h3><p>Tomatoes</p></div>
+<div class="card"><h3>Active Users</h3><p>4,200</p></div>
+</div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+<h2>Admin Settings</h2>
+
+<label>Admin Email</label>
+<input type="email" value="admin@kisanmarket.com">
+
+<label>Change Password</label>
+<input type="password" placeholder="New Password">
+
+<button class="btn blue save-btn">Save Settings</button>
+</section>
+
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

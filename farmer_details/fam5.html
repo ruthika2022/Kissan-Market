@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>buyer Navbar</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+<body>
+
+<header>
+  <section class="logo">
+
+    <!-- MENU ICON -->
+    <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- LOGO -->
+    <h2>KISAN MARKET</h2>
+
+    <!-- LOCATION -->
+    <div class="select-location" id="openPopup">
+      Select Location <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input type="text" placeholder="Search products" />
+      <button>Search</button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav class="child2">
+      <ul class="content" id="navMenu">
+        <li><a href="../home/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+        <li><a href="../chat/index.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
+        <li><a href="../contant/index.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+      </ul>
+    </nav>
+
+  </section>
+</header>
+
+<button class="back-btn">
+ <a href="../home/index.html"> <i class="fa-solid fa-arrow-left"></i></a> 
+</button>
+
+<!-- LOCATION POPUP -->
+<div class="overlay" id="locationPopup">
+  <div class="location-popup">
+
+    <div class="popup-header">
+      <h3>Your Location</h3>
+      <i class="fa-solid fa-xmark close"></i>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search a new address" />
+    </div>
+
+    <div class="current-location">
+      <div class="location-left">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <div>
+          <h4>Use My Current Location</h4>
+          <p>Enable your location</p>
+        </div>
+      </div>
+      <button class="enable-btn">Enable</button>
+    </div>
+
+    <div class="map-area">
+      <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FARMER IMAGE -->
+<section class="farmer-image">
+    <img src="https://i.pinimg.com/474x/91/ac/57/91ac5704e2eda1ab1f504c7b03a9e455.jpg" alt="Farmer">
+</section>
+
+<!-- FARMER DETAILS -->
+<section class="farmer-details">
+    <h1>Raju</h1>
+    <p class="location">(Telangana,vikarabad)</p>
+
+    <ul>
+        <li><strong>Total Area:</strong> 5</li>
+        <li><strong>Area Under Cultivation:</strong> 5</li>
+        <li><strong>Crop Cycle:</strong> Tomato, Onion and Cabbage</li>
+        <li><strong>Agriculture Method:</strong> Modern and traditional methods</li>
+    </ul>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="farmer-description">
+    <p>
+       Namaste! My name is Satish Chandrabhan Ikhe, and I am a farmer from India. I come from a family of farm owners and proudly continue the agricultural legacy passed down by my ancestors. I began my farming journey in 1980, and over the years, farming has become more than just a profession—it is my way of life. In my early years, I cultivated crops such as chickpeas, jowar, wheat, leafy vegetables, grapes, and lemongrass. It took me nearly five years to fully understand farming, including soil preparation, crop care, and harvesting. My first harvests of wheat, green peas, and potatoes laid a strong foundation for my farming career. Kisan Market supports farmers like me by providing a digital platform that connects farmers directly with buyers, helping us grow with confidence and knowledge.
+
+    <p>
+        Like many farmers, I faced several challenges such as water scarcity, changing weather conditions, and fluctuating market prices. To overcome these difficulties, I gradually shifted from traditional farming methods to modern and sustainable farming practices. On my farm, I use tractors and grass cutters to improve efficiency, and I maintain soil fertility using organic fertilizers to ensure long-term productivity. Kisan Market plays an important role by helping farmers understand market demand and price trends, allowing better crop planning and reduced losses. Farming is a family effort for us. My wife manages the household, and we have four children—two boys and two girls—who also help on the farm when needed. Our farm, called “Karevasti,” follows modern techniques and eco-friendly practices encouraged by platforms like Kisan Market.
+    </p>
+
+    <p>
+       Currently, my main crops are lemongrass and colocasia leaves (Alu cha Paan). Lemongrass is especially profitable as it provides good returns in a shorter period, and through Kisan Market, I can sell these crops directly to consumers at fair prices without depending on middlemen. My annual income is around 2 lakh rupees, and my daily routine starts at 6 AM and ends around 8 PM. The most challenging part of farming is dealing with unstable market prices, while the most satisfying part is seeing my workers’ dedication and the healthy growth of crops. Over the years, my land has improved in quality due to proper care and planning. During the off-season, I focus on maintenance and consult agricultural advisors to stay updated. In conclusion, Kisan Market is a strong support system for farmers, helping us earn better income, practice sustainable farming, and stay connected with modern agriculture. Farming is my passion, and I am proud to contribute to the nation’s food security.
+    </p>
+</section>
+
+<script src="./script.js"></script>
+</body>
+</html>

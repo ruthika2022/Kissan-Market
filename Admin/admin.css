@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f4f6f8;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #7b3f00;
+    color: white;
+    position: fixed;
+    padding: 20px;
+    transition: 0.3s;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    margin: 6px 0;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: white;
+    color: #7b3f00;
+    font-weight: bold;
+}
+
+/* MAIN */
+.main {
+    margin-left: 240px;
+    padding: 25px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+/* TOPBAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #7b3f00;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+}
+
+.card h3 {
+    color: #7b3f00;
+}
+
+.card p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* TABLE */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #7b3f00;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+/* STATUS */
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: white;
+}
+
+.active-status {
+    background: #4caf50;
+}
+
+.pending {
+    background: orange;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.green {
+    background: #2e7d32;
+}
+
+.red {
+    background: #c62828;
+}
+
+.blue {
+    background: #1565c0;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* FORM */
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* PAGE SYSTEM */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* TABLET */
+@media(max-width:1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        left: -260px;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Hide hamburger on laptop */
+@media(min-width:1025px) {
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .sidebar {
+        left: 0 !important;
+    }
+}
