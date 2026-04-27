@@ -1,17 +1,25 @@
-function toggleMenu() {
-  document.getElementById("navMenu").classList.toggle("show");
-}
 
-function login(e) {
-  e.preventDefault();
+function log() {
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
 
-  if (email === "rohith@gmail.com" && password === "rohith123") {
-    alert("Login Successful ✅");
+  if (email === "admin@12" && password === "admin123") {
+    window.location.href = "../Admin/admin.html";
+  } 
+  else if (email === "buyer@12" && password === "buyer123") {
     window.location.href = "../home/index.html";
-  } else {
-    alert("Invalid Email or Password ❌");
+  } 
+  else if (email === "farmer@12" && password === "farmer123") {
+    window.location.href = "../Farmer/farmer.html";
+  } 
+  else if (email === "vendor@12" && password === "vendor123") {
+    window.location.href = "../vender/vender.html";
   }
+  else {
+    alert("Invalid Email or Password");
+  }
+
+
+  
 }
