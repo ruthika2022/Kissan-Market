@@ -1,0 +1,282 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+
+body{
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+
+.header{
+    background-color: #8b4a2b;
+    color: white;
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.header h1{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+
+
+.main-section{
+    width: 90%;
+    margin: 30px auto;
+}
+
+
+
+.top-box{
+    background-color: white;
+
+    padding: 20px;
+
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.top-box input,
+.top-box select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    flex: 1;
+}
+
+
+
+.refresh-btn{
+    background-color: orange;
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.refresh-btn:hover{
+    background-color: darkorange;
+}
+
+
+
+.update-time{
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+
+
+.table-box{
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    padding: 20px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td{
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+table th{
+    background-color: #f0f0f0;
+}
+
+
+.crop-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.crop-name img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+
+.green{
+    color: green;
+    font-weight: bold;
+}
+
+.red{
+    color: red;
+    font-weight: bold;
+}
+
+
+
+.save-btn{
+    background-color: green;
+    color: white;
+
+    border: none;
+
+    padding: 8px 15px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.save-btn:hover{
+    background-color: darkgreen;
+}
+
+
+
+footer{
+    background-color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+
+    border-top: 1px solid #ddd;
+}
+
+
+
+
+
+@media screen and (max-width: 768px){
+
+    .navbar{
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header{
+        padding: 40px 15px;
+    }
+
+    .header h1{
+        font-size: 28px;
+    }
+
+    .header p{
+        font-size: 14px;
+    }
+
+    .top-box{
+        flex-direction: column;
+    }
+
+    .top-box input,
+    .top-box select,
+    .refresh-btn{
+        width: 100%;
+    }
+
+    table th,
+    table td{
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .crop-name img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .save-btn{
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+
+    .navbar{
+        padding: 15px 25px;
+    }
+
+    .header h1{
+        font-size: 35px;
+    }
+
+    .main-section{
+        width: 95%;
+    }
+
+    .top-box{
+        gap: 10px;
+    }
+
+    table th,
+    table td{
+        padding: 12px;
+        font-size: 15px;
+    }
+
+}
+
+
+
+@media screen and (min-width: 1025px){
+
+    .navbar{
+        padding: 15px 40px;
+    }
+
+    .header h1{
+        font-size: 40px;
+    }
+
+    .main-section{
+        width: 90%;
+    }
+
+    table th,
+    table td{
+        padding: 15px;
+        font-size: 16px;
+    }
+
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kissan Market Prices</title>
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/price.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <a href="#" class="sidebar-logo">
+            🚚 Kissan Market
+        </a>
+
+        <ul class="sidebar-menu">
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    📊 Dashboard
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    🛒 Marketplace
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    💰 Market Price
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    ⚖️ My Bids
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    📦 Orders
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    🔔 Notifications
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    👤 Profile
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Header -->
+    <section class="header">
+
+        <h1>Live Crop Prices</h1>
+
+        <p>
+            Compare Government MSP prices with Market Prices
+        </p>
+
+    </section>
+
+    <!-- Main Section -->
+    <section class="main-section">
+
+        <!-- Search and Filter -->
+        <div class="top-box">
+
+            <input type="text" placeholder="Search Crop">
+
+            <select>
+                <option>All Districts</option>
+                <option>Hyderabad</option>
+                <option>Warangal</option>
+                <option>Karimnagar</option>
+                <option>Vijayawada</option>
+            </select>
+
+            <button class="refresh-btn">
+                Refresh
+            </button>
+
+        </div>
+
+        <!-- Update Time -->
+        <p class="update-time">
+            Last Updated : Today 10:30 AM
+        </p>
+
+        <!-- Price Table -->
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Crop</th>
+                        <th>District</th>
+                        <th>Govt Price</th>
+                        <th>Market Price</th>
+                        <th>Difference</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="crop-name">
+                            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200" alt="">
+                            Rice
+                        </td>
+
+                        <td>Hyderabad</td>
+
+                        <td>₹2200</td>
+
+                        <td>₹2350</td>
+
+                        <td class="green">
+                            +₹150 ↑
+                        </td>
+
+                        <td>
+                            <button class="save-btn">
+                                Save
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="crop-name">
+                            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200" alt="">
+                            Tomato
+                        </td>
+
+                        <td>Warangal</td>
+
+                        <td>₹1200</td>
+
+                        <td>₹1100</td>
+
+                        <td class="red">
+                            -₹100 ↓
+                        </td>
+
+                        <td>
+                            <button class="save-btn">
+                                Save
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Kissan Market | Farmer & Vendor Platform
+        </p>
+
+    </footer>
+
+</body>
+<script>
+
+    // HAMBURGER
+
+    const menuBtn = document.getElementById("menu-btn");
+
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", function(){
+
+        sidebar.classList.toggle("show");
+
+    });
+
+    
+
+</script>
+
+</html>
