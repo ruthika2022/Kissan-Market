@@ -14,83 +14,68 @@
 
 <div class="dashboard-layout">
 
-    <!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <aside class="sidebar" id="sidebar">
+    <a href="dashboard.html" class="sidebar-logo">
+        <span>🚚 Kissan Market</span>
+    </a>
 
-        <div class="logo-box">
-            🚚 Kissan Market
-        </div>
+    <ul class="sidebar-menu">
 
-        <ul class="sidebar-menu">
+        <li class="menu-item">
+            <a href="dashboard.html" class="menu-link">
+                <i>📊</i> Dashboard
+            </a>
+        </li>
 
-            <li class="menu-item active">
-                <a href="./dashboard.html" class="menu-link">
-                    <i class='bx bx-grid-alt'></i>
-                    Dashboard
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="marketplace.html" class="menu-link">
+                <i>🛒</i> Marketplace
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./marketplace.html" class="menu-link">
-                    <i class='bx bx-store'></i>
-                    Marketplace
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="marketprice.html" class="menu-link active">
+                <i>📈</i> Market Price
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./marketprice.html" class="menu-link">
-                    <i class='bx bx-line-chart'></i>
-                    Market Price
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="my-bids.html" class="menu-link">
+                <i>⚖️</i> My Bids
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./my-bids.html" class="menu-link">
-                    <i class='bx bx-wallet'></i>
-                    My Bids
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="orders.html" class="menu-link">
+                <i>📦</i> Buyer Orders
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./orders.html" class="menu-link">
-                    <i class='bx bx-package'></i>
-                    Orders
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="notifications.html" class="menu-link">
+                <i>🔔</i> Notifications
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./notifications.html" class="menu-link">
-                    <i class='bx bx-bell'></i>
-                    Notifications
-                </a>
-            </li>
+        <li class="menu-item">
+            <a href="profile.html" class="menu-link">
+                <i>👤</i> My Profile
+            </a>
+        </li>
 
-            <li class="menu-item">
-                <a href="./profile.html" class="menu-link">
-                    <i class='bx bx-user'></i>
-                    Profile
-                </a>
-            </li>
+    </ul>
 
-            <li class="menu-item">
-                <a href="../../index.html" class="menu-link">
-                    <i class='bx bx-log-out'></i>
-                    Logout
-                </a>
-            </li>
+    <div class="sidebar-footer">
 
-        </ul>
+        <a href="../../index.html" class="menu-link" onclick="State.logout()">
+            <i>🚪</i> Logout
+        </a>
 
-    </aside>
+    </div>
 
-
-
-    <!-- MAIN CONTENT -->
-
+</aside>
     <div class="main-content">
-
-        <!-- TOPBAR -->
 
         <header class="topbar">
 
