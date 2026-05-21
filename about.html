@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Kissan Market</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #8b4a2b;
+            --primary-dark: #6f3b22;
+            --bg-light: #f4f7f4;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--bg-light);
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* LOGO LEFT */
+
+        .logo {
+            position: absolute;
+            left: 5%;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* NAV LINKS CENTER */
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO SECTION */
+
+        .about-hero {
+            height: 60vh;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1600');
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            color: white;
+            padding: 0 5%;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .about-hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ABOUT SECTION */
+
+        .about-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-top: 1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* MISSION SECTION */
+
+        .mission-section {
+            padding: 6rem 5%;
+            background: var(--bg-light);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .mission-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .mission-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px) {
+
+            nav {
+                justify-content: space-between;
+            }
+
+            .logo {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-hero {
+                height: 50vh;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            KISSAN MARKET
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- HERO SECTION -->
+
+    <section class="about-hero">
+
+        <div>
+
+            <h1>About Kissan Market</h1>
+
+            <p>
+                Connecting farmers and vendors through a smart digital marketplace
+                that creates better opportunities, fair pricing, and seamless trade.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+
+    <section class="about-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Who We Are</span>
+
+                <h2>Empowering Modern Agriculture</h2>
+
+            </div>
+
+            <div class="about-content">
+
+                <div class="about-text">
+
+                    <h3>Building a Better Agricultural Ecosystem</h3>
+
+                    <p>
+                        Kissan Market is a modern digital platform designed to connect
+                        farmers directly with vendors and buyers in a transparent and
+                        efficient way.
+                    </p>
+
+                    <p>
+                        Our goal is to reduce the gap between production and market access
+                        by providing real-time bidding, easy crop management, and smooth
+                        communication between all participants.
+                    </p>
+
+                    <p>
+                        We believe technology can improve agriculture by helping farmers
+                        get fair prices and enabling vendors to access quality products
+                        quickly and easily.
+                    </p>
+
+                </div>
+
+                <div class="about-image">
+
+                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1000"
+                        alt="Farmers">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MISSION SECTION -->
+
+    <section class="mission-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Our Mission</span>
+
+                <h2>What Makes Us Different</h2>
+
+            </div>
+
+            <div class="mission-grid">
+
+                <div class="mission-card">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                    <h4>Support Farmers</h4>
+
+                    <p>
+                        Helping farmers reach better markets and improve their income
+                        through digital access.
+                    </p>
+
+                </div>
+
+                <div class="mission-card">
+
+                    <i class="fa-solid fa-handshake"></i>
+
+                    <h4>Transparent Trade</h4>
+
+                    <p>
+                        Creating trusted and fair transactions between farmers,
+                        vendors, and buyers.
+                    </p>
+
+                </div>
+
+                <div class="mission-card">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h4>Smart Growth</h4>
+
+                    <p>
+                        Using technology and market insights to improve agricultural
+                        business decisions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Kissan Market. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
