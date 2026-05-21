@@ -59,6 +59,11 @@ h1, h2, h3, h4 {
     margin: 0 auto;
 }
 
+#p-location{
+    width: 100%;
+
+}
+
 .card {
     background: var(--bg-light);
     border-radius: var(--border-radius);
