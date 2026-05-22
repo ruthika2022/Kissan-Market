@@ -14,66 +14,67 @@
 
 <div class="dashboard-layout">
 
- <aside class="sidebar">
+    <!-- SIDEBAR -->
 
-   
-    <div class="logo">
-       👨‍🌾 Kissan Market
-    </div>
+    <aside class="sidebar" id="sidebar">
 
-    <!-- MENU -->
-    <ul class="nav-menu">
+        <div class="logo">
+            👨‍🌾 Kissan Market
+        </div>
 
-        <li>
-            <a href="../farmer/dashboard.html" class="nav-link active">
-                📊 Dashboard
+        <ul class="nav-menu">
+
+            <li>
+                <a href="#" class="nav-link active">
+                    📊 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    🥦 My Products
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    📈 Market Price
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    ⚖️ Live Bids
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    🔔 Notifications
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    👤 Profile
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="logout">
+            <a href="#" class="nav-link">
+                🚪 Logout
             </a>
-        </li>
+        </div>
 
-        <li>
-            <a href="../farmer/products.html" class="nav-link">
-                🥦 My Products
-            </a>
-        </li>
+    </aside>
 
-        <li>
-            <a href="../farmer/price.html" class="nav-link">
-                📈 Market Price
-            </a>
-        </li>
-
-        <li>
-            <a href="../farmer/bids.html" class="nav-link">
-                ⚖️ Live Bids
-            </a>
-        </li>
-
-        <li>
-            <a href="../farmer/notifications.html" class="nav-link">
-                🔔 Notifications
-            </a>
-        </li>
-
-        <li>
-            <a href="../farmer/profile.html" class="nav-link">
-                👤 Profile
-            </a>
-        </li>
-
-    </ul>
-
-    <!-- LOGOUT -->
-    <div class="logout">
-        <a href="../../index.html" class="nav-link">
-            🚪 Logout
-        </a>
-    </div>
-
-</aside>
-
+    <!-- MAIN -->
 
     <div class="main-content">
 
+        <!-- TOPBAR -->
 
         <header class="topbar">
 
@@ -88,37 +89,27 @@
 
         </header>
 
-  
+        <!-- CONTENT -->
 
         <section class="main-section">
 
-  
-
             <div class="top-box">
 
-                <input type="text" placeholder="Search Crop">
+                <input type="text" id="searchInput" placeholder="Search Crop">
 
-                <select>
-                    <option>All Districts</option>
-                    <option>Hyderabad</option>
-                    <option>Warangal</option>
-                    <option>Karimnagar</option>
-                    <option>Vijayawada</option>
+                <select id="districtFilter">
+                    <option value="">All Districts</option>
                 </select>
 
-                <button class="refresh-btn">
+                <button class="refresh-btn" onclick="fetchMarketPrices()">
                     Refresh
                 </button>
 
             </div>
 
-
-
-            <p class="update-time">
-                Last Updated : Today 10:30 AM
+            <p class="update-time" id="updateTime">
+                Last Updated : Loading...
             </p>
-
-
 
             <div class="table-box">
 
@@ -129,6 +120,7 @@
                         <tr>
                             <th>Crop</th>
                             <th>District</th>
+                            <th>Market</th>
                             <th>Govt Price</th>
                             <th>Market Price</th>
                             <th>Difference</th>
@@ -137,53 +129,7 @@
 
                     </thead>
 
-                    <tbody>
-
-                        <tr>
-
-                            <td class="crop-name">
-                                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200">
-                                Rice
-                            </td>
-
-                            <td>Hyderabad</td>
-                            <td>₹2200</td>
-                            <td>₹2350</td>
-
-                            <td class="green">
-                                +₹150 ↑
-                            </td>
-
-                            <td>
-                                <button class="save-btn">
-                                    Save
-                                </button>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td class="crop-name">
-                                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200">
-                                Tomato
-                            </td>
-
-                            <td>Warangal</td>
-                            <td>₹1200</td>
-                            <td>₹1100</td>
-
-                            <td class="red">
-                                -₹100 ↓
-                            </td>
-
-                            <td>
-                                <button class="save-btn">
-                                    Save
-                                </button>
-                            </td>
-
-                        </tr>
+                    <tbody id="marketData">
 
                     </tbody>
 
@@ -193,22 +139,17 @@
 
         </section>
 
-
         <footer>
-
             <p>
                 © 2026 Kissan Market | Farmer & Vendor Platform
             </p>
-
         </footer>
 
     </div>
 
 </div>
 
-
-
-<script src="../../js/price.js"></script>
+<script src="../../js/marketprice.js"></script>
 
 </body>
 </html>
