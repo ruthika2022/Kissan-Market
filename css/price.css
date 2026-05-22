@@ -64,15 +64,10 @@ body{
 }
 
 .menu-link.active{
-    background: #8b4a2b;
-    color: white;
+    color: black;
 }
 
-.sidebar-footer{
-    position: absolute;
-    bottom: 20px;
-    width: calc(100% - 40px);
-}
+
 
 /* MAIN CONTENT */
 

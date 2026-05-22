@@ -66,8 +66,7 @@
 /* ACTIVE */
 
 .nav-link.active{
-    background-color: #8b4a2b;
-    color: white;
+    color: black;
 }
 
 /* LOGOUT */
