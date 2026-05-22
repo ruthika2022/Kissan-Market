@@ -166,13 +166,23 @@ const State = {
     },
 
   
-    addProduct(product) {
-        const products = this.getData(this.keys.products);
-        const newProduct = { ...product, id: Date.now(), status: 'Active', createdAt: new Date().toISOString() };
-        products.push(newProduct);
-        this.saveData(this.keys.products, products);
-        return newProduct;
-    },
+addProduct(product) {
+
+    const products = this.getProducts();
+
+    product.id = Date.now();
+
+    product.status = "Active";
+
+    products.push(product);
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+    this.notify();
+},
 
     updateProduct(id, updatedData) {
         const products = this.getData(this.keys.products);

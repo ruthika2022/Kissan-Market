@@ -62,6 +62,9 @@
       .product-body {
         padding: 1rem;
       }
+      #p-location{
+        width: 100%;
+      }
       .product-badge {
         font-size: 0.65rem;
         padding: 0.3rem 0.6rem;
@@ -404,10 +407,30 @@
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem;">
-                            <button class="btn btn-outline" style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" onclick="promptStockUpdate(${p.id}, '${p.name}', '${p.quantity}')">Stock</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" onclick="editProduct(${p.id})">Edit</button>
-                        </div>
+                       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 1rem;">
+    
+                        <button 
+                          class="btn btn-outline" 
+                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" 
+                          onclick="promptStockUpdate(${p.id}, '${p.name}', '${p.quantity}')">
+                          Stock
+                        </button>
+
+                        <button 
+                          class="btn btn-outline" 
+                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" 
+                          onclick="editProduct(${p.id})">
+                          Edit
+                        </button>
+
+                        <button 
+                          class="btn btn-outline" 
+                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px; color: red; border-color: red;" 
+                          onclick="removeProduct(${p.id})">
+                          Remove
+                        </button>
+
+                    </div>
                         
                         <a href="bids.html?id=${p.id}" class="btn btn-primary" style="padding: 0.6rem; font-size: 0.8rem; width: 100%; margin-top: 0.5rem; border-radius: 8px; text-align: center; text-decoration: none; display: block;">View Bids</a>
                     </div>
@@ -526,6 +549,24 @@
       State.listenToChanges(renderProducts);
 
       document.addEventListener("DOMContentLoaded", renderProducts);
+
+
+      
+      function removeProduct(id) {
+  const confirmDelete = confirm(
+    "Are you sure you want to remove this product?"
+  );
+
+  if (!confirmDelete) return;
+
+  State.removeProduct(id);
+
+  UI.showToast("Product removed successfully!");
+
+  renderProducts();
+}
+
+
     </script>
   </body>
 </html>
