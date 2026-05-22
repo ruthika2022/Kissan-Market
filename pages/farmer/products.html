@@ -423,25 +423,24 @@
     <script src="../../js/app.js"></script>
     <script src="../../js/farmer.js"></script>
     <script>
-
+// ===============================
 // SAMPLE PRODUCTS
+// ===============================
 
-const sampleProducts = [
+let products = [
 
   {
     id: 1,
     name: "Tomato",
     category: "Vegetables",
     image: "🍅",
-    description: "Fresh red tomatoes directly from farm",
+    description: "Fresh tomatoes from farm",
     quantity: 500,
     unit: "kg",
     location: "Hyderabad",
     minPrice: 2200,
     maxPrice: 3500,
     endTime: "2026-05-25T10:00:00",
-    farmerId: 1,
-    farmerName: "Ramesh",
     status: "Active"
   },
 
@@ -457,8 +456,6 @@ const sampleProducts = [
     minPrice: 1800,
     maxPrice: 2800,
     endTime: "2026-05-26T12:00:00",
-    farmerId: 1,
-    farmerName: "Ramesh",
     status: "Active"
   },
 
@@ -474,8 +471,6 @@ const sampleProducts = [
     minPrice: 1500,
     maxPrice: 2200,
     endTime: "2026-05-28T04:00:00",
-    farmerId: 1,
-    farmerName: "Ramesh",
     status: "Sold"
   },
 
@@ -484,245 +479,401 @@ const sampleProducts = [
     name: "Mango",
     category: "Fruits",
     image: "🥭",
-    description: "Sweet mangoes fresh from farm",
+    description: "Sweet mangoes",
     quantity: 200,
     unit: "Dozen",
     location: "Vijayawada",
     minPrice: 12000,
     maxPrice: 18000,
     endTime: "2026-05-30T03:00:00",
-    farmerId: 1,
-    farmerName: "Ramesh",
     status: "Active"
-  },
-
-  {
-    id: 5,
-    name: "Rice",
-    category: "Grains",
-    image: "🌾",
-    description: "Premium quality rice",
-    quantity: 1000,
-    unit: "Quintal",
-    location: "Nizamabad",
-    minPrice: 55000,
-    maxPrice: 75000,
-    endTime: "2026-06-01T09:00:00",
-    farmerId: 1,
-    farmerName: "Ramesh",
-    status: "Pending"
   }
 
 ];
-      
-      function renderProducts() {
-        const user = State.getCurrentUser();
-        const products = State.getProducts().filter(
-          (p) => p.farmerId === user.id,
-        );
-        const list = document.getElementById("product-list");
-        const empty = document.getElementById("empty-state");
 
-        if (products.length === 0) {
-          list.innerHTML = "";
-          empty.style.display = "block";
-          return;
-        }
+// ===============================
+// RENDER PRODUCTS
+// ===============================
 
-        empty.style.display = "none";
-        list.innerHTML = products
-          .map((p) => {
-            const highestBid = State.getHighestBid(p.id);
-            const timeLeft = UI.formatTimeLeft(p.endTime);
-            const statusColor =
-              p.status === "Active"
-                ? "var(--accent-green)"
-                : p.status === "Sold"
-                  ? "#1976d2"
-                  : "#d32f2f";
+function renderProducts() {
 
-            return `
-                <div class="product-card fade-in">
-                    <div class="product-img">${p.image && p.image.startsWith("http") ? `<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;">` : p.image || "🥦"}</div>
-                    <div class="product-body">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                            <span class="product-badge" style="background: ${statusColor}10; color: ${statusColor}; border: 1px solid ${statusColor}20;">${p.status}</span>
-                            <span style="font-size: 0.7rem; color: #999; font-weight: 500;">⌛ ${timeLeft}</span>
-                        </div>
-                        
-                        <h4 style="margin: 0 0 0.2rem 0; font-size: 1.1rem; color: #333;">${p.name}</h4>
-                        <p style="font-size: 0.75rem; color: #777; margin-bottom: 1rem;">📍 ${p.location || "Maharashtra, IN"}</p>
-                        
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-top: 1px solid #f9f9f9;">
-                            <div>
-                                <p style="font-size: 0.65rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Target Range</p>
-                                <p style="font-weight: 600; font-size: 0.85rem; color: #444;">₹${p.minPrice} - ${p.maxPrice || p.minPrice + 500}</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <p style="font-size: 0.65rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Highest Bid</p>
-                                <p style="font-weight: 700; color: var(--primary-color); font-size: 1rem;">₹${highestBid ? highestBid.amount : "--"}</p>
-                            </div>
-                        </div>
+  const productList = document.getElementById("product-list");
 
-                       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 1rem;">
-    
-                        <button 
-                          class="btn btn-outline" 
-                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" 
-                          onclick="promptStockUpdate(${p.id}, '${p.name}', '${p.quantity}')">
-                          Stock
-                        </button>
+  const emptyState = document.getElementById("empty-state");
 
-                        <button 
-                          class="btn btn-outline" 
-                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px;" 
-                          onclick="editProduct(${p.id})">
-                          Edit
-                        </button>
+  // CHECK PRODUCTS AVAILABLE OR NOT
 
-                        <button 
-                          class="btn btn-outline" 
-                          style="padding: 0.5rem; font-size: 0.75rem; border-radius: 8px; color: red; border-color: red;" 
-                          onclick="removeProduct(${p.id})">
-                          Remove
-                        </button>
+  if (products.length === 0) {
 
-                    </div>
-                        
-                        <a href="bids.html?id=${p.id}" class="btn btn-primary" style="padding: 0.6rem; font-size: 0.8rem; width: 100%; margin-top: 0.5rem; border-radius: 8px; text-align: center; text-decoration: none; display: block;">View Bids</a>
-                    </div>
-                </div>
-                `;
-          })
-          .join("");
-      }
+    productList.innerHTML = "";
 
-      function promptStockUpdate(id, name, current) {
-        const newStock = prompt(`Update stock for ${name}:`, current);
-        if (newStock !== null) {
-          State.updateStock(id, newStock);
-          UI.showToast("Stock updated!");
-          renderProducts();
-        }
-      }
+    emptyState.style.display = "block";
 
-      document
-        .getElementById("product-form")
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          const user = State.getCurrentUser();
-          const productId = document.getElementById("p-id").value;
+    return;
+  }
 
-          const productData = {
-            name: document.getElementById("p-name").value,
-            category: document.getElementById("p-category").value,
-            image: document.getElementById("p-image").value,
-            description: document.getElementById("p-desc").value,
-            quantity: document.getElementById("p-qty").value,
-            unit: document.getElementById("p-unit").value,
-            location: document.getElementById("p-location").value,
-            minPrice: parseInt(document.getElementById("p-price").value),
-            maxPrice: parseInt(document.getElementById("p-max-price").value),
-            endTime: new Date(
-              document.getElementById("p-date").value,
-            ).toISOString(),
-            farmerId: user.id,
-            farmerName: user.name,
-          };
+  emptyState.style.display = "none";
 
-          if (productId) {
-            State.updateProduct(parseInt(productId), productData);
-            UI.showToast("Product updated successfully!");
-          } else {
-            State.addProduct(productData);
-            UI.showToast("Product listed successfully!");
-          }
+  let cards = "";
 
-          toggleModal(false);
-          e.target.reset();
-          document.getElementById("p-id").value = "";
-          renderProducts();
-        });
+  // LOOP PRODUCTS
 
-      function editProduct(id) {
-        const product = State.getProducts().find((p) => p.id === id);
-        if (!product) return;
+  products.forEach(function(product) {
 
-        document.getElementById("modal-title").innerText = "Edit Product";
-        document.getElementById("p-id").value = product.id;
-        document.getElementById("p-name").value = product.name;
-        document.getElementById("p-category").value = product.category;
-        document.getElementById("p-image").value = product.image || "🥦";
-        document.getElementById("p-desc").value = product.description || "";
-        document.getElementById("p-qty").value = product.quantity;
-        document.getElementById("p-unit").value = product.unit || "kg";
-        document.getElementById("p-location").value = product.location || "";
-        document.getElementById("p-price").value = product.minPrice;
-        document.getElementById("p-max-price").value =
-          product.maxPrice || product.minPrice + 1000;
-        document.getElementById("p-date").value = new Date(product.endTime)
-          .toISOString()
-          .slice(0, 16);
+    cards += `
 
-        toggleModal(true);
-      }
+      <div class="product-card fade-in">
 
-      function toggleModal(show) {
-        document
-          .getElementById("product-modal")
-          .classList.toggle("active", show);
-        if (show && !document.getElementById("p-id").value) {
-          document.getElementById("modal-title").innerText = "Add New Product";
+        <div class="product-img">
+          ${product.image}
+        </div>
 
-          const now = new Date();
-          now.setHours(now.getHours() + 24);
-          document.getElementById("p-date").value = now
-            .toISOString()
-            .slice(0, 16);
-        }
-        if (!show) {
-          document.getElementById("p-id").value = "";
-        }
-      }
+        <div class="product-body">
 
-      function suggestPrice() {
-        const name = document.getElementById("p-name").value.toLowerCase();
-        const suggestions = {
-          tomato: { min: 2200, max: 3500 },
-          onion: { min: 1800, max: 2800 },
-          potato: { min: 1500, max: 2200 },
-          carrot: { min: 3000, max: 4500 },
-          mango: { min: 12000, max: 18000 },
-          rice: { min: 55000, max: 75000 },
-        };
-        const range = suggestions[name] || { min: 2500, max: 4000 };
-        document.getElementById("p-price").value = range.min;
-        document.getElementById("p-max-price").value = range.max;
-        UI.showToast(
-          `AI Suggests ₹${range.min} - ₹${range.max} based on market demand!`,
-        );
-      }
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
 
-      State.listenToChanges(renderProducts);
+            <span class="product-badge">
+              ${product.status}
+            </span>
 
-      document.addEventListener("DOMContentLoaded", renderProducts);
+            <span style="font-size:12px;">
+              ⌛ Active
+            </span>
 
+          </div>
 
-      
-      function removeProduct(id) {
+          <h3>
+            ${product.name}
+          </h3>
+
+          <p>
+            📍 ${product.location}
+          </p>
+
+          <p>
+            ${product.description}
+          </p>
+
+          <div style="margin-top:10px;">
+
+            <p>
+              Quantity :
+              ${product.quantity} ${product.unit}
+            </p>
+
+            <p>
+              Price :
+              ₹${product.minPrice} - ₹${product.maxPrice}
+            </p>
+
+          </div>
+
+          <!-- BUTTONS -->
+
+          <div
+            style="
+              display:grid;
+              grid-template-columns:1fr 1fr 1fr;
+              gap:10px;
+              margin-top:15px;
+            "
+          >
+
+            <!-- STOCK BUTTON -->
+
+            <button
+              class="btn btn-outline"
+              onclick="updateStock(${product.id})"
+            >
+              Stock
+            </button>
+
+            <!-- EDIT BUTTON -->
+
+            <button
+              class="btn btn-outline"
+              onclick="editProduct(${product.id})"
+            >
+              Edit
+            </button>
+
+            <!-- REMOVE BUTTON -->
+
+            <button
+              class="btn btn-outline"
+              style="color:red; border-color:red;"
+              onclick="removeProduct(${product.id})"
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+  });
+
+  productList.innerHTML = cards;
+}
+
+// ===============================
+// ADD PRODUCT
+// ===============================
+
+document
+  .getElementById("product-form")
+  .addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // GET VALUES
+
+    const name = document.getElementById("p-name").value;
+
+    const category = document.getElementById("p-category").value;
+
+    const image = document.getElementById("p-image").value;
+
+    const description = document.getElementById("p-desc").value;
+
+    const quantity = document.getElementById("p-qty").value;
+
+    const unit = document.getElementById("p-unit").value;
+
+    const location = document.getElementById("p-location").value;
+
+    const minPrice = document.getElementById("p-price").value;
+
+    const maxPrice = document.getElementById("p-max-price").value;
+
+    const endTime = document.getElementById("p-date").value;
+
+    // CREATE OBJECT
+
+    const newProduct = {
+
+      id: Date.now(),
+
+      name: name,
+
+      category: category,
+
+      image: image,
+
+      description: description,
+
+      quantity: quantity,
+
+      unit: unit,
+
+      location: location,
+
+      minPrice: minPrice,
+
+      maxPrice: maxPrice,
+
+      endTime: endTime,
+
+      status: "Active"
+    };
+
+    // ADD PRODUCT
+
+    products.push(newProduct);
+
+    // CLOSE MODAL
+
+    toggleModal(false);
+
+    // RESET FORM
+
+    document.getElementById("product-form").reset();
+
+    // RELOAD PRODUCTS
+
+    renderProducts();
+
+    alert("Product Added Successfully");
+
+  });
+
+// ===============================
+// REMOVE PRODUCT
+// ===============================
+
+function removeProduct(id) {
+
   const confirmDelete = confirm(
     "Are you sure you want to remove this product?"
   );
 
-  if (!confirmDelete) return;
+  if (confirmDelete) {
 
-  State.removeProduct(id);
+    products = products.filter(function(product) {
 
-  UI.showToast("Product removed successfully!");
+      return product.id !== id;
 
-  renderProducts();
+    });
+
+    renderProducts();
+
+    alert("Product Removed Successfully");
+  }
 }
 
+// ===============================
+// EDIT PRODUCT
+// ===============================
+
+function editProduct(id) {
+
+  const product = products.find(function(item) {
+
+    return item.id === id;
+
+  });
+
+  if (!product) {
+    return;
+  }
+
+  // OPEN MODAL
+
+  toggleModal(true);
+
+  // SET VALUES
+
+  document.getElementById("p-name").value = product.name;
+
+  document.getElementById("p-category").value = product.category;
+
+  document.getElementById("p-image").value = product.image;
+
+  document.getElementById("p-desc").value = product.description;
+
+  document.getElementById("p-qty").value = product.quantity;
+
+  document.getElementById("p-unit").value = product.unit;
+
+  document.getElementById("p-location").value = product.location;
+
+  document.getElementById("p-price").value = product.minPrice;
+
+  document.getElementById("p-max-price").value = product.maxPrice;
+
+  document.getElementById("p-date").value = product.endTime;
+
+}
+
+// ===============================
+// UPDATE STOCK
+// ===============================
+
+function updateStock(id) {
+
+  const product = products.find(function(item) {
+
+    return item.id === id;
+
+  });
+
+  const newStock = prompt(
+    "Enter New Stock",
+    product.quantity
+  );
+
+  if (newStock !== null) {
+
+    product.quantity = newStock;
+
+    renderProducts();
+
+    alert("Stock Updated Successfully");
+  }
+}
+
+// ===============================
+// MODAL OPEN / CLOSE
+// ===============================
+
+function toggleModal(show) {
+
+  const modal = document.getElementById("product-modal");
+
+  if (show) {
+
+    modal.classList.add("active");
+
+  } else {
+
+    modal.classList.remove("active");
+  }
+}
+
+// ===============================
+// AI PRICE SUGGESTION
+// ===============================
+
+function suggestPrice() {
+
+  const productName =
+    document.getElementById("p-name")
+    .value
+    .toLowerCase();
+
+  let min = 2000;
+
+  let max = 4000;
+
+  if (productName === "tomato") {
+
+    min = 2200;
+    max = 3500;
+  }
+
+  else if (productName === "onion") {
+
+    min = 1800;
+    max = 2800;
+  }
+
+  else if (productName === "potato") {
+
+    min = 1500;
+    max = 2200;
+  }
+
+  else if (productName === "mango") {
+
+    min = 12000;
+    max = 18000;
+  }
+
+  // SET VALUES
+
+  document.getElementById("p-price").value = min;
+
+  document.getElementById("p-max-price").value = max;
+
+  alert(
+    "Suggested Price : ₹" +
+    min +
+    " - ₹" +
+    max
+  );
+}
+
+// ===============================
+// PAGE LOAD
+// ===============================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  renderProducts
+);
 
     </script>
   </body>
