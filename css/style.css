@@ -1,10 +1,9 @@
-/* Kissan Market - Main Design System */
 :root {
-    /* Colors */
+  
     --primary-color: #8b4a2b;
     --primary-light: #a65e3b;
     --primary-dark: #6d3a22;
-    --secondary-color: #f9f5f2; /* light cream */
+    --secondary-color: #f9f5f2;
     --accent-green: #4caf50;
     --accent-green-light: #e8f5e9;
     --text-main: #333;
@@ -15,14 +14,14 @@
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.3);
     
-    /* Layout */
+
     --sidebar-width: 260px;
     --header-height: 70px;
     --border-radius: 12px;
     --transition-fast: 0.3s ease;
 }
 
-/* Dark Mode Variables */
+
 [data-theme="dark"] {
     --bg-light: #121212;
     --bg-sidebar: #1e1e1e;
@@ -47,17 +46,22 @@ body {
     transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-/* Typography */
+
 h1, h2, h3, h4 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
-/* Utils */
+
 .container {
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+#p-location{
+    width: 100%;
+
 }
 
 .card {
@@ -105,7 +109,6 @@ h1, h2, h3, h4 {
     color: white;
 }
 
-/* Responsive Grid */
 .grid {
     display: grid;
     gap: 1.5rem;
@@ -114,7 +117,7 @@ h1, h2, h3, h4 {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
 
-/* Animations */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -124,10 +127,12 @@ h1, h2, h3, h4 {
     animation: fadeIn 0.5s ease forwards;
 }
 
-/* Glassmorphism utility */
+
 .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
 }
+
+

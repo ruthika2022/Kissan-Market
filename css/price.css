@@ -1,0 +1,297 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* DASHBOARD LAYOUT */
+
+.dashboard-layout{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width: 260px;
+    background: white;
+    padding: 25px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    border-right: 1px solid #eee;
+}
+
+.sidebar-logo{
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b4a2b;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.sidebar-menu{
+    list-style: none;
+}
+
+.menu-item{
+    margin-bottom: 12px;
+}
+
+.menu-link{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.menu-link:hover{
+    background: #f4f4f4;
+}
+
+.menu-link.active{
+    background: #8b4a2b;
+    color: white;
+}
+
+.sidebar-footer{
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 40px);
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+/* TOPBAR */
+
+.topbar{
+    background-color: white;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topbar h2{
+    font-size: 28px;
+    color: #8b4a2b;
+    margin-bottom: 5px;
+}
+
+.topbar p{
+    color: #666;
+    font-size: 14px;
+}
+
+.menu-btn{
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #8b4a2b;
+}
+
+/* MAIN SECTION */
+
+.main-section{
+    padding: 30px;
+}
+
+/* SEARCH BOX */
+
+.top-box{
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.top-box input,
+.top-box select{
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.refresh-btn{
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.refresh-btn:hover{
+    background-color: #e68900;
+}
+
+/* UPDATE TIME */
+
+.update-time{
+    text-align: right;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+/* TABLE */
+
+.table-box{
+    background-color: white;
+    border-radius: 15px;
+    overflow-x: auto;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td{
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+table th{
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+.crop-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.crop-name img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.green{
+    color: green;
+    font-weight: bold;
+}
+
+.red{
+    color: red;
+    font-weight: bold;
+}
+
+.save-btn{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-btn:hover{
+    background-color: darkgreen;
+}
+
+/* FOOTER */
+
+footer{
+    text-align: center;
+    padding: 25px;
+    color: #666;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 768px){
+
+    .sidebar{
+        left: -260px;
+        transition: 0.3s;
+        z-index: 1000;
+    }
+
+    .sidebar.show{
+        left: 0;
+    }
+
+    .main-content{
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .menu-btn{
+        display: block;
+    }
+
+    .topbar{
+        padding: 15px 20px;
+    }
+
+    .topbar h2{
+        font-size: 22px;
+    }
+
+    .main-section{
+        padding: 20px;
+    }
+
+    .top-box{
+        flex-direction: column;
+    }
+
+    .top-box input,
+    .top-box select,
+    .refresh-btn{
+        width: 100%;
+    }
+
+    table th,
+    table td{
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .crop-name img{
+        width: 35px;
+        height: 35px;
+    }
+
+}
