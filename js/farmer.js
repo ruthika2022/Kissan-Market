@@ -27,7 +27,8 @@ const UI = {
     },
 
 
-    showToast(message, type = 'success') {
+    showToast(message, type = 'success')
+     {
         const toast = document.createElement('div');
         toast.style.cssText = `
             position: fixed;

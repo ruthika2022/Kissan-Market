@@ -1,11 +1,9 @@
-/* Kissan Market - Dashboard Styles */
-
 .dashboard-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar */
+
 .sidebar {
     width: var(--sidebar-width);
     background: var(--bg-sidebar);
@@ -66,7 +64,7 @@
     border-top: 1px solid var(--glass-border);
 }
 
-/* Main Content */
+
 .main-content {
     flex-grow: 1;
     margin-left: var(--sidebar-width);
@@ -74,7 +72,7 @@
     min-height: 100vh;
 }
 
-/* Header */
+
 .header {
     height: var(--header-height);
     background: var(--bg-light);
@@ -145,7 +143,7 @@
     font-weight: 600;
 }
 
-/* Stats Cards */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -177,7 +175,7 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-/* Animations */
+
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -187,7 +185,7 @@
     animation: slideUp 0.4s ease forwards;
 }
 
-/* Scrollbar */
+
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -202,7 +200,7 @@
     background: var(--primary-color);
 }
 
-/* Responsive Fixes */
+
 @media (max-width: 992px) {
     .sidebar {
         transform: translateX(-100%);

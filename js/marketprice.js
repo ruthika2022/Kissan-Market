@@ -142,7 +142,7 @@ function renderTable(records){
 
 }
 
-// SEARCH + FILTER
+
 
 function filterData(){
 

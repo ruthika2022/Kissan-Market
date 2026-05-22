@@ -13,7 +13,6 @@ const UI = {
         document.body.setAttribute('data-theme', savedTheme);
     },
 
-   
     toggleSidebar() {
         const sidebar = document.querySelector('.sidebar');
         sidebar.classList.toggle('active');

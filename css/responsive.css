@@ -1,6 +1,3 @@
-/* Kissan Market - Global Responsive Design System */
-
-/* --- Mobile Navigation --- */
 @media (max-width: 1024px) {
     .sidebar {
         transform: translateX(-100%);

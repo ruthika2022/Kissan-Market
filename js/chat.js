@@ -79,7 +79,7 @@ function sendMessage(){
 
         chatBody.appendChild(adminReply);
 
-        // AUTO SCROLL
+
 
         chatBody.scrollTop =
         chatBody.scrollHeight;
@@ -88,14 +88,14 @@ function sendMessage(){
 
 }
 
-// BUTTON CLICK
+
 
 sendBtn.addEventListener(
     "click",
     sendMessage
 );
 
-// ENTER KEY
+
 
 chatInput.addEventListener(
     "keypress",

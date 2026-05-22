@@ -86,10 +86,6 @@ if (searchInput) {
 }
 
 
-// ===============================
-// DISTRICT FILTER
-// ===============================
-
 const districtSelect = document.querySelector("select");
 
 if (districtSelect) {

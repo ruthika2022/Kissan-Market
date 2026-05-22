@@ -377,7 +377,9 @@ removeProduct(id) {
     }
 };
 
+
 State.init();
+
 
 const addProduct = (p) => State.addProduct(p);
 const placeBid = (b) => State.placeBid(b);

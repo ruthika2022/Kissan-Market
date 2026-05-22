@@ -7,6 +7,7 @@ const UI = {
         body.setAttribute('data-theme', newTheme);
         localStorage.setItem('km_theme', newTheme);
     },
+    
 
     initTheme() {
         const savedTheme = localStorage.getItem('km_theme') || 'light';
