@@ -234,11 +234,25 @@ const State = {
         }
     },
 
-    deleteProduct(id) {
-        let products = this.getData(this.keys.products);
-        products = products.filter(p => p.id !== id);
-        this.saveData(this.keys.products, products);
-    },
+removeProduct(id) {
+
+    let products = this.getProducts();
+
+    products = products.filter(
+        (p) => p.id !== id
+    );
+
+    this.saveData(
+        this.keys.products,
+        products
+    );
+
+    this.addNotification(
+        this.getCurrentUser()?.id || 1,
+        'Product Removed',
+        `Product removed successfully`
+    );
+},
 
     updateStock(id, newQty) {
         this.updateProduct(id, { quantity: newQty });
@@ -372,6 +386,9 @@ const updateLocalStorage = (key, data) => State.saveData(key, data);
 const syncDashboards = () => State.syncDashboards();
 const logout = () => State.logout();
 window.logout = logout;
+
+window.removeProduct = (id) =>
+    State.removeProduct(id);
 
 State.init();
 
