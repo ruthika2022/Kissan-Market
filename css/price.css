@@ -67,16 +67,12 @@ body{
     color: black;
 }
 
-
-
-/* MAIN CONTENT */
-
 .main-content{
     margin-left: 260px;
     width: calc(100% - 260px);
 }
 
-/* TOPBAR */
+
 
 .topbar{
     background-color: white;
@@ -110,13 +106,13 @@ body{
     color: #8b4a2b;
 }
 
-/* MAIN SECTION */
+
 
 .main-section{
     padding: 30px;
 }
 
-/* SEARCH BOX */
+
 
 .top-box{
     background-color: white;
