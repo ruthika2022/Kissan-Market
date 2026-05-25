@@ -128,12 +128,7 @@ function renderTable(records){
                     ${difference >= 0 ? '+' : ''}₹${difference} ${diffSymbol}
                 </td>
 
-                <td>
-                    <button class="save-btn">
-                        Save
-                    </button>
-                </td>
-
+      
             </tr>
 
         `;
