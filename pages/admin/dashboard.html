@@ -468,6 +468,45 @@
         color: #1b5e20;
       }
 
+      /* ================= SECTIONS ================= */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+/* ================= BUTTONS ================= */
+
+.btn{
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn-primary:hover{
+  opacity:0.9;
+}
+
+.btn-success{
+  background:var(--secondary);
+  color:white;
+}
+
+.btn-danger{
+  background:#d32f2f;
+  color:white;
+}
+
       @media (max-width: 1200px) {
         .dashboard-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -531,11 +570,13 @@
               ><i class="fa-solid fa-truck-ramp-box"></i> Vendor Hub</a
             >
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('buyers', this)"
-              ><i class="fa-solid fa-shopping-bag"></i> Buyers Registry</a
-            >
-          </li>
+         <li class="nav-item">
+<a href="#" class="nav-link"
+onclick="showSec('support',this)">
+<i class="fa-solid fa-headset"></i>
+Chat Support
+</a>
+</li>
           <li class="nav-item">
             <a href="#" class="nav-link" onclick="showSec('products', this)"
               ><i class="fa-solid fa-boxes-stacked"></i> Inventory Audit</a
@@ -546,16 +587,7 @@
               ><i class="fa-solid fa-handshake-angle"></i> Global Bids</a
             >
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('orders', this)"
-              ><i class="fa-solid fa-file-contract"></i> Master Orders</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('reports', this)"
-              ><i class="fa-solid fa-chart-line"></i> Market Intelligence</a
-            >
-          </li>
+
         </ul>
         <div style="padding: 2rem">
           <button
@@ -809,7 +841,41 @@
           </div>
         </section>
 
-  
+  <section id="support" class="section">
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>User</th>
+<th>Role</th>
+<th>Message</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>Ravi</td>
+<td>Farmer</td>
+<td>Unable to upload product</td>
+<td><button class="btn btn-primary">Reply</button></td>
+</tr>
+
+<tr>
+<td>Anil</td>
+<td>Vendor</td>
+<td>Payment issue</td>
+<td><button class="btn btn-danger">Resolve</button></td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
         <section id="bids" class="section">
           <div class="glass-card">
             <div class="table-header">
@@ -868,34 +934,7 @@
         </section>
 
 
-        <section id="buyers" class="section">
-          <div class="glass-card">
-            <h2>Buyer Relationship Registry</h2>
-            <p style="color: #888; padding: 3rem; text-align: center">
-              Customer transaction historical data and engagement metrics are
-              archived here.
-            </p>
-          </div>
-        </section>
-        <section id="orders" class="section">
-          <div class="glass-card">
-            <h2>Master Order Tracking</h2>
-            <p style="color: #888; padding: 3rem; text-align: center">
-              Consolidated logistics and order fulfillment tracking system.
-            </p>
-          </div>
-        </section>
-        <section id="reports" class="section">
-          <div class="glass-card">
-            <h2>Market Intelligence Analytics</h2>
-            <p style="color: #888; padding: 3rem; text-align: center">
-              Advanced economic reports and regional market performance
-              analytics.
-            </p>
-          </div>
-        </section>
-      </main>
-    </div>
+
 
     <script src="../../js/app.js"></script>
     <script>
@@ -1166,9 +1205,6 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => initDashboard());
-
-
-      
     </script>
   </body>
 </html>
