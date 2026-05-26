@@ -218,6 +218,29 @@ footer{
     color:#666;
 }
 
+#quantityUnit{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    outline:none;
+    cursor:pointer;
+    margin-top:5px;
+    transition:0.3s;
+}
+
+#quantityUnit:hover{
+    border-color:green;
+}
+
+#quantityUnit:focus{
+    border-color:darkgreen;
+    box-shadow:0 0 5px rgba(0,128,0,0.4);
+}
+
+#unitPriceText{
+    font-weight:bold;
+    color:#2e7d32;
+}
 
 @media screen and (max-width:768px){
 
