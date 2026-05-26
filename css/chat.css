@@ -107,6 +107,9 @@
     cursor:pointer;
 }
 
+.c-box{
+    color: white;
+}
 
 @media(max-width:600px){
 
