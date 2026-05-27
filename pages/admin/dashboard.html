@@ -1,1205 +1,768 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard | Kissan Market Command Center</title>
-    
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <style>
-      :root {
-        --primary: #8b4a2b;
-        --primary-light: #fdf5f2;
-        --secondary: #2e7d32;
-        --secondary-light: #e8f5e9;
-        --dark: #1a1a1a;
-        --light: #f8f9fa;
-        --white: #ffffff;
-        --gray: #666;
-        --border: #eee;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        --sidebar-width: 280px;
-        --danger: #d32f2f;
-        --warning: #fb8c00;
-        --info: #0288d1;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kissan Market Admin Dashboard</title>
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Outfit", sans-serif;
-      }
-      body {
-        background-color: #f4f7f6;
-        color: var(--dark);
-        overflow-x: hidden;
-      }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-      .admin-layout {
-        display: flex;
-        min-height: 100vh;
-      }
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
 
-     
-      .sidebar {
-        width: var(--sidebar-width);
-        background: var(--white);
-        border-right: 1px solid var(--border);
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        height: 100vh;
-        z-index: 1000;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .sidebar-header {
-        padding: 2.5rem 2rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .sidebar-header .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: var(--primary);
-        font-weight: 800;
-        font-size: 1.4rem;
-      }
+  <style>
 
-      .nav-menu {
-        list-style: none;
-        padding: 1.5rem 1.2rem;
-        flex: 1;
-        overflow-y: auto;
-      }
-      .nav-item {
-        margin-bottom: 0.8rem;
-      }
-      .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 1rem 1.2rem;
-        text-decoration: none;
-        color: var(--gray);
-        font-weight: 600;
-        border-radius: 14px;
-        transition: all 0.3s ease;
-      }
-      .nav-link i {
-        font-size: 1.2rem;
-        width: 24px;
-        text-align: center;
-      }
-      .nav-link:hover,
-      .nav-link.active {
-        background: var(--primary-light);
-        color: var(--primary);
-        transform: translateX(5px);
-      }
+    :root{
+      --primary:#8b4a2b;
+      --secondary:#2e7d32;
+      --light:#f4f7f6;
+      --white:#ffffff;
+      --dark:#1a1a1a;
+      --gray:#666;
+      --border:#ececec;
+      --danger:#d32f2f;
+      --warning:#fb8c00;
+      --shadow:0 10px 25px rgba(0,0,0,0.08);
+      --sidebar-width:280px;
+    }
 
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Outfit",sans-serif;
+    }
 
-      .main-panel {
-        flex: 1;
-        margin-left: var(--sidebar-width);
-        padding: 2.5rem;
-        transition: margin 0.4s ease;
-      }
+    body{
+      background:var(--light);
+      overflow-x:hidden;
+      color:var(--dark);
+    }
 
-    
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 3rem;
-        background: var(--white);
-        padding: 1rem 2rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-      }
-      .menu-toggle {
-        display: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--primary);
-      }
-      .topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-      }
-      .notif-btn {
-        position: relative;
-        cursor: pointer;
-        color: var(--gray);
-        font-size: 1.3rem;
-        transition: color 0.3s;
-      }
-      .notif-btn:hover {
-        color: var(--primary);
-      }
-      .notif-badge {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: var(--danger);
-        color: white;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        font-size: 0.65rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid white;
-      }
+    .admin-layout{
+      display:flex;
+      min-height:100vh;
+    }
 
-      .user-meta {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        border-left: 1px solid var(--border);
-        padding-left: 2rem;
-      }
-      .avatar {
-        width: 45px;
-        height: 45px;
-        background: var(--primary);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 800;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 10px rgba(139, 74, 43, 0.3);
-      }
+    /* SIDEBAR */
 
-      
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
-      }
-      .stat-card {
-        background: var(--white);
-        padding: 2rem;
-        border-radius: 24px;
-        box-shadow: var(--shadow);
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s;
-      }
-      .stat-card:hover {
-        transform: translateY(-8px);
-      }
-      .stat-card i {
-        position: absolute;
-        right: -10px;
-        bottom: -10px;
-        font-size: 5rem;
-        color: rgba(139, 74, 43, 0.05);
-      }
-      .stat-card .label {
-        color: var(--gray);
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .stat-card .value {
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: var(--dark);
-      }
-      .stat-card .trend {
-        font-size: 0.85rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .trend-up {
-        color: var(--secondary);
-      }
+    .sidebar{
+      width:var(--sidebar-width);
+      background:var(--white);
+      border-right:1px solid var(--border);
+      position:fixed;
+      height:100vh;
+      padding:20px;
+      z-index:1000;
+    }
 
-      /* SECTIONS */
-      .section {
-        display: none;
-        animation: fadeInScale 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .section.active {
-        display: block;
-      }
-      @keyframes fadeInScale {
-        from {
-          opacity: 0;
-          transform: scale(0.98) translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-        }
-      }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--primary);
+      font-size:1.4rem;
+      font-weight:800;
+      margin-bottom:40px;
+    }
 
- 
-      .glass-card {
-        background: var(--white);
-        border-radius: 24px;
-        padding: 2rem;
-        box-shadow: var(--shadow);
-        margin-bottom: 2rem;
-      }
-      .table-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      .search-wrapper {
-        position: relative;
-        flex: 0.4;
-        min-width: 250px;
-      }
-      .search-wrapper i {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #bbb;
-      }
-      .search-input {
-        width: 100%;
-        padding: 0.8rem 1rem 0.8rem 2.8rem;
-        border: 1.5px solid var(--border);
-        border-radius: 14px;
-        outline: none;
-        transition: all 0.3s;
-      }
-      .search-input:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 4px var(--primary-light);
-      }
+    .nav-menu{
+      list-style:none;
+    }
 
-      .table-container {
-        overflow-x: auto;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 900px;
-      }
-      
-      th {
-        padding: 1.2rem;
-        background: #fcfcfc;
-        text-align: left;
-        color: var(--gray);
-        font-size: 0.8rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-bottom: 2px solid var(--border);
-      }
-      td {
-        padding: 1.2rem;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.95rem;
-        font-weight: 500;
-        vertical-align: middle;
-      }
-      tr:hover td {
-        background: #fafafa;
-      }
+    .nav-item{
+      margin-bottom:12px;
+    }
 
-      .badge {
-        padding: 6px 14px;
-        border-radius: 10px;
-        font-size: 0.75rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        display: inline-block;
-      }
-      .bg-active {
-        background: #e8f5e9;
-        color: #2e7d32;
-      }
-      .bg-pending {
-        background: #fff3e0;
-        color: #ef6c00;
-      }
-      .bg-blocked {
-        background: #ffebee;
-        color: #c62828;
-      }
+    .nav-link{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      color:var(--gray);
+      font-weight:600;
+      transition:0.3s;
+    }
 
-      .btn {
-        padding: 0.8rem 1.5rem;
-        border-radius: 12px;
-        border: none;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.9rem;
-      }
-      .btn-p {
-        background: var(--primary);
-        color: white;
-        box-shadow: 0 4px 15px rgba(139, 74, 43, 0.2);
-      }
-      .btn-p:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(139, 74, 43, 0.3);
-      }
-      .btn-o {
-        background: white;
-        border: 1.5px solid var(--border);
-        color: var(--gray);
-      }
-      .btn-o:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-      }
+    .nav-link:hover,
+    .nav-link.active{
+      background:#fdf5f2;
+      color:var(--primary);
+    }
 
-      .icon-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        border: 1.5px solid var(--border);
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .icon-btn:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-        transform: scale(1.1);
-      }
+    /* MAIN PANEL */
 
-      .analytics-row {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .chart-mock {
-        height: 350px;
-        display: flex;
-        align-items: flex-end;
-        gap: 20px;
-        padding: 2rem 1rem;
-        border-bottom: 2px solid var(--border);
-        position: relative;
-      }
-      .bar {
-        flex: 1;
-        background: var(--primary);
-        border-radius: 8px 8px 0 0;
-        position: relative;
-        transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .bar:hover {
-        background: var(--secondary);
-      }
-      .bar::before {
-        content: attr(data-val);
-        position: absolute;
-        top: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-weight: 700;
-        font-size: 0.8rem;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .bar:hover::before {
-        opacity: 1;
-      }
-      .bar::after {
-        content: attr(data-label);
-        position: absolute;
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--gray);
-      }
+    .main-panel{
+      flex:1;
+      margin-left:var(--sidebar-width);
+      padding:30px;
+    }
 
-      /* ALERTS */
-      .alert-card {
-        padding: 1.2rem;
-        border-radius: 16px;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        border: 1px solid transparent;
-      }
-      .alert-warning {
-        background: #fff8e1;
-        border-color: #ffecb3;
-        color: #827717;
-      }
-      .alert-success {
-        background: #e8f5e9;
-        border-color: #c8e6c9;
-        color: #1b5e20;
-      }
+    /* TOPBAR */
 
-      /* ================= SECTIONS ================= */
+    .topbar{
+      background:var(--white);
+      border-radius:20px;
+      padding:18px 25px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:var(--shadow);
+      margin-bottom:30px;
+    }
 
-.section{
-  display:none;
+    .notif-btn{
+      position:relative;
+      font-size:1.3rem;
+      cursor:pointer;
+    }
+
+    .notif-badge{
+      position:absolute;
+      top:-8px;
+      right:-8px;
+      background:var(--danger);
+      color:white;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      font-size:0.7rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+/* DASHBOARD GRID */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-bottom:30px;
 }
 
-.section.active{
+/* STAT CARD */
+
+.stat-card{
+  background:var(--white);
+  padding:30px 25px;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transition:0.3s ease;
+}
+
+.stat-card:hover{
+  transform:translateY(-5px);
+}
+
+.stat-card i{
+  position:absolute;
+  right:-10px;
+  bottom:-10px;
+  font-size:5rem;
+  color:rgba(139,74,43,0.06);
+}
+
+.label{
+  color:var(--gray);
+  font-size:1rem;
+  margin-bottom:12px;
   display:block;
-}
-/* ================= BUTTONS ================= */
-
-.btn{
-  border:none;
-  padding:10px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s;
+  font-weight:500;
 }
 
-.btn-primary{
-  background:var(--primary);
-  color:white;
+.value{
+  font-size:2.5rem;
+  font-weight:800;
+  margin-bottom:12px;
+  color:var(--dark);
 }
 
-.btn-primary:hover{
-  opacity:0.9;
+.trend{
+  color:var(--secondary);
+  font-size:0.95rem;
+  font-weight:700;
 }
 
-.btn-success{
-  background:var(--secondary);
-  color:white;
-}
+    /* SECTION */
 
-.btn-danger{
-  background:#d32f2f;
-  color:white;
-}
+    .section{
+      display:none;
+    }
 
-      @media (max-width: 1200px) {
-        .dashboard-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
+    .section.active{
+      display:block;
+    }
+
+    /* GLASS CARD */
+
+    .glass-card{
+      background:var(--white);
+      border-radius:24px;
+      padding:25px;
+      box-shadow:var(--shadow);
+      margin-bottom:25px;
+    }
+
+    .table-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    /* BUTTONS */
+
+    .btn{
+      border:none;
+      padding:10px 18px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn-p{
+      background:var(--primary);
+      color:white;
+    }
+
+    .btn-p:hover{
+      opacity:0.9;
+    }
+
+    .btn-danger{
+      background:var(--danger);
+      color:white;
+    }
+
+    /* TABLE */
+
+    .table-container{
+      overflow-x:auto;
+      border:1px solid var(--border);
+      border-radius:16px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:800px;
+    }
+
+    th{
+      background:#fafafa;
+      padding:16px;
+      text-align:left;
+      font-size:0.85rem;
+      color:var(--gray);
+      border-bottom:1px solid var(--border);
+    }
+
+    td{
+      padding:16px;
+      border-bottom:1px solid var(--border);
+      font-size:0.95rem;
+    }
+
+    tr:hover{
+      background:#fafafa;
+    }
+
+    /* BADGES */
+
+    .badge{
+      padding:6px 12px;
+      border-radius:10px;
+      font-size:0.75rem;
+      font-weight:700;
+    }
+
+    .bg-active{
+      background:#e8f5e9;
+      color:#2e7d32;
+    }
+
+    .bg-warning{
+      background:#fff3e0;
+      color:#ef6c00;
+    }
+
+    .bg-danger{
+      background:#ffebee;
+      color:#c62828;
+    }
+
+    /* ALERTS */
+
+    .alert-card{
+      padding:18px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:15px;
+    }
+
+    .alert-warning{
+      background:#fff8e1;
+    }
+
+    .alert-success{
+      background:#e8f5e9;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1100px){
+
+      .dashboard-grid{
+        grid-template-columns:repeat(2,1fr);
       }
-      @media (max-width: 1024px) {
-        .sidebar {
-          transform: translateX(-100%);
-        }
-        .sidebar.active {
-          transform: translateX(0);
-        }
-        .main-panel {
-          margin-left: 0;
-          padding: 1.5rem;
-        }
-        .menu-toggle {
-          display: block;
-        }
-        .analytics-row {
-          grid-template-columns: 1fr;
-        }
+
+    }
+
+    @media(max-width:768px){
+
+      .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
       }
-      @media (max-width: 600px) {
-        .dashboard-grid {
-          grid-template-columns: 1fr;
-        }
-        .user-meta {
-          display: none;
-        }
+
+      .main-panel{
+        margin-left:0;
       }
-    </style>
-  </head>
-  <body>
-    <div class="admin-layout">
-      <!-- SIDEBAR -->
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <div class="logo">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>ADMIN COMMAND</span>
+
+      .dashboard-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>ADMIN COMMAND</span>
+    </div>
+
+    <ul class="nav-menu">
+
+      <li class="nav-item">
+        <a href="#" class="nav-link active" onclick="showSec('dashboard',this)">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link" onclick="showSec('farmers',this)">
+          <i class="fa-solid fa-users"></i>
+          Farmers
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link" onclick="showSec('vendors',this)">
+          <i class="fa-solid fa-store"></i>
+          Vendors
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link" onclick="showSec('support',this)">
+          <i class="fa-solid fa-headset"></i>
+          Chat Support
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link" onclick="showSec('products',this)">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          Inventory Audit
+        </a>
+      </li>
+
+    </ul>
+
+  </aside>
+
+  <!-- MAIN PANEL -->
+
+  <main class="main-panel">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <h2>Kissan Market Intelligence Dashboard</h2>
+
+      <div class="notif-btn">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notif-badge">3</span>
+      </div>
+
+    </header>
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="section active">
+
+      <div class="dashboard-grid">
+
+        <div class="stat-card">
+          <i class="fa-solid fa-wheat-awn"></i>
+          <span class="label">Total Farmers</span>
+          <div class="value">2481</div>
+          <span class="trend">+14.2% Growth</span>
+        </div>
+
+        <div class="stat-card">
+          <i class="fa-solid fa-store"></i>
+          <span class="label">Total Vendors</span>
+          <div class="value">864</div>
+          <span class="trend">+8.5% Growth</span>
+        </div>
+
+        <div class="stat-card">
+          <i class="fa-solid fa-gavel"></i>
+          <span class="label">Active Bids</span>
+          <div class="value">152</div>
+          <span class="trend">24 Live</span>
+        </div>
+
+
+
+      </div>
+
+      <!-- NOTIFICATIONS -->
+
+      <div class="glass-card">
+
+        <div class="table-header">
+          <h3>Platform Notifications</h3>
+        </div>
+
+        <div class="alert-card alert-warning">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+
+          <div>
+            <strong>Inventory Alert</strong>
+            <p>Groundnuts stock is critically low in Mumbai Hub.</p>
           </div>
         </div>
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a
-              href="#"
-              class="nav-link active"
-              onclick="showSec('dashboard', this)"
-              ><i class="fa-solid fa-house-chimney-window"></i> Dashboard</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('farmers', this)"
-              ><i class="fa-solid fa-users-viewfinder"></i> Farmers
-              Management</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('vendors', this)"
-              ><i class="fa-solid fa-truck-ramp-box"></i> Vendor Hub</a
-            >
-          </li>
-         <li class="nav-item">
-<a href="#" class="nav-link"
-onclick="showSec('support',this)">
-<i class="fa-solid fa-headset"></i>
-Chat Support
-</a>
-</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="showSec('products', this)"
-              ><i class="fa-solid fa-boxes-stacked"></i> Inventory Audit</a
-            >
-          </li>
 
-        </ul>
-        <div style="padding: 2rem">
-          <button
-            class="btn btn-o"
-            style="width: 100%"
-            onclick="confirmLogOut()"
-          >
-            <a
-              href="../../index.html"
-              style="color: red; text-decoration: none"
-            >
-              <i class="fa-solid fa-power-off"></i> Sign Out
-            </a>
+        <div class="alert-card alert-success">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <div>
+            <strong>Vendor Verification</strong>
+            <p>12 new vendors were successfully verified today.</p>
+          </div>
+        </div>
+
+        <div class="alert-card alert-warning">
+          <i class="fa-solid fa-bell"></i>
+
+          <div>
+            <strong>Support Notification</strong>
+            <p>5 new support requests are waiting for admin response.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FARMERS -->
+
+    <section id="farmers" class="section">
+
+      <div class="glass-card">
+
+        <div class="table-header">
+          <h2>Farmers Management</h2>
+
+          <button class="btn btn-p">
+            Add Farmer
           </button>
         </div>
-      </aside>
 
-      <main class="main-panel">
-        <header class="topbar">
-          <div class="menu-toggle" onclick="toggleSidebar()">
-            <i class="fa-solid fa-bars-staggered"></i>
-          </div>
-          <div style="font-weight: 700; color: var(--gray); font-size: 1.1rem">
-            Kissan Market Intelligence Dashboard
-          </div>
-          <div class="topbar-right">
-            <div class="notif-btn">
-              <i class="fa-solid fa-bell"></i>
-              <span class="notif-badge">3</span>
-            </div>
-            <div class="user-meta">
-              <div style="text-align: right">
-                <p style="font-weight: 700; font-size: 0.95rem">
-                  Command Center
-                </p>
-                <p
-                  style="
-                    font-size: 0.75rem;
-                    color: var(--gray);
-                    font-weight: 600;
-                  "
-                >
-                  Super Administrator
-                </p>
-              </div>
-              <div class="avatar">SA</div>
-            </div>
-          </div>
-        </header>
+        <div class="table-container">
 
-        <section id="dashboard" class="section active">
-          <div class="dashboard-grid">
-            <div class="stat-card">
-              <i class="fa-solid fa-wheat-awn"></i>
-              <span class="label">Total Farmers</span>
-              <div class="value animated-num" data-target="2481">0</div>
-              <span class="trend trend-up"
-                ><i class="fa-solid fa-arrow-up"></i> 14.2% Growth</span
-              >
-            </div>
-            <div class="stat-card">
-              <i class="fa-solid fa-store"></i>
-              <span class="label">Total Vendors</span>
-              <div class="value animated-num" data-target="864">0</div>
-              <span class="trend trend-up"
-                ><i class="fa-solid fa-arrow-up"></i> 8.5% Growth</span
-              >
-            </div>
-            <div class="stat-card">
-              <i class="fa-solid fa-gavel"></i>
-              <span class="label">Active Bids</span>
-              <div class="value animated-num" data-target="152">0</div>
-              <span class="trend trend-up"
-                ><i class="fa-solid fa-arrow-up"></i> 24 Live</span
-              >
-            </div>
-            <div class="stat-card">
-              <i class="fa-solid fa-indian-rupee-sign"></i>
-              <span class="label">Total Revenue</span>
-              <div class="value">
-                ₹<span class="animated-num" data-target="924000">0</span>
-              </div>
-              <span class="trend trend-up"
-                ><i class="fa-solid fa-arrow-up"></i> 11.2% Gain</span
-              >
-            </div>
-          </div>
+          <table>
 
-          <div class="analytics-row">
-            <div class="glass-card">
-              <div class="table-header">
-                <h3>Revenue Overview (Projected vs Actual)</h3>
-              </div>
-              <div class="chart-mock" id="rev-chart">
-                <div
-                  class="bar"
-                  style="height: 40%"
-                  data-label="Jan"
-                  data-val="₹45k"
-                ></div>
-                <div
-                  class="bar"
-                  style="height: 65%"
-                  data-label="Feb"
-                  data-val="₹62k"
-                ></div>
-                <div
-                  class="bar"
-                  style="height: 55%"
-                  data-label="Mar"
-                  data-val="₹58k"
-                ></div>
-                <div
-                  class="bar"
-                  style="height: 85%"
-                  data-label="Apr"
-                  data-val="₹94k"
-                ></div>
-                <div
-                  class="bar"
-                  style="height: 75%"
-                  data-label="May"
-                  data-val="₹82k"
-                ></div>
-                <div
-                  class="bar"
-                  style="height: 95%"
-                  data-label="Jun"
-                  data-val="₹105k"
-                ></div>
-              </div>
-            </div>
-            <div class="glass-card">
-              <h3>Critical Market Alerts</h3>
-              <div style="margin-top: 1.5rem">
-                <div class="alert-card alert-warning">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                  <div>
-                    <p style="font-weight: 700; font-size: 0.85rem">
-                      Low Stock: Organic Rice
-                    </p>
-                    <p style="font-size: 0.75rem">
-                      Inventory level dropped below 500kg in Haryana hub.
-                    </p>
-                  </div>
-                </div>
-                <div class="alert-card alert-success">
-                  <i class="fa-solid fa-circle-check"></i>
-                  <div>
-                    <p style="font-weight: 700; font-size: 0.85rem">
-                      Vendor Approved
-                    </p>
-                    <p style="font-size: 0.75rem">
-                      'FreshFarm Traders' successfully verified.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Crop</th>
+                <th>Status</th>
+              </tr>
+            </thead>
 
-          <div class="glass-card" style="margin-top: 2rem">
-            <div class="table-header">
-              <h3>Latest Global Transactions</h3>
-              <button class="btn btn-p" onclick="showSec('bids')">
-                Monitor Bids
-              </button>
-            </div>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>TX ID</th>
-                    <th>Product Category</th>
-                    <th>Bidder Entity</th>
-                    <th>Final Amount</th>
-                    <th>Timestamp</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="dash-tx-table"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+            <tbody>
 
+              <tr>
+                <td>FRM101</td>
+                <td>Ravi Kumar</td>
+                <td>Andhra Pradesh</td>
+                <td>Rice</td>
+                <td><span class="badge bg-active">Active</span></td>
+              </tr>
 
-        <section id="farmers" class="section">
-          <div class="glass-card">
-            <div class="table-header">
-              <h2>Farmer Network Management</h2>
-              <button
-                class="btn btn-p"
-                onclick="alert('Farmer Registration Module Initialized')"
-              >
-                <i class="fa-solid fa-plus"></i> Register New Farmer
-              </button>
-            </div>
-            <div class="search-wrapper" style="margin-bottom: 2rem">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Query farmer database..."
-                onkeyup="filterTable('farmers-table-body', this.value)"
-              />
-            </div>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Farmer ID</th>
-                    <th>Full Name</th>
-                    <th>Hub Location</th>
-                    <th>Primary Crop</th>
-                    <th>Join Date</th>
-                    <th>Account Status</th>
-                    <th>Operations</th>
-                  </tr>
-                </thead>
-                <tbody id="farmers-table-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+              <tr>
+                <td>FRM102</td>
+                <td>Suresh</td>
+                <td>Telangana</td>
+                <td>Tomato</td>
+                <td><span class="badge bg-warning">Pending</span></td>
+              </tr>
 
-        <section id="vendors" class="section">
-          <div class="glass-card">
-            <div class="table-header">
-              <h2>Verified Vendor Hub</h2>
-              <button class="btn btn-p">
-                <i class="fa-solid fa-plus"></i> Onboard Vendor
-              </button>
-            </div>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Vendor ID</th>
-                    <th>Business Entity</th>
-                    <th>Category</th>
-                    <th>Annual Volume</th>
-                    <th>Active Bids</th>
-                    <th>Security Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="vendors-table-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+            </tbody>
 
-  <section id="support" class="section">
+          </table>
 
-<div class="table-wrapper">
+        </div>
 
-<table>
+      </div>
 
-<tr>
-<th>User</th>
-<th>Role</th>
-<th>Message</th>
-<th>Action</th>
-</tr>
+    </section>
 
-<tr>
-<td>Ravi</td>
-<td>Farmer</td>
-<td>Unable to upload product</td>
-<td><button class="btn btn-primary">Reply</button></td>
-</tr>
+    <!-- VENDORS -->
 
-<tr>
-<td>Anil</td>
-<td>Vendor</td>
-<td>Payment issue</td>
-<td><button class="btn btn-danger">Resolve</button></td>
-</tr>
+    <section id="vendors" class="section">
 
-</table>
+      <div class="glass-card">
+
+        <div class="table-header">
+          <h2>Vendor Hub</h2>
+
+          <button class="btn btn-p">
+            Add Vendor
+          </button>
+        </div>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vendor</th>
+                <th>Category</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>VND501</td>
+                <td>FreshFarm Traders</td>
+                <td>Wholesale</td>
+                <td><span class="badge bg-active">Verified</span></td>
+              </tr>
+
+              <tr>
+                <td>VND502</td>
+                <td>Green Market</td>
+                <td>Retail</td>
+                <td><span class="badge bg-warning">Pending</span></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SUPPORT -->
+
+    <section id="support" class="section">
+
+      <div class="glass-card">
+
+        <div class="table-header">
+          <h2>Chat Support Center</h2>
+        </div>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Issue</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Ravi</td>
+                <td>Farmer</td>
+                <td>Unable to upload product</td>
+                <td>
+                  <button class="btn btn-p">
+                    Reply
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Anil</td>
+                <td>Vendor</td>
+                <td>Payment issue</td>
+                <td>
+                  <button class="btn btn-danger">
+                    Resolve
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- INVENTORY -->
+
+    <section id="products" class="section">
+
+      <div class="glass-card">
+
+        <div class="table-header">
+
+          <h2>Inventory Audit</h2>
+
+          <button class="btn btn-p">
+            Add Inventory
+          </button>
+
+        </div>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Product ID</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Warehouse</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>PRD1001</td>
+                <td>Organic Rice</td>
+                <td>Grains</td>
+                <td>450 KG</td>
+                <td>Haryana Hub</td>
+                <td><span class="badge bg-warning">Low Stock</span></td>
+              </tr>
+
+              <tr>
+                <td>PRD1002</td>
+                <td>Fresh Tomatoes</td>
+                <td>Vegetables</td>
+                <td>1200 KG</td>
+                <td>Delhi Hub</td>
+                <td><span class="badge bg-active">Available</span></td>
+              </tr>
+
+              <tr>
+                <td>PRD1003</td>
+                <td>Groundnuts</td>
+                <td>Oil Seeds</td>
+                <td>300 KG</td>
+                <td>Mumbai Hub</td>
+                <td><span class="badge bg-danger">Critical</span></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
 
 </div>
 
-</section>
+<!-- JAVASCRIPT -->
 
+<script>
 
+  function showSec(sectionId, element){
 
-        <section id="bids" class="section">
-          <div class="glass-card">
-            <div class="table-header">
-              <h2>Market Bid Monitoring</h2>
-              <div class="search-wrapper">
-                <i class="fa-solid fa-filter"></i>
-                <input
-                  type="text"
-                  class="search-input"
-                  placeholder="Filter by product..."
-                  onkeyup="filterTable('bids-table-body', this.value)"
-                />
-              </div>
-            </div>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bid Reference</th>
-                    <th>Commodity</th>
-                    <th>Highest Bid</th>
-                    <th>Current Leader</th>
-                    <th>Auction Time</th>
-                    <th>Moderation</th>
-                  </tr>
-                </thead>
-                <tbody id="bids-table-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+    document.querySelectorAll(".section").forEach(sec=>{
+      sec.classList.remove("active");
+    });
 
+    document.getElementById(sectionId).classList.add("active");
 
-        <section id="products" class="section">
-          <div class="glass-card">
-            <div class="table-header">
-              <h2>Market Inventory Audit</h2>
-            </div>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>PID</th>
-                    <th>Commodity Name</th>
-                    <th>Classification</th>
-                    <th>Origin Farm</th>
-                    <th>Current Stock</th>
-                    <th>Base Valuation</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="products-table-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+    document.querySelectorAll(".nav-link").forEach(link=>{
+      link.classList.remove("active");
+    });
 
+    element.classList.add("active");
+  }
 
+</script>
 
-
-    <script src="../../js/app.js"></script>
-    <script>
-
-      const MARKET_DATA = {
-        farmers: [
-          {
-            id: "F-8801",
-            name: "Arjun Mehra",
-            hub: "Nashik, MH",
-            crop: "Organic Tomatoes",
-            date: "Jan 2024",
-            status: "active",
-          },
-          {
-            id: "F-8802",
-            name: "Balvinder Singh",
-            hub: "Ambala, HR",
-            crop: "Basmati Rice",
-            date: "Feb 2024",
-            status: "active",
-          },
-          {
-            id: "F-8803",
-            name: "Lakshmi Narayan",
-            hub: "Guntur, AP",
-            crop: "Red Chillies",
-            date: "Mar 2024",
-            status: "pending",
-          },
-          {
-            id: "F-8804",
-            name: "Somnath Patil",
-            hub: "Ratnagiri, MH",
-            crop: "Alphonso Mango",
-            date: "Mar 2024",
-            status: "blocked",
-          },
-          {
-            id: "F-8805",
-            name: "Gurpreet Kaur",
-            hub: "Jalandhar, PB",
-            crop: "Golden Wheat",
-            date: "Apr 2024",
-            status: "active",
-          },
-        ],
-        vendors: [
-          {
-            id: "V-2021",
-            business: "Global Agri Exports",
-            type: "Wholesaler",
-            vol: "₹85.4L",
-            bids: 142,
-            status: "approved",
-          },
-          {
-            id: "V-2022",
-            business: "FreshGro Retail Chain",
-            type: "Retailer",
-            vol: "₹22.1L",
-            bids: 64,
-            status: "approved",
-          },
-          {
-            id: "V-2023",
-            business: "Kisan Dost Traders",
-            type: "Distributor",
-            vol: "₹12.5L",
-            bids: 18,
-            status: "pending",
-          },
-          {
-            id: "V-2024",
-            business: "Indo-Farm Exporters",
-            type: "Exporter",
-            vol: "₹145.0L",
-            bids: 256,
-            status: "approved",
-          },
-        ],
-      };
-
-
-      function toggleSidebar() {
-        document.getElementById("sidebar").classList.toggle("active");
-      }
-
-      function showSec(id, el) {
-        document
-          .querySelectorAll(".section")
-          .forEach((s) => s.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-        document
-          .querySelectorAll(".nav-link")
-          .forEach((l) => l.classList.remove("active"));
-        el.classList.add("active");
-        if (id === "dashboard") initDashboard();
-        else loadSectionData(id);
-        if (window.innerWidth <= 1024) toggleSidebar();
-      }
-
-      function initDashboard() {
-        animateStats();
-        renderDashBids();
-      }
-
-      function animateStats() {
-        document.querySelectorAll(".animated-num").forEach((el) => {
-          const target = +el.dataset.target;
-          const count = +el.innerText.replace(/,/g, "");
-          if (count < target) {
-            const inc = Math.ceil(target / 30);
-            el.innerText = (
-              count + inc > target ? target : count + inc
-            ).toLocaleString();
-            setTimeout(() => animateStats(), 20);
-          }
-        });
-      }
-
-      function renderDashBids() {
-        const tbody = document.getElementById("dash-tx-table");
-        const bids = State.getBids().slice(0, 5);
-        tbody.innerHTML =
-          bids
-            .map(
-              (b) => `
-                <tr>
-                    <td>#TX-${b.id}</td>
-                    <td>${b.productName}</td>
-                    <td>${b.vendorName}</td>
-                    <td><strong>₹${b.amount.toLocaleString()}</strong></td>
-                    <td>Today, 10:45 AM</td>
-                    <td><span class="badge bg-${b.status}">${b.status}</span></td>
-                </tr>
-            `,
-            )
-            .join("") ||
-          '<tr><td colspan="6" style="text-align:center;">No active transactions found.</td></tr>';
-      }
-
-
-      function loadSectionData(sec) {
-        if (sec === "farmers") renderFarmers();
-        if (sec === "vendors") renderVendors();
-        if (sec === "products") renderInventory();
-        if (sec === "bids") renderFullBids();
-      }
-
-      function renderFarmers() {
-        document.getElementById("farmers-table-body").innerHTML =
-          MARKET_DATA.farmers
-            .map(
-              (f) => `
-                <tr>
-                    <td>#${f.id}</td>
-                    <td><strong>${f.name}</strong></td>
-                    <td>${f.hub}</td>
-                    <td>${f.crop}</td>
-                    <td>${f.date}</td>
-                    <td><span class="badge bg-${f.status}">${f.status}</span></td>
-                    <td>
-                        <div style="display:flex; gap:8px;">
-                            <button class="icon-btn" onclick="UI.showToast('Accessing Profile: ${f.name}', 'info')"><i class="fa-solid fa-eye"></i></button>
-                            <button class="icon-btn" onclick="toggleFStatus('${f.id}')" style="color:red;"><i class="fa-solid fa-ban"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            `,
-            )
-            .join("");
-      }
-
-      function renderVendors() {
-        document.getElementById("vendors-table-body").innerHTML =
-          MARKET_DATA.vendors
-            .map(
-              (v) => `
-                <tr>
-                    <td>#${v.id}</td>
-                    <td><strong>${v.business}</strong></td>
-                    <td>${v.type}</td>
-                    <td>${v.vol}</td>
-                    <td>${v.bids} Bids</td>
-                    <td><span class="badge bg-${v.status === "approved" ? "active" : "pending"}">${v.status}</span></td>
-                    <td>
-                        <div style="display:flex; gap:8px;">
-                            <button class="icon-btn" style="color:green;" onclick="alert('Vendor Approved')"><i class="fa-solid fa-check"></i></button>
-                            <button class="icon-btn" style="color:red;"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            `,
-            )
-            .join("");
-      }
-
-      function renderInventory() {
-        const products = State.getProducts();
-        document.getElementById("products-table-body").innerHTML = products
-          .map(
-            (p) => `
-                <tr>
-                    <td>#${p.id}</td>
-                    <td><strong>${p.name}</strong></td>
-                    <td>${p.category}</td>
-                    <td>${p.farmerName}</td>
-                    <td>${p.quantity} ${p.unit}</td>
-                    <td>₹${p.minPrice}</td>
-                    <td>
-                        <button class="icon-btn" style="color:red;" onclick="confirmAction('Remove Product', () => { State.deleteProduct(${p.id}); renderInventory(); })"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            `,
-          )
-          .join("");
-      }
-
-      function renderFullBids() {
-        const bids = State.getBids();
-        document.getElementById("bids-table-body").innerHTML = bids
-          .map(
-            (b) => `
-                <tr>
-                    <td>#BID-${b.id}</td>
-                    <td><strong>${b.productName}</strong></td>
-                    <td>₹${b.amount.toLocaleString()}</td>
-                    <td>${b.vendorName}</td>
-                    <td>14:02 Left</td>
-                    <td>
-                        <div style="display:flex; gap:8px;">
-                            <button class="btn btn-o" style="padding:5px 10px; font-size:0.7rem;" onclick="State.acceptBid(${b.id}); renderFullBids();">Approve</button>
-                            <button class="btn btn-o" style="padding:5px 10px; font-size:0.7rem; color:red;" onclick="State.rejectBid(${b.id}); renderFullBids();">Cancel</button>
-                        </div>
-                    </td>
-                </tr>
-            `,
-          )
-          .join("");
-      }
-
-      function confirmAction(t, cb) {
-        if (confirm(`System Authorization Required: ${t}?`)) cb();
-      }
-      function confirmLogOut() {
-        if (confirm("Are you sure you want to exit the Admin Command Center?"))
-          State.logout();
-      }
-
-      function filterTable(tbodyId, q) {
-        const rows = document.getElementById(tbodyId).querySelectorAll("tr");
-        rows.forEach(
-          (r) =>
-            (r.style.display = r.innerText
-              .toLowerCase()
-              .includes(q.toLowerCase())
-              ? ""
-              : "none"),
-        );
-      }
-
-      function toggleFStatus(id) {
-        const f = MARKET_DATA.farmers.find((x) => x.id === id);
-        f.status = f.status === "active" ? "blocked" : "active";
-        renderFarmers();
-        UI.showToast(`Farmer status updated to ${f.status}`, "warning");
-      }
-
-      document.addEventListener("DOMContentLoaded", () => initDashboard());
-    </script>
-  </body>
+</body>
 </html>
