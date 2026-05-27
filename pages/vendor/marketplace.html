@@ -6,7 +6,7 @@
     <title>Marketplace - Kissan Market</title>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/vendor.css" />
-    <link rel="stylesheet" href="../../css/chat.css">
+    <link rel="stylesheet" href="../../css/chat.css" />
     <style>
       .search-bar {
         background: white;
@@ -72,64 +72,49 @@
   </head>
   <body>
     <div class="dashboard-layout">
-
-<aside class="sidebar">
-
-    <a href="dashboard.html" class="sidebar-logo">
-        <span>🚚 Kissan Market</span>
-    </a>
-
-    <ul class="sidebar-menu">
-
-        <li class="menu-item">
-            <a href="dashboard.html" class="menu-link">
-                <i>📊</i> Dashboard
-            </a>
-        </li>
-
-        <li class="menu-item">
-            <a href="marketplace.html" class="menu-link">
-                <i>🛒</i> Market place
-            </a>
-        </li>
-
-        <li class="menu-item">
-            <a href="marketprice.html" class="menu-link active">
-                <i>📈</i> Market Price
-            </a>
-        </li>
-
-
-        <li class="menu-item">
-            <a href="my-bids.html" class="menu-link">
-                <i>⚖️</i> My Bids
-            </a>
-        </li>
-
-
-        <li class="menu-item">
-            <a href="notifications.html" class="menu-link">
-                <i>🔔</i> Notifications
-            </a>
-        </li>
-
-        <li class="menu-item">
-            <a href="profile.html" class="menu-link">
-                <i>👤</i> My Profile
-            </a>
-        </li>
-
-    </ul>
-
-    <div class="sidebar-footer">
-
-        <a href="../../index.html" class="menu-link" onclick="State.logout()">
-            <i>🚪</i> Logout
+      <aside class="sidebar">
+        <a href="dashboard.html" class="sidebar-logo">
+          <span>🚚 Kissan Market</span>
         </a>
 
-    </div>
+        <ul class="sidebar-menu">
+          <li class="menu-item">
+            <a href="dashboard.html" class="menu-link"> <i>📊</i> Dashboard </a>
+          </li>
 
-</aside>
+          <li class="menu-item">
+            <a href="marketplace.html" class="menu-link">
+              <i>🛒</i> Market place
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="marketprice.html" class="menu-link active">
+              <i>📈</i> Market Price
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="my-bids.html" class="menu-link"> <i>⚖️</i> My Bids </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="notifications.html" class="menu-link">
+              <i>🔔</i> Notifications
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="profile.html" class="menu-link"> <i>👤</i> My Profile </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <a href="../../index.html" class="menu-link" onclick="State.logout()">
+            <i>🚪</i> Logout
+          </a>
+        </div>
+      </aside>
 
       <main class="main-content">
         <header class="header">
@@ -180,6 +165,7 @@
           <input type="hidden" id="bid-product-id" />
           <input type="hidden" id="bid-farmer-id" />
           <input type="hidden" id="bid-farmer-name" />
+          <input type="hidden" id="bid-max-price" />
           <input type="hidden" id="bid-product-name" />
           <div class="form-group">
             <label id="bid-quantity-label">Quantity</label>
@@ -226,7 +212,6 @@
               class="btn btn-outline"
               onclick="closeBidModal()"
             >
-            
               Cancel
             </button>
             <button type="submit" class="btn btn-primary">Submit Bid</button>
@@ -238,375 +223,361 @@
     <!-- =========================
      DETAILS MODAL (FIXED SINGLE VERSION)
 ========================= -->
-<div class="bid-modal" id="details-modal">
-  <div class="bid-modal-content">
-    
-    <h3 id="detail-name"></h3>
+    <div class="bid-modal" id="details-modal">
+      <div class="bid-modal-content">
+        <h3 id="detail-name"></h3>
 
-    <img
-      id="detail-image"
-      style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin:10px 0;"
-    />
+        <img
+          id="detail-image"
+          style="
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 10px 0;
+          "
+        />
 
-    <p id="detail-farmer"></p>
-    <p id="detail-location"></p>
-    <p id="detail-category"></p>
-    <p id="detail-quantity"></p>
-    <p id="detail-price"></p>
+        <p id="detail-farmer"></p>
+        <p id="detail-location"></p>
+        <p id="detail-category"></p>
+        <p id="detail-quantity"></p>
+        <p id="detail-price"></p>
 
-    <div style="text-align:right;margin-top:1rem;">
-      <button class="btn btn-outline" onclick="closeDetails()">
-        Close
-      </button>
+        <div style="text-align: right; margin-top: 1rem">
+          <button class="btn btn-outline" onclick="closeDetails()">
+            Close
+          </button>
+        </div>
+      </div>
     </div>
-
-  </div>
-</div>
     <!-- CHAT ICON -->
 
-<div class="chat-icon" id="chatIcon">
-    💬
-</div>
+    <div class="chat-icon" id="chatIcon">💬</div>
 
-<!-- CHAT BOX -->
+    <!-- CHAT BOX -->
 
-<div class="chat-container" id="chatContainer">
+    <div class="chat-container" id="chatContainer">
+      <!-- HEADER -->
 
-    <!-- HEADER -->
+      <div class="chat-header">
+        <h3 class="c-box">Customer Care</h3>
 
-    <div class="chat-header">
+        <span id="closeChat"> ✖ </span>
+      </div>
 
-       <h3 class="c-box">Customer Care</h3>
+      <div class="chat-body" id="chatBody">
+        <div class="admin-msg">👋 Hello! How can we help you?</div>
+      </div>
 
-        <span id="closeChat">
-            ✖
-        </span>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type message..." />
 
+        <button id="sendBtn">Send</button>
+      </div>
     </div>
 
-  
-
-    <div class="chat-body" id="chatBody">
-
-        <div class="admin-msg">
-            👋 Hello! How can we help you?
-        </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-        <input 
-            type="text" 
-            id="chatInput"
-            placeholder="Type message..."
-        >
-
-        <button id="sendBtn">
-            Send
-        </button>
-
-    </div>
-
-</div>
-
-
-<script src="../../js/chat.js"></script>
+    <script src="../../js/chat.js"></script>
 
     <script src="../../js/app.js"></script>
     <script src="../../js/vendor.js"></script>
     <script>
-// ===============================
-// SAMPLE PRODUCTS
-// ===============================
+      // ===============================
+      // SAMPLE PRODUCTS
+      // ===============================
 
-if (!localStorage.getItem("products")) {
-  const sampleProducts = [
-    {
-      id: 1,
-      name: "Fresh Tomatoes",
-      farmerId: 101,
-      farmerName: "Ramesh Farmer",
-      category: "Vegetables",
-      quantity: 50,
-      unit: "Kg",
-      minPrice: 1200,
-      location: "Hyderabad",
-      status: "Active",
-      endTime: new Date().getTime() + 86400000,
-      image:
-        "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600",
-    },
+      if (!localStorage.getItem("products")) {
+        const sampleProducts = [
+          {
+            id: 1,
+            name: "Fresh Tomatoes",
+            farmerId: 101,
+            farmerName: "Ramesh Farmer",
+            category: "Vegetables",
+            quantity: 50,
+            unit: "Kg",
+            minPrice: 1200,
+            location: "Hyderabad",
+            status: "Active",
+            endTime: new Date().getTime() + 86400000,
+            image:
+              "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600",
+          },
 
-    {
-      id: 2,
-      name: "Organic Apples",
-      farmerId: 102,
-      farmerName: "Suresh Farms",
-      category: "Fruits",
-      quantity: 30,
-      unit: "Kg",
-      minPrice: 2500,
-      location: "Warangal",
-      status: "Active",
-      endTime: new Date().getTime() + 172800000,
-      image:
-        "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600",
-    },
+          {
+            id: 2,
+            name: "Organic Apples",
+            farmerId: 102,
+            farmerName: "Suresh Farms",
+            category: "Fruits",
+            quantity: 30,
+            unit: "Kg",
+            minPrice: 2500,
+            location: "Warangal",
+            status: "Active",
+            endTime: new Date().getTime() + 172800000,
+            image:
+              "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600",
+          },
 
-    {
-      id: 3,
-      name: "Green Chillies",
-      farmerId: 103,
-      farmerName: "Lakshmi Agro",
-      category: "Vegetables",
-      quantity: 20,
-      unit: "Kg",
-      minPrice: 900,
-      location: "Karimnagar",
-      status: "Active",
-      endTime: new Date().getTime() + 259200000,
-      image:
-        "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=600",
-    },
+          {
+            id: 3,
+            name: "Green Chillies",
+            farmerId: 103,
+            farmerName: "Lakshmi Agro",
+            category: "Vegetables",
+            quantity: 20,
+            unit: "Kg",
+            minPrice: 900,
+            location: "Karimnagar",
+            status: "Active",
+            endTime: new Date().getTime() + 259200000,
+            image:
+              "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=600",
+          },
 
-    {
-      id: 4,
-      name: "Bananas",
-      farmerId: 104,
-      farmerName: "Green Valley",
-      category: "Fruits",
-      quantity: 100,
-      unit: "Dozen",
-      minPrice: 1800,
-      location: "Nizamabad",
-      status: "Active",
-      endTime: new Date().getTime() + 86400000,
-      image:
-        "https://images.unsplash.com/photo-1574226516831-e1dff420e37f?w=600",
-    },
+          {
+            id: 4,
+            name: "Bananas",
+            farmerId: 104,
+            farmerName: "Green Valley",
+            category: "Fruits",
+            quantity: 100,
+            unit: "Dozen",
+            minPrice: 1800,
+            location: "Nizamabad",
+            status: "Active",
+            endTime: new Date().getTime() + 86400000,
+            image:
+              "https://images.unsplash.com/photo-1574226516831-e1dff420e37f?w=600",
+          },
 
-    {
-      id: 5,
-      name: "Potatoes",
-      farmerId: 105,
-      farmerName: "Village Crops",
-      category: "Vegetables",
-      quantity: 80,
-      unit: "Kg",
-      minPrice: 1500,
-      location: "Adilabad",
-      status: "Active",
-      endTime: new Date().getTime() + 432000000,
-      image:
-        "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600",
-    },
+          {
+            id: 5,
+            name: "Potatoes",
+            farmerId: 105,
+            farmerName: "Village Crops",
+            category: "Vegetables",
+            quantity: 80,
+            unit: "Kg",
+            minPrice: 1500,
+            location: "Adilabad",
+            status: "Active",
+            endTime: new Date().getTime() + 432000000,
+            image:
+              "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600",
+          },
 
-    {
-      id: 6,
-      name: "Mangoes",
-      farmerId: 106,
-      farmerName: "Nature Fresh",
-      category: "Fruits",
-      quantity: 40,
-      unit: "Kg",
-      minPrice: 3200,
-      location: "Khammam",
-      status: "Active",
-      endTime: new Date().getTime() + 345600000,
-      image:
-        "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600",
-    },
-  ];
+          {
+            id: 6,
+            name: "Mangoes",
+            farmerId: 106,
+            farmerName: "Nature Fresh",
+            category: "Fruits",
+            quantity: 40,
+            unit: "Kg",
+            minPrice: 3200,
+            location: "Khammam",
+            status: "Active",
+            endTime: new Date().getTime() + 345600000,
+            image:
+              "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600",
+          },
+        ];
 
-  localStorage.setItem("products", JSON.stringify(sampleProducts));
-}
+        // Ensure every product has a sensible maxPrice = 1.3x minPrice when missing
+        sampleProducts.forEach((p) => {
+          p.minPrice = Number(p.minPrice) || 0;
+          p.maxPrice = p.maxPrice
+            ? Number(p.maxPrice)
+            : Math.round(p.minPrice * 1.3);
+        });
 
-// ===============================
-// OPEN BID MODAL
-// ===============================
+        localStorage.setItem("products", JSON.stringify(sampleProducts));
+      }
 
-function openBidModal(id, farmerId, farmerName, name, minPrice) {
-  const product = State.getProducts().find((p) => p.id === id);
+      // ===============================
+      // OPEN BID MODAL
+      // ===============================
 
-  if (product.status !== "Active") {
-    UI.showToast("Bidding is closed for this product", "error");
-    return;
-  }
+      function openBidModal(
+        id,
+        farmerId,
+        farmerName,
+        name,
+        minPrice,
+        maxPrice,
+      ) {
+        const product = State.getProducts().find((p) => p.id === id);
 
-  const highestBid = State.getHighestBid(id);
+        if (!product || product.status !== "Active") {
+          UI.showToast("Bidding is closed for this product", "error");
+          return;
+        }
 
-  document.getElementById("bid-product-id").value = id;
-  document.getElementById("bid-farmer-id").value = farmerId;
-  document.getElementById("bid-farmer-name").value = farmerName;
-  document.getElementById("bid-product-name").value = name;
+        const highestBid = State.getHighestBid(id);
 
-  const currentHighest = highestBid ? highestBid.amount : minPrice;
+        document.getElementById("bid-product-id").value = id;
+        document.getElementById("bid-farmer-id").value = farmerId;
+        document.getElementById("bid-farmer-name").value = farmerName;
+        document.getElementById("bid-product-name").value = name;
 
-  // set quantity input defaults/limits and compute per-unit price
-  const qtyInput = document.getElementById("bid-quantity");
-  const qtyLabel = document.getElementById("bid-quantity-label");
-  if (product && product.quantity) {
-    qtyInput.max = product.quantity;
-    qtyInput.value = Math.min(1, product.quantity);
-    qtyLabel.innerText = `Quantity (${product.unit})`;
-  } else {
-    qtyInput.removeAttribute('max');
-    qtyInput.value = 1;
-    qtyLabel.innerText = 'Quantity';
-  }
+        const currentHighest = highestBid ? highestBid.amount : minPrice;
 
-  const perUnit = product && product.quantity ? Math.round(minPrice / product.quantity) : null;
+        // set quantity input defaults/limits and compute per-unit price
+        const qtyInput = document.getElementById("bid-quantity");
+        const qtyLabel = document.getElementById("bid-quantity-label");
+        if (product && product.quantity) {
+          qtyInput.max = product.quantity;
+          qtyInput.value = Math.min(product.quantity, 1);
+          qtyLabel.innerText = `Quantity (${product.unit})`;
+        } else {
+          qtyInput.removeAttribute("max");
+          qtyInput.value = 1;
+          qtyLabel.innerText = "Quantity";
+        }
+        const perUnit =
+          product && product.quantity
+            ? Math.round((minPrice || 0) / product.quantity)
+            : null;
 
-  document.getElementById("bid-product-info").innerHTML = `
-    Bidding for <strong>${name}</strong><br>
-    Minimum Price: ₹${minPrice}${perUnit ? ` (₹${perUnit} per ${product.unit})` : ''} per kg<br>
-    Current Highest Bid: <strong>₹${currentHighest}</strong> per kg
-  `;
+        const maxPerUnit =
+          product && product.quantity && maxPrice
+            ? Math.round(maxPrice / product.quantity)
+            : null;
 
-  document.getElementById("bid-amount").min = currentHighest + 1;
+        // Ensure numeric fallbacks; default maxPrice to 1.3x minPrice
+        minPrice = Number(minPrice) || 0;
+        maxPrice = Number(maxPrice) || Math.round(minPrice * 1.3);
 
-  document.getElementById("bid-amount").value = currentHighest + 100;
+        document.getElementById("bid-product-info").innerHTML = `
+  Bidding for <strong>${name}</strong><br>
 
-  document
-    .getElementById("bid-modal")
-    .classList.add("active");
-}
+  Minimum Price: ₹${minPrice}
+  ${perUnit ? `(₹${perUnit} per ${product.unit})` : ""}<br>
 
-// ===============================
-// CLOSE BID MODAL
-// ===============================
+  Maximum Price: ₹${maxPrice}
+  ${maxPerUnit ? `(₹${maxPerUnit} per ${product.unit})` : ""}<br>
 
-function closeBidModal() {
-  document
-    .getElementById("bid-modal")
-    .classList.remove("active");
-}
+  Current Highest Bid: <strong>₹${currentHighest}</strong> per kg
+`;
 
-// ===============================
-// INTERESTED PRODUCTS
-// ===============================
+        const bidAmountEl = document.getElementById("bid-amount");
+        bidAmountEl.min = currentHighest + 1;
 
-function toggleInterested(productId) {
-  const added = State.addToInterested(productId);
+        // set max attribute if available
+        document.getElementById("bid-max-price").value = maxPrice;
+        if (maxPrice) bidAmountEl.max = maxPrice;
 
-  if (added) {
-    UI.showToast(
-      "Added to Interested List",
-      "success"
-    );
-  } else {
-    let interested = State.getInterested();
+        // default value: just above current highest but not exceeding maxPrice
+        let defaultAmount = currentHighest + 100;
+        if (bidAmountEl.max)
+          defaultAmount = Math.min(defaultAmount, Number(bidAmountEl.max));
+        bidAmountEl.value = defaultAmount;
 
-    interested = interested.filter(
-      (id) => id !== productId
-    );
+        document.getElementById("bid-modal").classList.add("active");
+      }
 
-    State.saveData(
-      State.keys.interested,
-      interested
-    );
+      // ===============================
+      // CLOSE BID MODAL
+      // ===============================
 
-    UI.showToast(
-      "Removed from Interested List",
-      "success"
-    );
-  }
+      function closeBidModal() {
+        document.getElementById("bid-modal").classList.remove("active");
+      }
 
-  renderMarketplace(
-    searchInput.value,
-    categorySelect.value
-  );
-}
+      // ===============================
+      // INTERESTED PRODUCTS
+      // ===============================
 
-// ===============================
-// RENDER MARKETPLACE
-// ===============================
+      function toggleInterested(productId) {
+        const added = State.addToInterested(productId);
 
-function renderMarketplace(
-  searchQuery = "",
-  categoryFilter = "All Types"
-) {
-  let products = State.getProducts();
+        if (added) {
+          UI.showToast("Added to Interested List", "success");
+        } else {
+          let interested = State.getInterested();
 
-  const list =
-    document.getElementById("marketplace-list");
+          interested = interested.filter((id) => id !== productId);
 
-  const empty =
-    document.getElementById("empty-market");
+          State.saveData(State.keys.interested, interested);
 
-  const user = State.getCurrentUser();
+          UI.showToast("Removed from Interested List", "success");
+        }
 
-  // SHOW ONLY ACTIVE PRODUCTS
+        renderMarketplace(searchInput.value, categorySelect.value);
+      }
 
-  products = products.filter(
-    (p) => p.status === "Active"
-  );
+      // ===============================
+      // RENDER MARKETPLACE
+      // ===============================
 
-  // SEARCH FILTER
+      function renderMarketplace(
+        searchQuery = "",
+        categoryFilter = "All Types",
+      ) {
+        let products = State.getProducts();
 
-  if (searchQuery) {
-    const query = searchQuery.toLowerCase();
+        const list = document.getElementById("marketplace-list");
 
-    products = products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(query) ||
-        p.farmerName
-          .toLowerCase()
-          .includes(query) ||
-        p.category
-          .toLowerCase()
-          .includes(query)
-    );
-  }
+        const empty = document.getElementById("empty-market");
 
-  // CATEGORY FILTER
+        const user = State.getCurrentUser();
 
-  if (categoryFilter !== "All Types") {
-    products = products.filter(
-      (p) => p.category === categoryFilter
-    );
-  }
+        // SHOW ONLY ACTIVE PRODUCTS
 
-  // EMPTY PRODUCTS
+        products = products.filter((p) => p.status === "Active");
 
-  if (products.length === 0) {
-    empty.style.display = "block";
-    list.innerHTML = "";
-    return;
-  }
+        // SEARCH FILTER
 
-  empty.style.display = "none";
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
 
-  // PRODUCT CARDS
+          products = products.filter(
+            (p) =>
+              p.name.toLowerCase().includes(query) ||
+              p.farmerName.toLowerCase().includes(query) ||
+              p.category.toLowerCase().includes(query),
+          );
+        }
 
-  list.innerHTML = products
-    .map((p) => {
-      const highestBid =
-        State.getHighestBid(p.id);
+        // CATEGORY FILTER
 
-      const timeLeft =
-        UI.formatTimeLeft(p.endTime);
+        if (categoryFilter !== "All Types") {
+          products = products.filter((p) => p.category === categoryFilter);
+        }
 
-      const isInterested =
-        State.getInterested().includes(p.id);
+        // EMPTY PRODUCTS
 
-      const myBid = State.getBids().find(
-        (b) =>
-          b.productId === p.id &&
-          b.vendorId === user.id
-      );
+        if (products.length === 0) {
+          empty.style.display = "block";
+          list.innerHTML = "";
+          return;
+        }
 
-      let bidStatusBadge = "";
+        empty.style.display = "none";
 
-      if (myBid) {
-        const isWinning =
-          highestBid &&
-          highestBid.vendorId === user.id;
+        // PRODUCT CARDS
 
-        bidStatusBadge = isWinning
-          ? `
+        list.innerHTML = products
+          .map((p) => {
+            const highestBid = State.getHighestBid(p.id);
+
+            const timeLeft = UI.formatTimeLeft(p.endTime);
+
+            const isInterested = State.getInterested().includes(p.id);
+
+            const myBid = State.getBids().find(
+              (b) => b.productId === p.id && b.vendorId === user.id,
+            );
+
+            let bidStatusBadge = "";
+
+            if (myBid) {
+              const isWinning = highestBid && highestBid.vendorId === user.id;
+
+              bidStatusBadge = isWinning
+                ? `
           <span class="product-badge"
           style="
           background:#e8f5e9;
@@ -616,7 +587,7 @@ function renderMarketplace(
           🏆 Winning
           </span>
         `
-          : `
+                : `
           <span class="product-badge"
           style="
           background:#fff3e0;
@@ -626,9 +597,9 @@ function renderMarketplace(
           ⚠️ Outbid
           </span>
         `;
-      }
+            }
 
-      return `
+            return `
       <div class="card fade-in"
       style="
       padding:0;
@@ -755,11 +726,7 @@ function renderMarketplace(
               color:var(--primary-color);
               margin:0;
               ">
-              ₹${
-                highestBid
-                  ? highestBid.amount
-                  : p.minPrice
-              }
+              ₹${highestBid ? highestBid.amount : p.minPrice}
               </p>
             </div>
 
@@ -782,13 +749,14 @@ function renderMarketplace(
           justify-content:center;
           padding:0.8rem;
           "
-          onclick="openBidModal(
-            ${p.id},
-            ${p.farmerId},
-            '${p.farmerName}',
-            '${p.name}',
-            ${p.minPrice}
-          )">
+          onclick='openBidModal(
+  ${p.id},
+  ${p.farmerId},
+  ${JSON.stringify(p.farmerName)},
+  ${JSON.stringify(p.name)},
+  ${p.minPrice},
+  ${p.maxPrice}
+)'>
 
           Place Bid
 
@@ -798,184 +766,142 @@ function renderMarketplace(
 
       </div>
       `;
-    })
-    .join("");
-}
+          })
+          .join("");
+      }
 
+      // ===============================
+      // DETAILS MODAL (NEW)
+      // ===============================
+      function openDetails(p) {
+        document.getElementById("detail-name").innerText = p.name;
+        document.getElementById("detail-image").src = p.image;
 
-// ===============================
-// DETAILS MODAL (NEW)
-// ===============================
-function openDetails(p) {
-  document.getElementById("detail-name").innerText = p.name;
-  document.getElementById("detail-image").src = p.image;
+        document.getElementById("detail-farmer").innerText =
+          "👨‍🌾 Farmer: " + p.farmerName;
 
-  document.getElementById("detail-farmer").innerText =
-    "👨‍🌾 Farmer: " + p.farmerName;
+        document.getElementById("detail-location").innerText =
+          "📍 Location: " + p.location;
 
-  document.getElementById("detail-location").innerText =
-    "📍 Location: " + p.location;
+        document.getElementById("detail-category").innerText =
+          "📦 Category: " + p.category;
 
-  document.getElementById("detail-category").innerText =
-    "📦 Category: " + p.category;
+        document.getElementById("detail-quantity").innerText =
+          "⚖️ Quantity: " + p.quantity + " " + p.unit;
 
-  document.getElementById("detail-quantity").innerText =
-    "⚖️ Quantity: " + p.quantity + " " + p.unit;
+        document.getElementById("detail-price").innerText =
+          "💰 Minimum Price: ₹" + p.minPrice;
 
-  document.getElementById("detail-price").innerText =
-    "💰 Minimum Price: ₹" + p.minPrice;
+        document.getElementById("details-modal").classList.add("active");
+      }
 
-  document.getElementById("details-modal").classList.add("active");
-}
+      function closeDetails() {
+        document.getElementById("details-modal").classList.remove("active");
+      }
 
-function closeDetails() {
-  document.getElementById("details-modal").classList.remove("active");
-}
+      // ===============================
+      // SEARCH
+      // ===============================
 
+      const searchInput = document.querySelector(".search-bar input");
 
-// ===============================
-// SEARCH
-// ===============================
+      const searchBtn = document.querySelector(".search-bar .btn-primary");
 
-const searchInput =
-  document.querySelector(".search-bar input");
+      const categorySelect = document.querySelector(".search-bar select");
 
-const searchBtn =
-  document.querySelector(
-    ".search-bar .btn-primary"
-  );
+      function performSearch() {
+        renderMarketplace(searchInput.value, categorySelect.value);
+      }
 
-const categorySelect =
-  document.querySelector(
-    ".search-bar select"
-  );
+      searchBtn.addEventListener("click", performSearch);
 
-function performSearch() {
-  renderMarketplace(
-    searchInput.value,
-    categorySelect.value
-  );
-}
+      searchInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          performSearch();
+        }
+      });
 
-searchBtn.addEventListener(
-  "click",
-  performSearch
-);
+      categorySelect.addEventListener("change", performSearch);
 
-searchInput.addEventListener(
-  "keyup",
-  (e) => {
-    if (e.key === "Enter") {
-      performSearch();
-    }
-  }
-);
+      // ===============================
+      // BID FORM SUBMIT
+      // ===============================
 
-categorySelect.addEventListener(
-  "change",
-  performSearch
-);
+      document.getElementById("bid-form").addEventListener("submit", (e) => {
+        e.preventDefault();
 
-// ===============================
-// BID FORM SUBMIT
-// ===============================
+        const user = State.getCurrentUser();
+        if (!user) {
+          UI.showToast("Please login to place a bid", "error");
+          return;
+        }
 
-document
-  .getElementById("bid-form")
-  .addEventListener("submit", (e) => {
-    e.preventDefault();
+        const amount = parseInt(document.getElementById("bid-amount").value);
 
-    const user =
-      State.getCurrentUser();
+        const quantity = parseInt(
+          document.getElementById("bid-quantity").value,
+        );
 
-    const amount = parseInt(
-      document.getElementById(
-        "bid-amount"
-      ).value
-    );
+        const productId = parseInt(
+          document.getElementById("bid-product-id").value,
+        );
 
-    const quantity = parseInt(
-      document.getElementById(
-        "bid-quantity"
-      ).value
-    );
+        const highestBid = State.getHighestBid(productId);
 
-    const productId = parseInt(
-      document.getElementById(
-        "bid-product-id"
-      ).value
-    );
+        if (highestBid && amount <= highestBid.amount) {
+          UI.showToast(
+            `Your bid must be higher than ₹${highestBid.amount}`,
+            "error",
+          );
 
-    const highestBid =
-      State.getHighestBid(productId);
+          return;
+        }
 
-    if (
-      highestBid &&
-      amount <= highestBid.amount
-    ) {
-      UI.showToast(
-        `Your bid must be higher than ₹${highestBid.amount}`,
-        "error"
-      );
+        const maxPrice =
+          Number(document.getElementById("bid-max-price").value) || null;
+        if (maxPrice && amount > maxPrice) {
+          UI.showToast(
+            `Your bid cannot exceed the maximum price of ₹${maxPrice}`,
+            "error",
+          );
+          return;
+        }
 
-      return;
-    }
+        const bid = {
+          productId: productId,
+          productName: document.getElementById("bid-product-name").value,
 
-    const bid = {
-      productId: productId,
-      productName:
-        document.getElementById(
-          "bid-product-name"
-        ).value,
+          farmerId: parseInt(document.getElementById("bid-farmer-id").value),
 
-      farmerId: parseInt(
-        document.getElementById(
-          "bid-farmer-id"
-        ).value
-      ),
+          farmerName: document.getElementById("bid-farmer-name").value,
 
-      farmerName:
-        document.getElementById(
-          "bid-farmer-name"
-        ).value,
+          vendorId: user.id,
+          vendorName: user.name,
+          amount: amount,
+          quantity: quantity,
+        };
 
-      vendorId: user.id,
-      vendorName: user.name,
-      amount: amount,
-      quantity: quantity,
-    };
+        State.placeBid(bid);
 
-    State.placeBid(bid);
+        closeBidModal();
 
-    closeBidModal();
+        UI.showToast(
+          highestBid ? "Bid Updated Successfully!" : "Bid Placed Successfully!",
+          "success",
+        );
 
-    UI.showToast(
-      highestBid
-        ? "Bid Updated Successfully!"
-        : "Bid Placed Successfully!",
-      "success"
-    );
+        renderMarketplace(searchInput.value, categorySelect.value);
+      });
 
-    renderMarketplace(
-      searchInput.value,
-      categorySelect.value
-    );
-  });
+      // ===============================
+      // PAGE LOAD
+      // ===============================
 
-// ===============================
-// PAGE LOAD
-// ===============================
+      State.listenToChanges(performSearch);
 
-State.listenToChanges(
-  performSearch
-);
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    renderMarketplace();
-  }
-);
+      document.addEventListener("DOMContentLoaded", () => {
+        renderMarketplace();
+      });
     </script>
   </body>
 </html>
