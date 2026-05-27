@@ -182,7 +182,24 @@
           <input type="hidden" id="bid-farmer-name" />
           <input type="hidden" id="bid-product-name" />
           <div class="form-group">
-            <label>Your Bid Amount (₹)</label>
+            <label id="bid-quantity-label">Quantity</label>
+            <input
+              type="number"
+              id="bid-quantity"
+              required
+              min="1"
+              value="1"
+              style="
+                width: 100%;
+                padding: 0.8rem;
+                margin-top: 0.5rem;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+              "
+            />
+          </div>
+          <div class="form-group">
+            <label>Your Bid Amount (₹) per kg</label>
             <input
               type="number"
               id="bid-amount"
@@ -396,21 +413,32 @@ function openBidModal(id, farmerId, farmerName, name, minPrice) {
   document.getElementById("bid-farmer-name").value = farmerName;
   document.getElementById("bid-product-name").value = name;
 
-  const currentHighest = highestBid
-    ? highestBid.amount
-    : minPrice;
+  const currentHighest = highestBid ? highestBid.amount : minPrice;
+
+  // set quantity input defaults/limits and compute per-unit price
+  const qtyInput = document.getElementById("bid-quantity");
+  const qtyLabel = document.getElementById("bid-quantity-label");
+  if (product && product.quantity) {
+    qtyInput.max = product.quantity;
+    qtyInput.value = Math.min(1, product.quantity);
+    qtyLabel.innerText = `Quantity (${product.unit})`;
+  } else {
+    qtyInput.removeAttribute('max');
+    qtyInput.value = 1;
+    qtyLabel.innerText = 'Quantity';
+  }
+
+  const perUnit = product && product.quantity ? Math.round(minPrice / product.quantity) : null;
 
   document.getElementById("bid-product-info").innerHTML = `
     Bidding for <strong>${name}</strong><br>
-    Minimum Price: ₹${minPrice}<br>
-    Current Highest Bid: <strong>₹${currentHighest}</strong>
+    Minimum Price: ₹${minPrice}${perUnit ? ` (₹${perUnit} per ${product.unit})` : ''} per kg<br>
+    Current Highest Bid: <strong>₹${currentHighest}</strong> per kg
   `;
 
-  document.getElementById("bid-amount").min =
-    currentHighest + 1;
+  document.getElementById("bid-amount").min = currentHighest + 1;
 
-  document.getElementById("bid-amount").value =
-    currentHighest + 100;
+  document.getElementById("bid-amount").value = currentHighest + 100;
 
   document
     .getElementById("bid-modal")
@@ -733,11 +761,7 @@ function renderMarketplace(
             ${p.minPrice}
           )">
 
-          ${
-            myBid
-              ? "Update Bid"
-              : "Place Bid"
-          }
+          Place Bid
 
           </button>
 
@@ -810,6 +834,12 @@ document
       ).value
     );
 
+    const quantity = parseInt(
+      document.getElementById(
+        "bid-quantity"
+      ).value
+    );
+
     const productId = parseInt(
       document.getElementById(
         "bid-product-id"
@@ -852,6 +882,7 @@ document
       vendorId: user.id,
       vendorName: user.name,
       amount: amount,
+      quantity: quantity,
     };
 
     State.placeBid(bid);

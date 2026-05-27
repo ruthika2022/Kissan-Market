@@ -119,13 +119,6 @@
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background: #fff3e0; color: #e65100;">🚚</div>
-                        <div class="stat-info">
-                            <h3 id="stat-pending-orders">0</h3>
-                            <p>Pending Orders</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
                         <div class="stat-icon" style="background: #ffebee; color: #c62828;">🔔</div>
                         <div class="stat-info">
                             <h3 id="stat-notifs">0</h3>
@@ -136,16 +129,6 @@
           
 
                 <div class="grid grid-2">
-                    <div class="card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                            <h3>Pending Buyer Orders</h3>
-                            <a href="orders.html" style="color: var(--primary-color); font-size: 0.9rem; font-weight: 600;">View All</a>
-                        </div>
-                        <div id="buyer-orders-summary">
-                        
-                        </div>
-                    </div>
-
                     <div class="card">
                         <h3>Recommended Products</h3>
                         <div id="recommended-list">
@@ -235,29 +218,13 @@
            
             const bids = State.getBids().filter(b => b.vendorId === user.id);
             const myOrders = State.getOrders().filter(o => o.vendorId === user.id);
-            const buyerOrders = State.getBuyerOrders(user.id);
-            const pendingBuyerOrders = buyerOrders.filter(o => o.status === 'Pending');
             const notifs = State.getNotifications(user.id).filter(n => !n.read);
-            
+
             const totalPurchases = myOrders.reduce((sum, o) => sum + o.amount, 0);
 
             document.getElementById('stat-total-purchases').innerText = `₹${totalPurchases.toLocaleString()}`;
             document.getElementById('stat-active-bids').innerText = bids.filter(b => b.status === 'pending').length;
-            document.getElementById('stat-pending-orders').innerText = pendingBuyerOrders.length;
             document.getElementById('stat-notifs').innerText = notifs.length;
-
-            const orderList = document.getElementById('buyer-orders-summary');
-            if (pendingBuyerOrders.length > 0) {
-                orderList.innerHTML = pendingBuyerOrders.slice(0, 3).map(o => `
-                    <div style="padding: 1rem 0; border-bottom: 1px solid #eee;">
-                        <p style="font-weight: 700; color: #333;">Order from ${o.buyerName}</p>
-                        <p style="font-size: 0.8rem; color: #666;">${o.quantity} ${o.productName}</p>
-                        <a href="orders.html" style="font-size: 0.75rem; color: var(--primary-color); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 5px;">Manage Order →</a>
-                    </div>
-                `).join('');
-            } else {
-                orderList.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">No pending buyer orders.</p>';
-            }
 
             const recList = document.getElementById('recommended-list');
             const products = State.getProducts().slice(0, 3);
@@ -277,7 +244,6 @@
             const activityList = document.getElementById('activity-list');
             const activities = [
                 ...bids.map(b => ({ text: `Placed ₹${b.amount} bid for ${b.productName}`, date: new Date(b.timestamp) })),
-                ...buyerOrders.map(o => ({ text: `Received order from ${o.buyerName}`, date: new Date(o.orderedDate) })),
                 ...notifs.map(n => ({ text: n.title, date: new Date(n.timestamp) }))
             ].sort((a,b) => b.date - a.date).slice(0, 5);
 
