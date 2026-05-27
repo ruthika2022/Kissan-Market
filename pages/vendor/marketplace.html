@@ -226,6 +226,7 @@
               class="btn btn-outline"
               onclick="closeBidModal()"
             >
+            
               Cancel
             </button>
             <button type="submit" class="btn btn-primary">Submit Bid</button>
@@ -233,6 +234,34 @@
         </form>
       </div>
     </div>
+
+    <!-- =========================
+     DETAILS MODAL (FIXED SINGLE VERSION)
+========================= -->
+<div class="bid-modal" id="details-modal">
+  <div class="bid-modal-content">
+    
+    <h3 id="detail-name"></h3>
+
+    <img
+      id="detail-image"
+      style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin:10px 0;"
+    />
+
+    <p id="detail-farmer"></p>
+    <p id="detail-location"></p>
+    <p id="detail-category"></p>
+    <p id="detail-quantity"></p>
+    <p id="detail-price"></p>
+
+    <div style="text-align:right;margin-top:1rem;">
+      <button class="btn btn-outline" onclick="closeDetails()">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
     <!-- CHAT ICON -->
 
 <div class="chat-icon" id="chatIcon">
@@ -740,7 +769,7 @@ function renderMarketplace(
             padding:0.3rem 0.6rem;
             font-size:0.75rem;
             "
-            onclick="UI.showToast('Product Details for ${p.name}','success')">
+            onclick='openDetails(${JSON.stringify(p)})'>
             Details
             </button>
 
@@ -772,6 +801,37 @@ function renderMarketplace(
     })
     .join("");
 }
+
+
+// ===============================
+// DETAILS MODAL (NEW)
+// ===============================
+function openDetails(p) {
+  document.getElementById("detail-name").innerText = p.name;
+  document.getElementById("detail-image").src = p.image;
+
+  document.getElementById("detail-farmer").innerText =
+    "👨‍🌾 Farmer: " + p.farmerName;
+
+  document.getElementById("detail-location").innerText =
+    "📍 Location: " + p.location;
+
+  document.getElementById("detail-category").innerText =
+    "📦 Category: " + p.category;
+
+  document.getElementById("detail-quantity").innerText =
+    "⚖️ Quantity: " + p.quantity + " " + p.unit;
+
+  document.getElementById("detail-price").innerText =
+    "💰 Minimum Price: ₹" + p.minPrice;
+
+  document.getElementById("details-modal").classList.add("active");
+}
+
+function closeDetails() {
+  document.getElementById("details-modal").classList.remove("active");
+}
+
 
 // ===============================
 // SEARCH
