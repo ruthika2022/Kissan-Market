@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Kissan Market</title>
 
-
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
 
@@ -49,8 +48,6 @@
             z-index: 1000;
         }
 
-        /* LOGO LEFT */
-
         .logo {
             position: absolute;
             left: 5%;
@@ -58,8 +55,6 @@
             font-weight: 800;
             color: var(--primary);
         }
-
-        /* NAV LINKS CENTER */
 
         .nav-links {
             display: flex;
@@ -78,7 +73,7 @@
             color: var(--primary);
         }
 
-        /* HERO SECTION */
+        /* HERO */
 
         .about-hero {
             height: 60vh;
@@ -112,7 +107,7 @@
             opacity: 0.9;
         }
 
-        /* ABOUT SECTION */
+        /* SECTION */
 
         .about-section {
             padding: 6rem 5%;
@@ -166,7 +161,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* MISSION SECTION */
+        /* MISSION */
 
         .mission-section {
             padding: 6rem 5%;
@@ -204,6 +199,58 @@
         }
 
         .mission-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* TEAM SECTION */
+
+        .team-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .team-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 5px solid #f3f3f3;
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
             color: #666;
             font-size: 0.95rem;
         }
@@ -264,13 +311,13 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
         </ul>
 
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
 
     <section class="about-hero">
 
@@ -287,7 +334,7 @@
 
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT -->
 
     <section class="about-section">
 
@@ -309,8 +356,7 @@
 
                     <p>
                         Kissan Market is a modern digital platform designed to connect
-                        farmers directly with vendors in a transparent and
-                        efficient way.
+                        farmers directly with vendors in a transparent and efficient way.
                     </p>
 
                     <p>
@@ -340,7 +386,7 @@
 
     </section>
 
-    <!-- MISSION SECTION -->
+    <!-- MISSION -->
 
     <section class="mission-section">
 
@@ -363,8 +409,7 @@
                     <h4>Support Farmers</h4>
 
                     <p>
-                        Helping farmers reach better markets and improve their income
-                        through digital access.
+                        Helping farmers reach better markets and improve their income.
                     </p>
 
                 </div>
@@ -376,8 +421,7 @@
                     <h4>Transparent Trade</h4>
 
                     <p>
-                        Creating trusted and fair transactions between farmers,
-                        vendors, and buyers.
+                        Creating trusted and fair transactions between farmers and vendors.
                     </p>
 
                 </div>
@@ -389,9 +433,98 @@
                     <h4>Smart Growth</h4>
 
                     <p>
-                        Using technology and market insights to improve agricultural
-                        business decisions.
+                        Using technology and market insights to improve business decisions.
                     </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TEAM SECTION -->
+
+    <section class="team-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Our Team</span>
+
+                <h2>Meet The Team</h2>
+
+            </div>
+
+            <div class="team-grid">
+
+                <!-- TEAM MEMBER 1 -->
+
+                <div class="team-card">
+
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=500"
+                        alt="Founder">
+
+                    <h3>Ruthika </h3>
+
+                    <div class="team-role">
+                         Team Lead & Project Flow Manager
+                    </div>
+
+                    
+
+                </div>
+
+                <!-- TEAM MEMBER 2 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/yamini.jpeg"
+                        alt="Operations Manager">
+
+                    <h3>Yamini</h3>
+
+                    <div class="team-role">
+                         Web Page Developer
+                    </div>
+
+                    
+
+                </div>
+
+                <!-- TEAM MEMBER 3 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/rohith.png"
+                        alt="Technical Lead">
+
+                    <h3>Rohith</h3>
+
+                    <div class="team-role">
+                         Linking & Integration Manager
+                    </div>
+
+                   
+
+                </div>
+
+                <!-- TEAM MEMBER 4 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/shiva.png"
+                        alt="Support Head">
+
+                    <h3>Shiva</h3>
+
+                    <div class="team-role">
+                        Responsive Design Specialist
+                    </div>
+
+                    
 
                 </div>
 
@@ -410,6 +543,32 @@
         </p>
 
     </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // TEAM CARD ANIMATION
+
+        const teamCards = document.querySelectorAll(".team-card");
+
+        teamCards.forEach((card) => {
+
+            card.addEventListener("mouseenter", () => {
+
+                card.style.transform = "translateY(-12px) scale(1.03)";
+
+            });
+
+            card.addEventListener("mouseleave", () => {
+
+                card.style.transform = "translateY(0px) scale(1)";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 
