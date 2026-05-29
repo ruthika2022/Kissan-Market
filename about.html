@@ -2,18 +2,24 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>About Us | Kissan Market</title>
 
+    <!-- GOOGLE FONT -->
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
+
+    <!-- FONT AWESOME -->
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+
         :root {
             --primary: #8b4a2b;
             --primary-dark: #6f3b22;
@@ -21,236 +27,320 @@
             --white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Outfit',sans-serif;
         }
 
-        body {
-            background: var(--bg-light);
-            color: #333;
-            line-height: 1.7;
+        body{
+            background:var(--bg-light);
+            color:#333;
+            line-height:1.7;
         }
 
         /* NAVBAR */
 
-        nav {
-            width: 100%;
-            padding: 1.2rem 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        nav{
+            width:100%;
+            padding:1.2rem 5%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:white;
+            box-shadow:0 2px 10px rgba(0,0,0,0.05);
+            position:sticky;
+            top:0;
+            z-index:1000;
         }
 
-        /* LOGO LEFT */
-
-        .logo {
-            position: absolute;
-            left: 5%;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+        .logo{
+            position:absolute;
+            left:5%;
+            font-size:1.5rem;
+            font-weight:800;
+            color:var(--primary);
         }
 
-        /* NAV LINKS CENTER */
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        .nav-links{
+            display:flex;
+            gap:2rem;
+            list-style:none;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            transition: 0.3s;
+        .nav-links a{
+            text-decoration:none;
+            color:#555;
+            font-weight:600;
+            transition:0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover{
+            color:var(--primary);
         }
 
-        /* HERO SECTION */
+        /* HAMBURGER */
 
-        .about-hero {
-            height: 60vh;
+        .menu-btn{
+            display:none;
+            font-size:1.6rem;
+            color:var(--primary);
+            cursor:pointer;
+        }
+
+        /* HERO */
+
+        .about-hero{
+            height:60vh;
+
             background:
-                linear-gradient(rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)),
+                linear-gradient(rgba(0,0,0,0.5),
+                rgba(0,0,0,0.5)),
                 url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1600');
 
-            background-size: cover;
-            background-position: center;
+            background-size:cover;
+            background-position:center;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
 
-            color: white;
-            padding: 0 5%;
+            color:white;
+            padding:0 5%;
         }
 
-        .about-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: 800;
+        .about-hero h1{
+            font-size:clamp(2.5rem,6vw,4rem);
+            margin-bottom:1rem;
+            font-weight:800;
         }
 
-        .about-hero p {
-            max-width: 700px;
-            margin: auto;
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .about-hero p{
+            max-width:700px;
+            margin:auto;
+            font-size:1.1rem;
+            opacity:0.9;
         }
 
         /* ABOUT SECTION */
 
-        .about-section {
-            padding: 6rem 5%;
-            background: white;
+        .about-section{
+            padding:6rem 5%;
+            background:white;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
+        .container{
+            max-width:1200px;
+            margin:auto;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
+        .section-title{
+            text-align:center;
+            margin-bottom:4rem;
         }
 
-        .section-title span {
-            color: var(--primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+        .section-title span{
+            color:var(--primary);
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            font-size:0.9rem;
         }
 
-        .section-title h2 {
-            font-size: 2.8rem;
-            margin-top: 1rem;
+        .section-title h2{
+            font-size:2.8rem;
+            margin-top:1rem;
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 4rem;
-            align-items: center;
+        .about-content{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:4rem;
+            align-items:center;
         }
 
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .about-text h3{
+            font-size:2rem;
+            margin-bottom:1rem;
+            color:var(--primary);
         }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: #555;
+        .about-text p{
+            margin-bottom:1.5rem;
+            color:#555;
         }
 
-        .about-image img {
-            width: 100%;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .about-image img{
+            width:100%;
+            border-radius:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
         }
 
         /* MISSION SECTION */
 
-        .mission-section {
-            padding: 6rem 5%;
-            background: var(--bg-light);
+        .mission-section{
+            padding:6rem 5%;
+            background:var(--bg-light);
         }
 
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .mission-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:2rem;
         }
 
-        .mission-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
+        .mission-card{
+            background:white;
+            padding:2.5rem;
+            border-radius:20px;
+            text-align:center;
+            transition:0.3s;
         }
 
-        .mission-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        .mission-card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 15px 35px rgba(0,0,0,0.08);
         }
 
-        .mission-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+        .mission-card i{
+            font-size:2.5rem;
+            color:var(--primary);
+            margin-bottom:1.5rem;
         }
 
-        .mission-card h4 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .mission-card h4{
+            margin-bottom:1rem;
+            font-size:1.3rem;
         }
 
-        .mission-card p {
-            color: #666;
-            font-size: 0.95rem;
+        .mission-card p{
+            color:#666;
+            font-size:0.95rem;
+        }
+
+        /* TEAM SECTION */
+
+        .team-section{
+            padding:6rem 5%;
+            background:white;
+        }
+
+        .team-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:2rem;
+        }
+
+        .team-card{
+            background:#fff;
+            padding:2rem;
+            border-radius:25px;
+            text-align:center;
+            transition:0.4s;
+            box-shadow:0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .team-card:hover{
+            transform:translateY(-12px);
+            box-shadow:0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .team-card img{
+            width:140px;
+            height:140px;
+            object-fit:cover;
+            border-radius:50%;
+            margin-bottom:1.5rem;
+            border:5px solid #f3f3f3;
+        }
+
+        .team-card h3{
+            font-size:1.4rem;
+            margin-bottom:0.5rem;
+        }
+
+        .team-role{
+            color:var(--primary);
+            font-weight:700;
+            margin-bottom:1rem;
         }
 
         /* FOOTER */
 
-        footer {
-            background: #111;
-            color: white;
-            padding: 2rem 5%;
-            text-align: center;
+        footer{
+            background:#111;
+            color:white;
+            padding:2rem 5%;
+            text-align:center;
         }
 
-        footer p {
-            opacity: 0.7;
-            font-size: 0.9rem;
+        footer p{
+            opacity:0.7;
+            font-size:0.9rem;
         }
 
-        /* RESPONSIVE */
+        /* MOBILE RESPONSIVE */
 
-        @media(max-width:768px) {
+        @media(max-width:768px){
 
-            nav {
-                justify-content: space-between;
+            nav{
+                justify-content:space-between;
             }
 
-            .logo {
-                position: static;
+            .logo{
+                position:static;
             }
 
-            .nav-links {
-                display: none;
+            .menu-btn{
+                display:block;
             }
 
-            .about-hero {
-                height: 50vh;
+            .nav-links{
+                position:absolute;
+                top:100%;
+                left:0;
+                width:100%;
+                background:white;
+
+                flex-direction:column;
+                align-items:center;
+
+                padding:2rem 0;
+                gap:1.5rem;
+
+                box-shadow:0 10px 20px rgba(0,0,0,0.08);
+
+                opacity:0;
+                visibility:hidden;
+                transform:translateY(-10px);
+
+                transition:0.3s;
             }
 
-            .section-title h2 {
-                font-size: 2rem;
+            .nav-links.active{
+                opacity:1;
+                visibility:visible;
+                transform:translateY(0);
             }
 
-            .about-text h3 {
-                font-size: 1.7rem;
+            .about-hero{
+                height:50vh;
             }
+
+            .section-title h2{
+                font-size:2rem;
+            }
+
+            .about-text h3{
+                font-size:1.7rem;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -264,13 +354,25 @@
         </div>
 
         <ul class="nav-links">
+<<<<<<< HEAD
             <li><a href="./index.html">Home</a></li>
+=======
+
+            <li><a href="#">Home</a></li>
+>>>>>>> b3c8963bc4d1f9c6b0ecc2f25fa434d102a1cdb4
             <li><a href="#">About</a></li>
+
         </ul>
+
+        <!-- HAMBURGER -->
+
+        <div class="menu-btn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
 
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
 
     <section class="about-hero">
 
@@ -309,20 +411,17 @@
 
                     <p>
                         Kissan Market is a modern digital platform designed to connect
-                        farmers directly with vendors in a transparent and
-                        efficient way.
+                        farmers directly with vendors in a transparent and efficient way.
                     </p>
 
                     <p>
                         Our goal is to reduce the gap between production and market access
-                        by providing real-time bidding, easy crop management, and smooth
-                        communication between all participants.
+                        by providing real-time bidding and easy crop management.
                     </p>
 
                     <p>
                         We believe technology can improve agriculture by helping farmers
-                        get fair prices and enabling vendors to access quality products
-                        quickly and easily.
+                        get fair prices and enabling vendors to access quality products.
                     </p>
 
                 </div>
@@ -340,7 +439,7 @@
 
     </section>
 
-    <!-- MISSION SECTION -->
+    <!-- MISSION -->
 
     <section class="mission-section">
 
@@ -363,8 +462,7 @@
                     <h4>Support Farmers</h4>
 
                     <p>
-                        Helping farmers reach better markets and improve their income
-                        through digital access.
+                        Helping farmers reach better markets and improve their income.
                     </p>
 
                 </div>
@@ -376,8 +474,7 @@
                     <h4>Transparent Trade</h4>
 
                     <p>
-                        Creating trusted and fair transactions between farmers,
-                        vendors, and buyers.
+                        Creating trusted and fair transactions between farmers and vendors.
                     </p>
 
                 </div>
@@ -389,9 +486,86 @@
                     <h4>Smart Growth</h4>
 
                     <p>
-                        Using technology and market insights to improve agricultural
-                        business decisions.
+                        Using technology and market insights to improve business decisions.
                     </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TEAM SECTION -->
+
+    <section class="team-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>Our Team</span>
+
+                <h2>Meet The Team</h2>
+
+            </div>
+
+            <div class="team-grid">
+
+                <!-- MEMBER 1 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/ruthika.png" alt="Team Lead">
+
+                    <h3>Ruthika</h3>
+
+                    <div class="team-role">
+                        Team Lead & Project Flow Manager
+                    </div>
+
+                </div>
+
+                <!-- MEMBER 2 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/yamini.jpeg" alt="Web Developer">
+
+                    <h3>Yamini</h3>
+
+                    <div class="team-role">
+                        Web Page Developer
+                    </div>
+
+                </div>
+
+                <!-- MEMBER 3 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/rohith.png" alt="Integration Manager">
+
+                    <h3>Rohith</h3>
+
+                    <div class="team-role">
+                        Linking & Integration Manager
+                    </div>
+
+                </div>
+
+                <!-- MEMBER 4 -->
+
+                <div class="team-card">
+
+                    <img src="./pages/img/shiva.png" alt="Responsive Specialist">
+
+                    <h3>Shiva</h3>
+
+                    <div class="team-role">
+                        Responsive Design Specialist
+                    </div>
 
                 </div>
 
@@ -410,6 +584,73 @@
         </p>
 
     </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // TEAM CARD HOVER
+
+        const teamCards = document.querySelectorAll(".team-card");
+
+        teamCards.forEach((card) => {
+
+            card.addEventListener("mouseenter", () => {
+
+                card.style.transform = "translateY(-12px) scale(1.03)";
+
+            });
+
+            card.addEventListener("mouseleave", () => {
+
+                card.style.transform = "translateY(0px) scale(1)";
+
+            });
+
+        });
+
+        // MOBILE MENU
+
+        const menuBtn = document.getElementById("menuBtn");
+
+        const navLinks = document.querySelector(".nav-links");
+
+        const menuIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
+            if(navLinks.classList.contains("active")){
+
+                menuIcon.classList.remove("fa-bars");
+                menuIcon.classList.add("fa-xmark");
+
+            } else {
+
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+
+            }
+
+        });
+
+        // CLOSE MENU OUTSIDE CLICK
+
+        document.addEventListener("click", (e) => {
+
+            if(!menuBtn.contains(e.target) && !navLinks.contains(e.target)){
+
+                navLinks.classList.remove("active");
+
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
