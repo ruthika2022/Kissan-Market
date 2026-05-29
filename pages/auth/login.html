@@ -131,10 +131,6 @@
                 State.setCurrentUser({ id: 0, name: 'Administrator', role: 'admin' });
                 window.location.href = '../admin/admin.html';
             }
-            else if (email === "buyer@12" && password === "buyer123") {
-                State.setCurrentUser({ id: 99, name: 'Buyer User', role: 'buyer' });
-                window.location.href = '../buyer/home/index.html';
-            }
             else if (email === "farmer@12" && password === "farmer123") {
                 State.setCurrentUser({ id: 1, name: 'Farmer User', role: 'farmer' });
                 window.location.href = '../farmer/dashboard.html';
