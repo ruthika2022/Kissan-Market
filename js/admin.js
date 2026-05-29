@@ -401,8 +401,8 @@ function updateCounters() {
     
     // Update Sidebar Badges
     const pendingT = db.tickets.filter(t => t.status === 'Pending').length;
-    document.getElementById('badgeTickets').textContent = pendingT;
-    document.getElementById('badgeTickets').style.display = pendingT > 0 ? 'inline-block' : 'none';
+    // document.getElementById('badgeTickets').textContent = pendingT;
+    // document.getElementById('badgeTickets').style.display = pendingT > 0 ? 'inline-block' : 'none';
 }
 
 function animateCounters() {

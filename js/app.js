@@ -15,24 +15,24 @@ const State = {
   init() {
     if (!localStorage.getItem(this.keys.products)) {
       const dummyProducts = [
-        {
-          id: 101,
-          name: "Organic Tomatoes",
-          category: "Vegetables",
-          price: 40,
-          minPrice: 35,
-          maxPrice:45,
-          quantity: 500,
-          unit: "kg",
-          status: "Active",
-          farmerId: 1,
-          farmerName: "Rajesh Kumar",
-          location: "Nashik, MH",
-          createdAt: new Date().toISOString(),
-          endTime: new Date(Date.now() + 86400000).toISOString(),
-          image:
-            "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&q=80&w=300",
-        },
+        // {
+        //   id: 101,
+        //   name: "Organic Tomatoes",
+        //   category: "Vegetables",
+        //   price: 40,
+        //   minPrice: 35,
+        //   maxPrice:45,
+        //   quantity: 500,
+        //   unit: "kg",
+        //   status: "Active",
+        //   farmerId: 1,
+        //   farmerName: "Rajesh Kumar",
+        //   location: "Nashik, MH",
+        //   createdAt: new Date().toISOString(),
+        //   endTime: new Date(Date.now() + 86400000).toISOString(),
+        //   image:
+        //     "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&q=80&w=300",
+        // },
         {
           id: 102,
           name: "Premium Basmati Rice",
