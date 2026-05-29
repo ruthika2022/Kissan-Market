@@ -1,340 +1,397 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kissan Market - Admin Monitor</title>
     <!-- Google Fonts: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- External CSS -->
-    <link rel="stylesheet" href="../../css/admin.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body>
     <div class="app-container">
-        
-        <!-- SIDEBAR -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <!-- <i class="fa-solid fa-leaf"></i> -->
-                <h2>Kissan Admin</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li class="menu-item active" data-target="dashboard">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span>Dashboard</span>
-                </li>
-                <li class="menu-item" data-target="farmers">
-                    <i class="fa-solid fa-tractor"></i>
-                    <span>Farmers Monitoring</span>
-                </li>
-                <li class="menu-item" data-target="vendors">
-                    <i class="fa-solid fa-store"></i>
-                    <span>Vendors Monitoring</span>
-                </li>
-                <li class="menu-item" data-target="products">
-                    <i class="fa-solid fa-seedling"></i>
-                    <span>Product Monitoring</span>
-                </li>
-                <li class="menu-item" data-target="inventory">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    <span>Inventory Status</span>
-                </li>
-                <li class="menu-item" data-target="support">
-                    <i class="fa-solid fa-headset"></i>
-                    <span>Support Center</span>
-                    <span class="badge-sidebar" id="badgeTickets" style="display:none;">0</span>
-                </li>
-                <li class="menu-item" data-target="complaints">
-                    <i class="fa-solid fa-gavel"></i>
-                    <span>User Complaints</span>
-                </li>
-                <li class="menu-item" data-target="analytics">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Analytics</span>
-                </li>
-                <!-- <li class="menu-item" data-target="settings">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <!-- <i class="fa-solid fa-leaf"></i> -->
+          <h2>Kissan Admin</h2>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="menu-item active" data-target="dashboard">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </li>
+          <li class="menu-item" data-target="farmers">
+            <i class="fa-solid fa-tractor"></i>
+            <span>Farmers Monitoring</span>
+          </li>
+          <li class="menu-item" data-target="vendors">
+            <i class="fa-solid fa-store"></i>
+            <span>Vendors Monitoring</span>
+          </li>
+          <li class="menu-item" data-target="products">
+            <i class="fa-solid fa-seedling"></i>
+            <span>Product Monitoring</span>
+          </li>
+          <li class="menu-item" data-target="inventory">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Inventory Status</span>
+          </li>
+          <li class="menu-item" data-target="support">
+            <i class="fa-solid fa-headset"></i>
+            <span>Support Center</span>
+            <span class="badge-sidebar" id="badgeTickets" style="display: none"
+              >0</span
+            >
+          </li>
+          <li class="menu-item" data-target="complaints">
+            <i class="fa-solid fa-gavel"></i>
+            <span>User Complaints</span>
+          </li>
+          <li class="menu-item" data-target="analytics">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+          </li>
+          <!-- <li class="menu-item" data-target="settings">
                     <i class="fa-solid fa-gear"></i>
                     <span>Settings</span>
                 </li> -->
-                <li class="menu-item" onclick="alert('Logging out...'); location.reload();">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span>Logout</span>
-                </li>
-            </ul>
-        </aside>
+          <li
+            class="menu-item"
+            onclick="
+              alert('Logging out...');
+              location.reload();
+            "
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <a href="../../index.html" class="nav-link"> Logout </a>
+          </li>
+        </ul>
+      </aside>
 
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-            
-            <!-- TOPBAR -->
-            <header class="topbar">
-                <div class="topbar-left">
-                    <button class="menu-toggle" id="menuToggle">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div>
-                        <div class="page-title" id="pageTitle">Dashboard</div>
-                        <!-- <div class="datetime" id="realtimeClock">Loading...</div> -->
-                    </div>
-                </div>
-
-                <div class="topbar-right">
-                    <div class="search-bar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search everywhere...">
-                    </div>
-                    
-                    <div class="topbar-icon theme-toggle" id="themeToggleTop">
-                        <!-- <i class="fa-solid fa-moon"></i> -->
-                    </div>
-
-                    <div class="topbar-icon" id="notifIcon">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="notification-badge" id="notifBadge" style="display:none;">0</span>
-                        
-                        <!-- Notifications Dropdown -->
-                        <div class="notifications-dropdown" id="notifDropdown">
-                            <div class="notifications-header">
-                                <h4>Notifications</h4>
-                                <button onclick="clearNotifications()">Clear All</button>
-                            </div>
-                            <div class="notifications-list" id="notificationsList">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="admin-profile">
-                        <!-- <img src="https://ui-avatars.com/api/?name=Admin+Monitor&background=10b981&color=fff" alt="Admin"> -->
-                        <div class="admin-info">
-                            <span class="admin-name" id="displayAdminName">Admin Monitor</span>
-                            <span class="admin-role">Platform Supervisor</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <!-- CONTENT AREA -->
-            <div class="content-area">
-                
-                <!-- DASHBOARD SECTION -->
-                <section class="section active" id="dashboard">
-                    <div class="section-header">
-                        <h3>Platform Overview</h3>
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon icon-green"><i class="fa-solid fa-tractor"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Total Farmers</span>
-                                <span class="stat-value counter" id="countFarmers" data-target="0">0</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon icon-brown"><i class="fa-solid fa-store"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Total Vendors</span>
-                                <span class="stat-value counter" id="countVendors" data-target="0">0</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon icon-blue"><i class="fa-solid fa-seedling"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Active Products</span>
-                                <span class="stat-value counter" id="countProducts" data-target="0">0</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon icon-red"><i class="fa-solid fa-gavel"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Pending Complaints</span>
-                                <span class="stat-value counter" id="countComplaints" data-target="0">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FARMERS MONITORING -->
-                <section class="section" id="farmers">
-                    <div class="section-header">
-                        <h3>Farmers Monitoring</h3>
-                    </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Main Crop</th>
-                                    <th>Verification</th>
-                                    <th>Account Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="farmersTableBody">
-                                <!-- JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- VENDORS MONITORING -->
-                <section class="section" id="vendors">
-                    <div class="section-header">
-                        <h3>Vendors Monitoring</h3>
-                    </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Vendor Name</th>
-                                    <th>Business Type</th>
-                                    <th>Activity</th>
-                                    <th>Verification</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="vendorsTableBody">
-                                <!-- JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- PRODUCT MONITORING -->
-                <section class="section" id="products">
-                    <div class="section-header">
-                        <h3>Product Monitoring (Farmer Uploads)</h3>
-                    </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Product Name</th>
-                                    <th>Farmer</th>
-                                    <th>Category</th>
-                                    <th>Qty</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="productsTableBody">
-                                <!-- JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- INVENTORY STATUS -->
-                <section class="section" id="inventory">
-                    <div class="section-header">
-                        <h3>Inventory Status</h3>
-                    </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Warehouse</th>
-                                    <th>Stock Qty</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="inventoryTableBody">
-                                <!-- JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- SUPPORT CENTER -->
-                <section class="section" id="support">
-                    <div class="section-header">
-                        <h3>Support Center</h3>
-                    </div>
-                    <div class="cards-grid" id="ticketsContainer">
-                        <!-- JS -->
-                    </div>
-                </section>
-
-                <!-- USER COMPLAINTS -->
-                <section class="section" id="complaints">
-                    <div class="section-header">
-                        <h3>User Complaints</h3>
-                    </div>
-                    <div class="cards-grid" id="complaintsContainer">
-                        <!-- JS -->
-                    </div>
-                </section>
-
-                <!-- ANALYTICS SECTION -->
-                <section class="section" id="analytics">
-                    <div class="section-header">
-                        <h3>Detailed Analytics</h3>
-                    </div>
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <div class="chart-header">User Growth (Farmers vs Vendors)</div>
-                            <div class="chart-container">
-                                <canvas id="growthChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-header">Reported Issues Distribution</div>
-                            <div class="chart-container">
-                                <canvas id="ticketsChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SETTINGS SECTION -->
-                <section class="section" id="settings">
-                    <div class="section-header">
-                        <h3>System Settings</h3>
-                    </div>
-                    <div class="settings-card">
-                        <div class="setting-group">
-                            <h4 class="setting-title">Appearance</h4>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span>Dark Mode</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="darkModeToggle">
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <h4 class="setting-title">Profile Settings</h4>
-                            <div class="form-group">
-                                <label>Admin Display Name</label>
-                                <input type="text" id="settingAdminName" class="form-control" value="Admin Monitor">
-                            </div>
-                            <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
-                        </div>
-
-                        <div class="setting-group">
-                            <h4 class="setting-title">System Data</h4>
-                            <button class="btn btn-brown" onclick="resetData()">
-                                <i class="fa-solid fa-rotate-right"></i> Reset System Data
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div>
+              <div class="page-title" id="pageTitle">Dashboard</div>
+              <!-- <div class="datetime" id="realtimeClock">Loading...</div> -->
             </div>
-        </main>
+          </div>
+
+          <div class="topbar-right">
+            <div class="search-bar">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="Search everywhere..." />
+            </div>
+
+            <div class="topbar-icon theme-toggle" id="themeToggleTop">
+              <!-- <i class="fa-solid fa-moon"></i> -->
+            </div>
+
+            <div class="topbar-icon" id="notifIcon">
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="notification-badge"
+                id="notifBadge"
+                style="display: none"
+                >0</span
+              >
+
+              <!-- Notifications Dropdown -->
+              <div class="notifications-dropdown" id="notifDropdown">
+                <div class="notifications-header">
+                  <h4>Notifications</h4>
+                  <button onclick="clearNotifications()">Clear All</button>
+                </div>
+                <div class="notifications-list" id="notificationsList">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-profile">
+              <!-- <img src="https://ui-avatars.com/api/?name=Admin+Monitor&background=10b981&color=fff" alt="Admin"> -->
+              <div class="admin-info">
+                <span class="admin-name" id="displayAdminName"
+                  >Admin Monitor</span
+                >
+                <span class="admin-role">Platform Supervisor</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+          <!-- DASHBOARD SECTION -->
+          <section class="section active" id="dashboard">
+            <div class="section-header">
+              <h3>Platform Overview</h3>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon icon-green">
+                  <i class="fa-solid fa-tractor"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Total Farmers</span>
+                  <span
+                    class="stat-value counter"
+                    id="countFarmers"
+                    data-target="0"
+                    >0</span
+                  >
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon icon-brown">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Total Vendors</span>
+                  <span
+                    class="stat-value counter"
+                    id="countVendors"
+                    data-target="0"
+                    >0</span
+                  >
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon icon-blue">
+                  <i class="fa-solid fa-seedling"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Active Products</span>
+                  <span
+                    class="stat-value counter"
+                    id="countProducts"
+                    data-target="0"
+                    >0</span
+                  >
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon icon-red">
+                  <i class="fa-solid fa-gavel"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Pending Complaints</span>
+                  <span
+                    class="stat-value counter"
+                    id="countComplaints"
+                    data-target="0"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- FARMERS MONITORING -->
+          <section class="section" id="farmers">
+            <div class="section-header">
+              <h3>Farmers Monitoring</h3>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Main Crop</th>
+                    <th>Verification</th>
+                    <th>Account Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="farmersTableBody">
+                  <!-- JS -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- VENDORS MONITORING -->
+          <section class="section" id="vendors">
+            <div class="section-header">
+              <h3>Vendors Monitoring</h3>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Vendor Name</th>
+                    <th>Business Type</th>
+                    <th>Activity</th>
+                    <th>Verification</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="vendorsTableBody">
+                  <!-- JS -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- PRODUCT MONITORING -->
+          <section class="section" id="products">
+            <div class="section-header">
+              <h3>Product Monitoring (Farmer Uploads)</h3>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Farmer</th>
+                    <th>Category</th>
+                    <th>Qty</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                  <!-- JS -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- INVENTORY STATUS -->
+          <section class="section" id="inventory">
+            <div class="section-header">
+              <h3>Inventory Status</h3>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Warehouse</th>
+                    <th>Stock Qty</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                  <!-- JS -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SUPPORT CENTER -->
+          <section class="section" id="support">
+            <div class="section-header">
+              <h3>Support Center</h3>
+            </div>
+            <div class="cards-grid" id="ticketsContainer">
+              <!-- JS -->
+            </div>
+          </section>
+
+          <!-- USER COMPLAINTS -->
+          <section class="section" id="complaints">
+            <div class="section-header">
+              <h3>User Complaints</h3>
+            </div>
+            <div class="cards-grid" id="complaintsContainer">
+              <!-- JS -->
+            </div>
+          </section>
+
+          <!-- ANALYTICS SECTION -->
+          <section class="section" id="analytics">
+            <div class="section-header">
+              <h3>Detailed Analytics</h3>
+            </div>
+            <div class="charts-grid">
+              <div class="chart-card">
+                <div class="chart-header">User Growth (Farmers vs Vendors)</div>
+                <div class="chart-container">
+                  <canvas id="growthChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-card">
+                <div class="chart-header">Reported Issues Distribution</div>
+                <div class="chart-container">
+                  <canvas id="ticketsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SETTINGS SECTION -->
+          <section class="section" id="settings">
+            <div class="section-header">
+              <h3>System Settings</h3>
+            </div>
+            <div class="settings-card">
+              <div class="setting-group">
+                <h4 class="setting-title">Appearance</h4>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <span>Dark Mode</span>
+                  <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="setting-group">
+                <h4 class="setting-title">Profile Settings</h4>
+                <div class="form-group">
+                  <label>Admin Display Name</label>
+                  <input
+                    type="text"
+                    id="settingAdminName"
+                    class="form-control"
+                    value="Admin Monitor"
+                  />
+                </div>
+                <button class="btn btn-primary" onclick="saveSettings()">
+                  Save Changes
+                </button>
+              </div>
+
+              <div class="setting-group">
+                <h4 class="setting-title">System Data</h4>
+                <button class="btn btn-brown" onclick="resetData()">
+                  <i class="fa-solid fa-rotate-right"></i> Reset System Data
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
 
     <!-- Toast Container -->
@@ -342,5 +399,5 @@
 
     <!-- External JS -->
     <script src="../../js/admin.js"></script>
-</body>
+  </body>
 </html>
