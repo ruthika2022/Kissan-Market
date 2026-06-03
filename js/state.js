@@ -143,7 +143,7 @@ const State = {
                     vendorId: 2,
                     vendorName: "Suresh Raina",
                     amount: 52,
-                    quantity: 500,
+                    quantity: 1000,
                     status: "Pending Admin Review",
                     timestamp: new Date(Date.now() - 3600000).toISOString(),
                     farmerId: 1,
@@ -167,7 +167,7 @@ const State = {
                     vendorId: 2,
                     vendorName: "Suresh Raina",
                     amount: 28,
-                    quantity: 500,
+                    quantity: 1000,
                     status: "Pending Admin Review",
                     timestamp: new Date(Date.now() - 3000000).toISOString(),
                     farmerId: 1,
@@ -191,7 +191,7 @@ const State = {
                     vendorId: 2,
                     vendorName: "Suresh Raina",
                     amount: 45,
-                    quantity: 100,
+                    quantity: 200,
                     status: "Pending Admin Review",
                     timestamp: new Date(Date.now() - 2400000).toISOString(),
                     farmerId: 1,
@@ -215,7 +215,7 @@ const State = {
                     vendorId: 2,
                     vendorName: "Suresh Raina",
                     amount: 22,
-                    quantity: 150,
+                    quantity: 300,
                     status: "Pending Admin Review",
                     timestamp: new Date(Date.now() - 2000000).toISOString(),
                     farmerId: 1,
@@ -239,7 +239,7 @@ const State = {
                     vendorId: 3,
                     vendorName: "AgriCorp Ltd.",
                     amount: 110,
-                    quantity: 100,
+                    quantity: 200,
                     status: "Pending Admin Review",
                     timestamp: new Date(Date.now() - 1600000).toISOString(),
                     farmerId: 1,
@@ -441,7 +441,9 @@ addProduct(product) {
         const bids = this.getData(this.keys.bids);
         const history = this.getData(this.keys.history);
         const existingIndex = bids.findIndex(b => b.productId === bid.productId && b.vendorId === bid.vendorId);
-        const newBid = { ...bid, id: existingIndex > -1 ? bids[existingIndex].id : Date.now(), status: 'Pending Admin Review', timestamp: new Date().toISOString() };
+        const product = this.getProducts().find(p => p.id === bid.productId);
+        const quantity = product ? product.quantity : bid.quantity;
+        const newBid = { ...bid, quantity: quantity, id: existingIndex > -1 ? bids[existingIndex].id : Date.now(), status: 'Pending Admin Review', timestamp: new Date().toISOString() };
 
         if (existingIndex > -1) bids[existingIndex] = newBid;
         else bids.push(newBid);
@@ -450,7 +452,6 @@ addProduct(product) {
         this.saveData(this.keys.bids, bids);
         this.saveData(this.keys.history, history);
 
-        const product = this.getProducts().find(p => p.id === bid.productId);
         if (product) {
             this.addNotification(
                 bid.vendorId,
