@@ -1,270 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Live Bids - Kissan Market</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/farmer.css">
-    <link rel="stylesheet" href="../../css/chat.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/farmer.css" />
+    <link rel="stylesheet" href="../../css/chat.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="logo">👨‍🌾 Kissan Market</div>
 
-      <div class="dashboard-layout">
-
-<aside class="sidebar">
-
-   
-    <div class="logo">
-       👨‍🌾 Kissan Market
-    </div>
-
-    <ul class="nav-menu">
-
-        <li>
+        <ul class="nav-menu">
+          <li>
             <a href="../farmer/dashboard.html" class="nav-link active">
-                📊 Dashboard
+              📊 Dashboard
             </a>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <a href="../farmer/products.html" class="nav-link">
-                🥦 My Products
+              🥦 My Products
             </a>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <a href="../farmer/price.html" class="nav-link">
-                📈 Market Price
+              📈 Market Price
             </a>
-        </li>
+          </li>
 
-        <li>
-            <a href="../farmer/bids.html" class="nav-link">
-                ⚖️ Live Bids
-            </a>
-        </li>
+          <li>
+            <a href="../farmer/bids.html" class="nav-link"> ⚖️ Live Bids </a>
+          </li>
 
-        <li>
+          <li>
             <a href="../farmer/notifications.html" class="nav-link">
-                🔔 Notifications
+              🔔 Notifications
             </a>
-        </li>
+          </li>
 
-        <li>
-            <a href="../farmer/profile.html" class="nav-link">
-                👤 Profile
-            </a>
-        </li>
+          <li>
+            <a href="../farmer/profile.html" class="nav-link"> 👤 Profile </a>
+          </li>
+        </ul>
 
-    </ul>
+        <div class="logout">
+          <a href="../../index.html" class="nav-link"> 🚪 Logout </a>
+        </div>
+      </aside>
 
-   
-    <div class="logout">
-        <a href="../../index.html" class="nav-link">
-            🚪 Logout
-        </a>
-    </div>
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left"><h2>Live Bidding Console</h2></div>
+          <div class="header-right">
+            <div class="user-profile"><div class="avatar">F</div></div>
+          </div>
+        </header>
 
-</aside>
-
-        <main class="main-content">
-            <header class="header">
-                <div class="header-left"><h2>Live Bidding Console</h2></div>
-                <div class="header-right"><div class="user-profile"><div class="avatar">F</div></div></div>
-            </header>
-
-            <div class="container fade-in">
-                <div class="card" style="margin-bottom: 2rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h3>Active Bidding Overview</h3>
-                            <p style="color: var(--text-muted);">Manage incoming bids for your listed vegetables.</p>
-                        </div>
-                        <span class="btn btn-outline">Total Bids: <span id="total-bid-count">0</span></span>
-                    </div>
-                </div>
-
-                <div id="bids-container" class="grid grid-2">
-                    <!-- Bids will be grouped by product -->
-                </div>
-
-                <div id="empty-bids" style="text-align: center; padding: 4rem; display: none;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚖️</div>
-                    <h3>No active bids yet</h3>
-                    <p style="color: var(--text-muted);">When vendors bid on your products, they will appear here.</p>
-                </div>
+        <div class="container fade-in">
+          <div class="card" style="margin-bottom: 2rem">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <h3>Active Bidding Overview</h3>
+                <p style="color: var(--text-muted)">
+                  Manage incoming bids for your listed vegetables.
+                </p>
+              </div>
+              <span class="btn btn-outline"
+                >Total Bids: <span id="total-bid-count">0</span></span
+              >
             </div>
-        </main>
+          </div>
+
+          <div id="bids-container" class="grid grid-2">
+            <!-- Bids will be grouped by product -->
+          </div>
+
+          <div
+            id="empty-bids"
+            style="text-align: center; padding: 4rem; display: none"
+          >
+            <div style="font-size: 4rem; margin-bottom: 1rem">⚖️</div>
+            <h3>No active bids yet</h3>
+            <p style="color: var(--text-muted)">
+              When vendors bid on your products, they will appear here.
+            </p>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- CHAT ICON -->
 
-<div class="chat-icon" id="chatIcon">
-    💬
-</div>
+    <div class="chat-icon" id="chatIcon">💬</div>
 
-<!-- CHAT BOX -->
+    <!-- CHAT BOX -->
 
-<div class="chat-container" id="chatContainer">
+    <div class="chat-container" id="chatContainer">
+      <!-- HEADER -->
 
-    <!-- HEADER -->
+      <div class="chat-header">
+        <h3 class="c-box">Customer Care</h3>
 
-    <div class="chat-header">
+        <span id="closeChat"> ✖ </span>
+      </div>
 
-         <h3 class="c-box">Customer Care</h3>
+      <div class="chat-body" id="chatBody">
+        <div class="admin-msg">👋 Hello! How can we help you?</div>
+      </div>
 
-        <span id="closeChat">
-            ✖
-        </span>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type message..." />
 
+        <button id="sendBtn">Send</button>
+      </div>
     </div>
 
-  
-
-    <div class="chat-body" id="chatBody">
-
-        <div class="admin-msg">
-            👋 Hello! How can we help you?
-        </div>
-
-    </div>
-
-    <div class="chat-input">
-
-        <input 
-            type="text" 
-            id="chatInput"
-            placeholder="Type message..."
-        >
-
-        <button id="sendBtn">
-            Send
-        </button>
-
-    </div>
-
-</div>
-
-
-<script src="../../js/chat.js"></script>
+    <script src="../../js/chat.js"></script>
 
     <script src="../../js/app.js"></script>
     <script src="../../js/farmer.js"></script>
     <script>
-        function getUnreadBadgeHtml(productId, vendorId) {
-            if (typeof State === 'undefined') return '';
-            const count = State.getPrivateChatUnreadCount(productId, vendorId, State.getCurrentUser().id);
-            return count > 0 ? `<span style="background: #ef4444; color: white; border-radius: 50%; font-size: 8px; padding: 2px 5px; margin-left: 4px; font-weight: 700; line-height: 1;">${count}</span>` : '';
+      function renderBids() {
+        const user = State.getCurrentUser();
+        const bids = State.getBids().filter((b) => b.farmerId === user.id);
+        const products = State.getProducts().filter(
+          (p) => p.farmerId === user.id,
+        );
+        const container = document.getElementById("bids-container");
+        const empty = document.getElementById("empty-bids");
+
+        document.getElementById("total-bid-count").innerText = bids.length;
+
+        if (bids.length === 0) {
+          empty.style.display = "block";
+          container.innerHTML = "";
+          return;
         }
 
-        function renderBids() {
-            const user = State.getCurrentUser();
-            const bids = State.getBids().filter(b => b.farmerId === user.id);
-            const products = State.getProducts().filter(p => p.farmerId === user.id);
-            const container = document.getElementById('bids-container');
-            const empty = document.getElementById('empty-bids');
-            
-            document.getElementById('total-bid-count').innerText = bids.length;
+        empty.style.display = "none";
 
-            if (bids.length === 0) {
-                empty.style.display = 'block';
-                container.innerHTML = '';
-                return;
-            }
+        const grouped = bids.reduce((acc, bid) => {
+          if (!acc[bid.productId]) {
+            const product = products.find((p) => p.id === bid.productId);
+            acc[bid.productId] = {
+              name: bid.productName,
+              status: product ? product.status : "Unknown",
+              endTime: product ? product.endTime : null,
+              bids: [],
+            };
+          }
+          acc[bid.productId].bids.push(bid);
+          return acc;
+        }, {});
 
-            empty.style.display = 'none';
-            
-            const grouped = bids.reduce((acc, bid) => {
-                if (!acc[bid.productId]) {
-                    const product = products.find(p => p.id === bid.productId);
-                    acc[bid.productId] = { 
-                        name: bid.productName, 
-                        status: product ? product.status : 'Unknown',
-                        endTime: product ? product.endTime : null,
-                        bids: [] 
-                    };
-                }
-                acc[bid.productId].bids.push(bid);
-                return acc;
-            }, {});
+        container.innerHTML = Object.values(grouped)
+          .map((group) => {
+            const timeLeft = group.endTime
+              ? UI.formatTimeLeft(group.endTime)
+              : "";
+            const isSold = group.status === "Sold";
+            const isClosed = group.status === "Closed";
 
-            container.innerHTML = Object.values(grouped).map(group => {
-                const timeLeft = group.endTime ? UI.formatTimeLeft(group.endTime) : '';
-                const isSold = group.status === 'Sold' || group.status === 'Deal Active';
-                const isClosed = group.status === 'Closed';
-                
-                return `
-                <div class="card fade-in" style="border-top: 4px solid ${isSold ? '#2e7d32' : (isClosed ? '#d32f2f' : 'var(--accent-green)')}">
+            return `
+                <div class="card fade-in" style="border-top: 4px solid ${isSold ? "#1976d2" : isClosed ? "#d32f2f" : "var(--accent-green)"}">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; align-items: start;">
                         <div>
                             <h4 style="margin-bottom: 0.2rem;">${group.name}</h4>
-                            <span class="product-badge" style="font-size: 0.65rem; background: #eee;">${group.status === 'Selected Bid Review' ? 'Awaiting Your Decision' : group.status}</span>
+                            <span class="product-badge" style="font-size: 0.65rem; background: #eee;">${group.status}</span>
                         </div>
                         <div style="text-align: right;">
-                            <span style="color: var(--primary-color); font-weight: 700; display: block;">${group.bids.length} Bids</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">${timeLeft !== 'Closed' && timeLeft !== '' ? `⌛ ${timeLeft}` : ''}</span>
+                           <span style="color: var(--primary-color); font-weight: 700; display: block;">Bid</span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">${timeLeft !== "Closed" ? `⌛ ${timeLeft}` : ""}</span>
                         </div>
                     </div>
-                    <div class="bid-list">
-                        ${group.bids.sort((a,b) => b.amount - a.amount).map((bid, index) => {
-                            const isHighest = index === 0 && !isSold;
-                            
-                            let statusColor = 'var(--text-muted)';
-                            if (bid.status === 'Accepted By Farmer') statusColor = 'var(--accent-green)';
-                            else if (bid.status === 'Selected By Admin') statusColor = '#2563eb';
-                            else if (bid.status === 'Rejected By Admin' || bid.status === 'Declined By Farmer') statusColor = '#d32f2f';
+<div class="bid-list">
+    ${(() => {
+      const bid = group.bids.sort((a, b) => b.amount - a.amount)[0];
+      const statusColor =
+        bid.status === "accepted"
+          ? "var(--accent-green)"
+          : bid.status === "rejected"
+            ? "#d32f2f"
+            : "var(--text-muted)";
 
-                            const isChatEnabled = bid.status === 'Accepted By Farmer';
-
-                            return `
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: ${isHighest ? 'var(--secondary-color)' : 'transparent'}; border-radius: 10px; margin-bottom: 0.5rem; border: 1px solid ${isHighest ? 'var(--primary-color)22' : '#eee'}; position: relative;">
-                                <div>
-                                    <p style="font-weight: 700; color: ${isHighest ? 'var(--primary-color)' : 'inherit'}; font-size: 1rem;">₹${bid.amount} ${isHighest ? '🏆' : ''}</p>
-                                    <p style="font-size: 0.8rem; color: var(--text-muted);">By ${bid.vendorName}</p>
-                                </div>
-                                <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    ${bid.status === 'Selected By Admin' ? `
-                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #dc2626; color: #dc2626;" onclick="farmerDecline(${bid.id})">Decline</button>
-                                        <button class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="farmerAccept(${bid.id})">Accept</button>
-                                    ` : `
-                                        <span style="font-size: 0.7rem; text-transform: uppercase; font-weight: 800; color: ${statusColor}; border: 1px solid ${statusColor}44; padding: 0.2rem 0.5rem; border-radius: 4px;">${bid.status}</span>
-                                    `}
-                                    
-                                    ${isChatEnabled ? `
-                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #ddd; display: flex; align-items: center; position: relative;" onclick="openPrivateChat(${bid.productId}, ${bid.vendorId})">
-                                            💬 ${getUnreadBadgeHtml(bid.productId, bid.vendorId)}
-                                        </button>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        `}).join('')}
-                    </div>
+      return `
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                padding:0.8rem;
+                background:var(--secondary-color);
+                border-radius:10px;
+                border:1px solid var(--primary-color)22;
+            ">
+                <div>
+                    <p style="
+                        font-weight:700;
+                        color:var(--primary-color);
+                        font-size:1rem;
+                    ">
+                        ₹${bid.amount} 🏆
+                    </p>
+                    <p style="
+                        font-size:0.8rem;
+                        color:var(--text-muted);
+                    ">
+                        By ${bid.vendorName}
+                    </p>
                 </div>
-            `}).join('');
+
+                <div style="
+                    display:flex;
+                    gap:0.5rem;
+                    align-items:center;
+                ">
+                    ${
+                      bid.status === "pending" && !isSold
+                        ? `
+                        <button
+                            class="btn btn-outline"
+                            style="padding:0.3rem 0.6rem;font-size:0.7rem;"
+                            onclick="handleCounter(${bid.id}, ${bid.amount})">
+                            Counter
+                        </button>
+
+                        <button
+                            class="btn btn-outline"
+                            style="padding:0.3rem 0.6rem;font-size:0.7rem;"
+                            onclick="updateStatus(${bid.id}, 'rejected')">
+                            Reject
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            style="padding:0.3rem 0.6rem;font-size:0.7rem;"
+                            onclick="updateStatus(${bid.id}, 'accepted')">
+                            Accept
+                        </button>
+                    `
+                        : `
+                        <span style="
+                            font-size:0.7rem;
+                            text-transform:uppercase;
+                            font-weight:800;
+                            color:${statusColor};
+                            border:1px solid ${statusColor}44;
+                            padding:0.2rem 0.5rem;
+                            border-radius:4px;
+                        ">
+                            ${bid.status}
+                        </span>
+                    `
+                    }
+
+                    <button
+                        class="btn btn-outline"
+                        style="
+                            padding:0.3rem 0.6rem;
+                            font-size:0.7rem;
+                            border-color:#ddd;
+                        "
+                        onclick="UI.showToast('Starting chat with ${bid.vendorName}...', 'success')">
+                        💬
+                    </button>
+                </div>
+            </div>
+        `;
+    })()}
+</div>
+                </div>
+            `;
+          })
+          .join("");
+      }
+
+      function handleCounter(bidId, currentAmount) {
+        const amount = prompt(
+          `Enter counter offer amount (Current bid: ₹${currentAmount}):`,
+          currentAmount + 5,
+        );
+        if (amount && !isNaN(amount)) {
+          State.counterOffer(bidId, parseInt(amount));
+          UI.showToast("Counter offer sent!");
+          renderBids();
         }
+      }
 
-        function farmerAccept(bidId) {
-            if (confirm('Are you sure you want to accept this bid? This will close the auction, activate the deal, and enable private chat.')) {
-                State.farmerAcceptBid(bidId);
-                UI.showToast('Bid accepted successfully!');
-                renderBids();
-            }
+      function updateStatus(bidId, status) {
+        if (status === "accepted") {
+          if (
+            !confirm(
+              "Are you sure you want to accept this bid? This will close the auction and mark the product as SOLD.",
+            )
+          )
+            return;
+          State.acceptBid(bidId);
+        } else {
+          State.rejectBid(bidId);
         }
+        UI.showToast(`Bid ${status}!`);
+        renderBids();
+      }
 
-        function farmerDecline(bidId) {
-            if (confirm('Are you sure you want to decline this bid? The product will return to the active bidding state and other bids can be reviewed by Admin.')) {
-                State.farmerDeclineBid(bidId);
-                UI.showToast('Bid declined.');
-                renderBids();
-            }
-        }
+      State.listenToChanges(renderBids);
 
-
-        State.listenToChanges(renderBids);
-
-        document.addEventListener('DOMContentLoaded', renderBids);
+      document.addEventListener("DOMContentLoaded", renderBids);
     </script>
-
-</body>
+  </body>
 </html>
