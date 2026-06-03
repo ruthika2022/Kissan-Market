@@ -152,6 +152,12 @@
     <script src="../../js/app.js"></script>
     <script src="../../js/farmer.js"></script>
     <script>
+        function getUnreadBadgeHtml(productId, vendorId) {
+            if (typeof State === 'undefined') return '';
+            const count = State.getPrivateChatUnreadCount(productId, vendorId, State.getCurrentUser().id);
+            return count > 0 ? `<span style="background: #ef4444; color: white; border-radius: 50%; font-size: 8px; padding: 2px 5px; margin-left: 4px; font-weight: 700; line-height: 1;">${count}</span>` : '';
+        }
+
         function renderBids() {
             const user = State.getCurrentUser();
             const bids = State.getBids().filter(b => b.farmerId === user.id);
@@ -185,26 +191,32 @@
 
             container.innerHTML = Object.values(grouped).map(group => {
                 const timeLeft = group.endTime ? UI.formatTimeLeft(group.endTime) : '';
-                const isSold = group.status === 'Sold';
+                const isSold = group.status === 'Sold' || group.status === 'Deal Active';
                 const isClosed = group.status === 'Closed';
                 
                 return `
-                <div class="card fade-in" style="border-top: 4px solid ${isSold ? '#1976d2' : (isClosed ? '#d32f2f' : 'var(--accent-green)')}">
+                <div class="card fade-in" style="border-top: 4px solid ${isSold ? '#2e7d32' : (isClosed ? '#d32f2f' : 'var(--accent-green)')}">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; align-items: start;">
                         <div>
                             <h4 style="margin-bottom: 0.2rem;">${group.name}</h4>
-                            <span class="product-badge" style="font-size: 0.65rem; background: #eee;">${group.status}</span>
+                            <span class="product-badge" style="font-size: 0.65rem; background: #eee;">${group.status === 'Selected Bid Review' ? 'Awaiting Your Decision' : group.status}</span>
                         </div>
                         <div style="text-align: right;">
                             <span style="color: var(--primary-color); font-weight: 700; display: block;">${group.bids.length} Bids</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">${timeLeft !== 'Closed' ? `⌛ ${timeLeft}` : ''}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">${timeLeft !== 'Closed' && timeLeft !== '' ? `⌛ ${timeLeft}` : ''}</span>
                         </div>
                     </div>
                     <div class="bid-list">
                         ${group.bids.sort((a,b) => b.amount - a.amount).map((bid, index) => {
                             const isHighest = index === 0 && !isSold;
-                            const statusColor = bid.status === 'accepted' ? 'var(--accent-green)' : (bid.status === 'rejected' ? '#d32f2f' : 'var(--text-muted)');
                             
+                            let statusColor = 'var(--text-muted)';
+                            if (bid.status === 'Accepted By Farmer') statusColor = 'var(--accent-green)';
+                            else if (bid.status === 'Selected By Admin') statusColor = '#2563eb';
+                            else if (bid.status === 'Rejected By Admin' || bid.status === 'Declined By Farmer') statusColor = '#d32f2f';
+
+                            const isChatEnabled = bid.status === 'Accepted By Farmer';
+
                             return `
                             <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: ${isHighest ? 'var(--secondary-color)' : 'transparent'}; border-radius: 10px; margin-bottom: 0.5rem; border: 1px solid ${isHighest ? 'var(--primary-color)22' : '#eee'}; position: relative;">
                                 <div>
@@ -212,17 +224,18 @@
                                     <p style="font-size: 0.8rem; color: var(--text-muted);">By ${bid.vendorName}</p>
                                 </div>
                                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                                    ${bid.status === 'pending' && !isSold ? `
-                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="handleCounter(${bid.id}, ${bid.amount})">Counter</button>
-                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="updateStatus(${bid.id}, 'rejected')">Reject</button>
-                                        <button class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="updateStatus(${bid.id}, 'accepted')">Accept</button>
-                                    ` : (bid.status === 'countered' ? `
-                                        <span style="font-size: 0.7rem; color: #e65100; font-weight: 700; background: #fff3e0; padding: 0.2rem 0.5rem; border-radius: 4px;">COUNTERED (₹${bid.counterAmount})</span>
-                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="updateStatus(${bid.id}, 'rejected')">Cancel</button>
+                                    ${bid.status === 'Selected By Admin' ? `
+                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #dc2626; color: #dc2626;" onclick="farmerDecline(${bid.id})">Decline</button>
+                                        <button class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;" onclick="farmerAccept(${bid.id})">Accept</button>
                                     ` : `
                                         <span style="font-size: 0.7rem; text-transform: uppercase; font-weight: 800; color: ${statusColor}; border: 1px solid ${statusColor}44; padding: 0.2rem 0.5rem; border-radius: 4px;">${bid.status}</span>
-                                    `)}
-                                    <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #ddd;" onclick="UI.showToast('Starting chat with ${bid.vendorName}...', 'success')">💬</button>
+                                    `}
+                                    
+                                    ${isChatEnabled ? `
+                                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #ddd; display: flex; align-items: center; position: relative;" onclick="openPrivateChat(${bid.productId}, ${bid.vendorId})">
+                                            💬 ${getUnreadBadgeHtml(bid.productId, bid.vendorId)}
+                                        </button>
+                                    ` : ''}
                                 </div>
                             </div>
                         `}).join('')}
@@ -231,24 +244,20 @@
             `}).join('');
         }
 
-        function handleCounter(bidId, currentAmount) {
-            const amount = prompt(`Enter counter offer amount (Current bid: ₹${currentAmount}):`, currentAmount + 5);
-            if (amount && !isNaN(amount)) {
-                State.counterOffer(bidId, parseInt(amount));
-                UI.showToast('Counter offer sent!');
+        function farmerAccept(bidId) {
+            if (confirm('Are you sure you want to accept this bid? This will close the auction, activate the deal, and enable private chat.')) {
+                State.farmerAcceptBid(bidId);
+                UI.showToast('Bid accepted successfully!');
                 renderBids();
             }
         }
 
-        function updateStatus(bidId, status) {
-            if (status === 'accepted') {
-                if (!confirm('Are you sure you want to accept this bid? This will close the auction and mark the product as SOLD.')) return;
-                State.acceptBid(bidId);
-            } else {
-                State.rejectBid(bidId);
+        function farmerDecline(bidId) {
+            if (confirm('Are you sure you want to decline this bid? The product will return to the active bidding state and other bids can be reviewed by Admin.')) {
+                State.farmerDeclineBid(bidId);
+                UI.showToast('Bid declined.');
+                renderBids();
             }
-            UI.showToast(`Bid ${status}!`);
-            renderBids();
         }
 
 

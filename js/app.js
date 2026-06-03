@@ -13,33 +13,24 @@ const State = {
   },
 
   init() {
+    // Migration logic to ensure new seeded products/bids/profiles are loaded
+    const CURRENT_VERSION = "3";
+    if (localStorage.getItem("km_data_version") !== CURRENT_VERSION) {
+      localStorage.removeItem(this.keys.products);
+      localStorage.removeItem(this.keys.bids);
+      localStorage.removeItem("km_profiles");
+      localStorage.setItem("km_data_version", CURRENT_VERSION);
+    }
+
     if (!localStorage.getItem(this.keys.products)) {
       const dummyProducts = [
-        // {
-        //   id: 101,
-        //   name: "Organic Tomatoes",
-        //   category: "Vegetables",
-        //   price: 40,
-        //   minPrice: 35,
-        //   maxPrice:45,
-        //   quantity: 500,
-        //   unit: "kg",
-        //   status: "Active",
-        //   farmerId: 1,
-        //   farmerName: "Rajesh Kumar",
-        //   location: "Nashik, MH",
-        //   createdAt: new Date().toISOString(),
-        //   endTime: new Date(Date.now() + 86400000).toISOString(),
-        //   image:
-        //     "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&q=80&w=300",
-        // },
         {
           id: 102,
           name: "Premium Basmati Rice",
           category: "Grains",
           price: 80,
           minPrice: 50,
-          maxPrice:55,
+          maxPrice: 55,
           quantity: 1000,
           unit: "kg",
           status: "Active",
@@ -57,7 +48,7 @@ const State = {
           category: "Vegetables",
           price: 64,
           minPrice: 40,
-          maxPrice:55,
+          maxPrice: 55,
           quantity: 200,
           unit: "kg",
           status: "Active",
@@ -75,7 +66,7 @@ const State = {
           category: "Vegetables",
           price: 29,
           minPrice: 25,
-          maxPrice:35,
+          maxPrice: 35,
           quantity: 1000,
           unit: "kg",
           status: "Active",
@@ -111,7 +102,7 @@ const State = {
           category: "Fruits",
           price: 120,
           minPrice: 100,
-          maxPrice:130,
+          maxPrice: 130,
           quantity: 200,
           unit: "kg",
           status: "Active",
@@ -142,33 +133,133 @@ const State = {
     } catch (err) {
       /* ignore parse errors */
     }
+
     if (!localStorage.getItem(this.keys.bids)) {
       const dummyBids = [
         {
           id: 201,
-          productId: 101,
-          productName: "Organic Tomatoes",
+          productId: 102,
+          productName: "Premium Basmati Rice",
           vendorId: 2,
           vendorName: "Suresh Raina",
-          amount: 42,
-          status: "pending",
+          amount: 52,
+          quantity: 500,
+          status: "Pending Admin Review",
           timestamp: new Date(Date.now() - 3600000).toISOString(),
           farmerId: 1,
         },
         {
           id: 202,
-          productId: 101,
-          productName: "Organic Tomatoes",
+          productId: 102,
+          productName: "Premium Basmati Rice",
           vendorId: 3,
-          vendorName: "GreenGrocer",
-          amount: 45,
-          status: "pending",
+          vendorName: "AgriCorp Ltd.",
+          amount: 54,
+          quantity: 1000,
+          status: "Pending Admin Review",
           timestamp: new Date(Date.now() - 1800000).toISOString(),
           farmerId: 1,
         },
+        {
+          id: 203,
+          productId: 106,
+          productName: "Onion",
+          vendorId: 2,
+          vendorName: "Suresh Raina",
+          amount: 28,
+          quantity: 500,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 3000000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 204,
+          productId: 106,
+          productName: "Onion",
+          vendorId: 4,
+          vendorName: "Organic Roots",
+          amount: 30,
+          quantity: 1000,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 1500000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 205,
+          productId: 105,
+          productName: "Bitter Gourd",
+          vendorId: 2,
+          vendorName: "Suresh Raina",
+          amount: 45,
+          quantity: 100,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 2400000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 206,
+          productId: 105,
+          productName: "Bitter Gourd",
+          vendorId: 3,
+          vendorName: "AgriCorp Ltd.",
+          amount: 48,
+          quantity: 200,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 1200000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 207,
+          productId: 107,
+          productName: "Lady Finger",
+          vendorId: 2,
+          vendorName: "Suresh Raina",
+          amount: 22,
+          quantity: 150,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 2000000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 208,
+          productId: 107,
+          productName: "Lady Finger",
+          vendorId: 4,
+          vendorName: "Organic Roots",
+          amount: 24,
+          quantity: 300,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 1000000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 209,
+          productId: 104,
+          productName: "Alphonso Mangoes",
+          vendorId: 3,
+          vendorName: "AgriCorp Ltd.",
+          amount: 110,
+          quantity: 100,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 1600000).toISOString(),
+          farmerId: 1,
+        },
+        {
+          id: 210,
+          productId: 104,
+          productName: "Alphonso Mangoes",
+          vendorId: 4,
+          vendorName: "Organic Roots",
+          amount: 115,
+          quantity: 200,
+          status: "Pending Admin Review",
+          timestamp: new Date(Date.now() - 800000).toISOString(),
+          farmerId: 1,
+        }
       ];
       localStorage.setItem(this.keys.bids, JSON.stringify(dummyBids));
     }
+
     if (!localStorage.getItem(this.keys.orders)) {
       const dummyOrders = [
         {
@@ -245,6 +336,26 @@ const State = {
           role: "vendor",
           image:
             "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?auto=format&fit=crop&q=80&w=200",
+        },
+        3: {
+          id: 3,
+          name: "AgriCorp Ltd.",
+          email: "info@agricorp.com",
+          phone: "+91 76543 21098",
+          location: "Pune, Maharashtra",
+          role: "vendor",
+          image:
+            "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=200",
+        },
+        4: {
+          id: 4,
+          name: "Organic Roots",
+          email: "contact@organicroots.com",
+          phone: "+91 65432 10987",
+          location: "Nagpur, Maharashtra",
+          role: "vendor",
+          image:
+            "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=200",
         },
       };
       localStorage.setItem("km_profiles", JSON.stringify(dummyProfiles));
@@ -510,7 +621,7 @@ const State = {
     const newBid = {
       ...bid,
       id: existingIndex > -1 ? bids[existingIndex].id : Date.now(),
-      status: "pending",
+      status: "Pending Admin Review",
       timestamp: new Date().toISOString(),
     };
 
@@ -522,12 +633,18 @@ const State = {
     this.saveData(this.keys.history, history);
 
     const product = this.getProducts().find((p) => p.id === bid.productId);
-    if (product)
+    if (product) {
       this.addNotification(
-        product.farmerId,
-        "New Bid Received",
-        `Vendor ${bid.vendorName} bid ₹${bid.amount} on ${product.name}`,
+        bid.vendorId,
+        "Bid Submitted",
+        `You placed a bid of ₹${bid.amount} on ${product.name}`
       );
+      this.addNotification(
+        0,
+        "New Bid Submitted",
+        `Vendor ${bid.vendorName} submitted a bid of ₹${bid.amount} on ${product.name}`
+      );
+    }
     return newBid;
   },
 
@@ -553,42 +670,14 @@ const State = {
   },
 
   acceptBid(bidId) {
-    const bids = this.getData(this.keys.bids);
-    const products = this.getData(this.keys.products);
-    const accepted = this.getData(this.keys.accepted);
-    const bid = bids.find((b) => b.id === bidId);
-    if (!bid) return;
-
-    bid.status = "accepted";
-    const productIndex = products.findIndex((p) => p.id === bid.productId);
-    if (productIndex > -1) {
-      products[productIndex].status = "Sold";
-      accepted.push({
-        ...products[productIndex],
-        soldPrice: bid.amount,
-        soldTo: bid.vendorName,
-      });
-    }
-
-    bids.forEach((b) => {
-      if (b.productId === bid.productId && b.id !== bidId)
-        b.status = "rejected";
-    });
-    this.saveData(this.keys.bids, bids);
-    this.saveData(this.keys.products, products);
-    this.saveData(this.keys.accepted, accepted);
-    this.addNotification(
-      bid.vendorId,
-      "Bid Accepted!",
-      `Your bid for ${bid.productName} was accepted!`,
-    );
+    this.farmerAcceptBid(bidId);
   },
 
   rejectBid(bidId) {
     const bids = this.getData(this.keys.bids);
     const bid = bids.find((b) => b.id === bidId);
     if (bid) {
-      bid.status = "rejected";
+      bid.status = "Rejected By Admin";
       this.saveData(this.keys.bids, bids);
       this.addNotification(
         bid.vendorId,
@@ -596,6 +685,197 @@ const State = {
         `Your bid for ${bid.productName} was rejected.`,
       );
     }
+  },
+
+  adminSelectBid(bidId) {
+    const bids = this.getData(this.keys.bids);
+    const products = this.getData(this.keys.products);
+    const selectedBid = bids.find((b) => b.id === bidId);
+    if (!selectedBid) return;
+
+    selectedBid.status = "Selected By Admin";
+
+    bids.forEach((b) => {
+      if (b.productId === selectedBid.productId && b.id !== bidId) {
+        b.status = "Rejected By Admin";
+        this.addNotification(
+          b.vendorId,
+          "Bid Rejected",
+          `Your bid of ₹${b.amount} for ${b.productName} was rejected by the Admin.`
+        );
+      }
+    });
+
+    const productIndex = products.findIndex((p) => p.id === selectedBid.productId);
+    if (productIndex > -1) {
+      products[productIndex].status = "Selected Bid Review";
+    }
+
+    this.saveData(this.keys.bids, bids);
+    this.saveData(this.keys.products, products);
+
+    this.addNotification(
+      selectedBid.vendorId,
+      "Bid Approved",
+      `Your bid of ₹${selectedBid.amount} for ${selectedBid.productName} has been approved by the Admin and sent to the Farmer.`
+    );
+
+    this.addNotification(
+      selectedBid.farmerId,
+      "Admin Selected Bid",
+      `Admin selected Vendor ${selectedBid.vendorName}'s bid of ₹${selectedBid.amount} for ${selectedBid.productName}. Please review and Accept/Decline.`
+    );
+  },
+
+  farmerAcceptBid(bidId) {
+    const bids = this.getData(this.keys.bids);
+    const products = this.getData(this.keys.products);
+    const accepted = this.getData(this.keys.accepted);
+    const bid = bids.find((b) => b.id === bidId);
+    if (!bid) return;
+
+    bid.status = "Accepted By Farmer";
+    const productIndex = products.findIndex((p) => p.id === bid.productId);
+    if (productIndex > -1) {
+      products[productIndex].status = "Deal Active";
+      accepted.push({
+        ...products[productIndex],
+        soldPrice: bid.amount,
+        soldTo: bid.vendorName,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    this.saveData(this.keys.bids, bids);
+    this.saveData(this.keys.products, products);
+    this.saveData(this.keys.accepted, accepted);
+
+    this.addNotification(
+      bid.vendorId,
+      "Farmer Accepted",
+      `Farmer accepted your bid of ₹${bid.amount} for ${bid.productName}!`
+    );
+
+    this.addNotification(
+      bid.farmerId,
+      "Deal Activated",
+      `Deal is active for ${bid.productName} with ${bid.vendorName}. Private chat is enabled.`
+    );
+
+    this.addNotification(
+      0,
+      "Farmer Accepted",
+      `Farmer accepted Vendor ${bid.vendorName}'s bid of ₹${bid.amount} for ${bid.productName}.`
+    );
+  },
+
+  farmerDeclineBid(bidId) {
+    const bids = this.getData(this.keys.bids);
+    const products = this.getData(this.keys.products);
+    const bid = bids.find((b) => b.id === bidId);
+    if (!bid) return;
+
+    bid.status = "Declined By Farmer";
+
+    const productIndex = products.findIndex((p) => p.id === bid.productId);
+    if (productIndex > -1) {
+      products[productIndex].status = "Active";
+    }
+
+    bids.forEach((b) => {
+      if (b.productId === bid.productId && b.id !== bidId) {
+        b.status = "Pending Admin Review";
+      }
+    });
+
+    this.saveData(this.keys.bids, bids);
+    this.saveData(this.keys.products, products);
+
+    this.addNotification(
+      bid.vendorId,
+      "Farmer Declined",
+      `Farmer declined your bid of ₹${bid.amount} for ${bid.productName}.`
+    );
+
+    this.addNotification(
+      0,
+      "Farmer Declined",
+      `Farmer declined Vendor ${bid.vendorName}'s bid of ₹${bid.amount} for ${bid.productName}.`
+    );
+  },
+
+  getPrivateChats() {
+    return JSON.parse(localStorage.getItem("km_private_chats")) || [];
+  },
+
+  savePrivateChats(chats) {
+    localStorage.setItem("km_private_chats", JSON.stringify(chats));
+    this.syncDashboards();
+  },
+
+  getPrivateChat(productId, vendorId) {
+    const chats = this.getPrivateChats();
+    let chat = chats.find(c => c.productId === productId && c.vendorId === vendorId);
+    if (!chat) {
+      const product = this.getProducts().find(p => p.id === productId);
+      chat = {
+        chatId: `chat_${productId}_${vendorId}`,
+        productId: productId,
+        productName: product ? product.name : "Product",
+        farmerId: product ? product.farmerId : 1,
+        vendorId: vendorId,
+        messages: []
+      };
+      chats.push(chat);
+      this.savePrivateChats(chats);
+    }
+    return chat;
+  },
+
+  addPrivateMessage(productId, vendorId, senderId, senderName, text) {
+    const chats = this.getPrivateChats();
+    let chatIndex = chats.findIndex(c => c.productId === productId && c.vendorId === vendorId);
+    
+    if (chatIndex === -1) {
+      this.getPrivateChat(productId, vendorId);
+      return this.addPrivateMessage(productId, vendorId, senderId, senderName, text);
+    }
+
+    const newMessage = {
+      senderId: senderId,
+      senderName: senderName,
+      text: text,
+      timestamp: new Date().toISOString(),
+      read: false
+    };
+
+    chats[chatIndex].messages.push(newMessage);
+    this.savePrivateChats(chats);
+    return newMessage;
+  },
+
+  markPrivateMessagesRead(productId, vendorId, readerId) {
+    const chats = this.getPrivateChats();
+    const chatIndex = chats.findIndex(c => c.productId === productId && c.vendorId === vendorId);
+    if (chatIndex !== -1) {
+      let updated = false;
+      chats[chatIndex].messages.forEach(m => {
+        if (m.senderId !== readerId && !m.read) {
+          m.read = true;
+          updated = true;
+        }
+      });
+      if (updated) {
+        this.savePrivateChats(chats);
+      }
+    }
+  },
+
+  getPrivateChatUnreadCount(productId, vendorId, userId) {
+    const chats = this.getPrivateChats();
+    const chat = chats.find(c => c.productId === productId && c.vendorId === vendorId);
+    if (!chat) return 0;
+    return chat.messages.filter(m => m.senderId !== userId && !m.read).length;
   },
 
   addToInterested(productId) {

@@ -16,7 +16,26 @@ const UI = {
 
     toggleSidebar() {
         const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('active');
+        const hamburger = document.querySelector('.hamburger');
+        const overlay = document.querySelector('.sidebar-overlay');
+        if (sidebar) {
+            sidebar.classList.toggle('active');
+            const isActive = sidebar.classList.contains('active');
+            if (overlay) {
+                if (isActive) {
+                    overlay.classList.add('active');
+                } else {
+                    overlay.classList.remove('active');
+                }
+            }
+            if (hamburger) {
+                if (isActive) {
+                    hamburger.innerText = '✖';
+                } else {
+                    hamburger.innerText = '☰';
+                }
+            }
+        }
     },
 
   
@@ -100,6 +119,28 @@ document.addEventListener('DOMContentLoaded', () => {
     UI.initTheme();
     UI.updateNotificationBadges();
     
+    // Dynamically insert backdrop overlay if missing
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    // Dynamically insert hamburger menu button into header if missing
+    const headerLeft = document.querySelector('.header-left');
+    if (headerLeft && !headerLeft.querySelector('.hamburger')) {
+        const hamburgerBtn = document.createElement('button');
+        hamburgerBtn.className = 'hamburger';
+        hamburgerBtn.type = 'button';
+        hamburgerBtn.innerText = '☰';
+        hamburgerBtn.style.display = 'none'; // Controlled by media queries
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            UI.toggleSidebar();
+        });
+        headerLeft.insertBefore(hamburgerBtn, headerLeft.firstChild);
+    }
 
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', UI.toggleTheme);
@@ -109,5 +150,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     State.listenToChanges(() => {
         UI.updateNotificationBadges();
+    });
+
+    // Close sidebar on clicking backdrop overlay
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            if (sidebar && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                if (hamburger) {
+                    hamburger.innerText = '☰';
+                }
+            }
+        });
+    }
+
+    // Fallback document listener for click-outside just in case
+    document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidebar');
+        const hamburger = document.querySelector('.hamburger');
+        if (window.innerWidth <= 1024 && sidebar && sidebar.classList.contains('active')) {
+            if (!sidebar.contains(e.target) && (!hamburger || !hamburger.contains(e.target)) && (!overlay || !overlay.contains(e.target))) {
+                sidebar.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                if (hamburger) hamburger.innerText = '☰';
+            }
+        }
     });
 });

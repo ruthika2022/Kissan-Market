@@ -191,6 +191,12 @@
     <script src="../../js/vendor.js"></script>
 
     <script>
+      function getUnreadBadgeHtml(productId, vendorId) {
+        if (typeof State === 'undefined') return '';
+        const count = State.getPrivateChatUnreadCount(productId, vendorId, State.getCurrentUser().id);
+        return count > 0 ? `<span style="background: #ef4444; color: white; border-radius: 50%; font-size: 8px; padding: 2px 5px; margin-left: 4px; font-weight: 700; line-height: 1;">${count}</span>` : '';
+      }
+
       function renderMyBids() {
         const user = State.getCurrentUser();
         const bids = State.getBids().filter((b) => b.vendorId === user.id);
@@ -198,10 +204,10 @@
         const empty = document.getElementById("empty-bids");
 
         document.getElementById("active-count").innerText = bids.filter(
-          (b) => b.status === "pending",
+          (b) => b.status === "Pending Admin Review" || b.status === "Selected By Admin",
         ).length;
         document.getElementById("win-count").innerText = bids.filter(
-          (b) => b.status === "accepted",
+          (b) => b.status === "Accepted By Farmer",
         ).length;
 
         if (bids.length === 0) {
@@ -224,29 +230,33 @@
               : "Closed";
 
             let statusText = bid.status.toUpperCase();
-            let statusColor =
-              bid.status === "accepted"
-                ? "#2e7d32"
-                : bid.status === "rejected"
-                  ? "#c62828"
-                  : "#e65100";
-            let statusBg =
-              bid.status === "accepted"
-                ? "#e8f5e9"
-                : bid.status === "rejected"
-                  ? "#ffebee"
-                  : "#fff3e0";
+            let statusColor = "#666";
+            let statusBg = "#eee";
 
-            if (bid.status === "pending" && product) {
-              if (isWinning) {
-                statusText = "🏆 WINNING";
-                statusColor = "#2e7d32";
-                statusBg = "#e8f5e9";
-              } else {
-                statusText = "⚠️ OUTBID";
-                statusColor = "#ef6c00";
-                statusBg = "#fff3e0";
-              }
+            if (bid.status === "Pending Admin Review") {
+              statusText = "Pending Admin";
+              statusColor = "#e65100";
+              statusBg = "#fff3e0";
+            } else if (bid.status === "Selected By Admin") {
+              statusText = "Selected By Admin";
+              statusColor = "#1565c0";
+              statusBg = "#e3f2fd";
+            } else if (bid.status === "Accepted By Farmer") {
+              statusText = "Accepted By Farmer";
+              statusColor = "#2e7d32";
+              statusBg = "#e8f5e9";
+            } else if (bid.status === "Declined By Farmer") {
+              statusText = "Declined By Farmer";
+              statusColor = "#c62828";
+              statusBg = "#ffebee";
+            } else if (bid.status === "Rejected By Admin") {
+              statusText = "Rejected By Admin";
+              statusColor = "#c62828";
+              statusBg = "#ffebee";
+            } else if (bid.status === "countered") {
+              statusText = "Countered";
+              statusColor = "#e65100";
+              statusBg = "#fff3e0";
             }
 
             return `
@@ -272,14 +282,18 @@
                     </td>
                     <td style="padding: 1.2rem; display: flex; gap: 0.5rem; align-items: center;">
                         ${
-                          bid.status === "accepted"
-                            ? `<button class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="UI.showToast('Proceeding to Order...', 'success')">View Response</button>`
-                            : bid.status === "pending" ||
-                                bid.status === "countered"
+                          bid.status === "Accepted By Farmer"
+                            ? `
+                              <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="UI.showToast('Proceeding to Order...', 'success')">View Response</button>
+                              <button class="btn btn-outline chat-btn" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; display: flex; align-items: center; position: relative;" onclick="openPrivateChat(${bid.productId}, ${bid.vendorId})">
+                                  💬 ${getUnreadBadgeHtml(bid.productId, bid.vendorId)}
+                              </button>
+                            `
+                            : bid.status === "Pending Admin Review" || bid.status === "Selected By Admin" || bid.status === "countered"
                               ? `
                                 <a href="marketplace.html" class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; text-decoration: none;">Edit</a>
                                 <button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-color: #ffcdd2; color: #c62828;" onclick="if(confirm('Cancel this bid?')) State.cancelBid(${bid.id})">Cancel</button>
-                            `
+                              `
                               : `<button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="UI.showToast('Auction Closed', 'error')" disabled>Closed</button>`
                         }
                     </td>

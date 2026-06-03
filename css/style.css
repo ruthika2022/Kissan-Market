@@ -1,3 +1,5 @@
+@import 'responsive.css';
+
 :root {
   
     --primary-color: #8b4a2b;
@@ -135,5 +137,19 @@ h1, h2, h3, h4 {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
 }
+
+/* --- Common Responsiveness Base --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem !important;
+    }
+    .grid-3 {
+        grid-template-columns: 1fr !important;
+    }
+    .grid-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
 
 

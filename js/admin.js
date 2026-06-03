@@ -37,11 +37,83 @@ const initData = {
     ]
 };
 
+function loadCombinedFarmers() {
+    const storedFarmers = JSON.parse(localStorage.getItem('km_farmers')) || initData.farmers;
+    const profiles = JSON.parse(localStorage.getItem('km_profiles')) || {};
+    const profileFarmers = Object.values(profiles).filter(p => p.role === 'farmer');
+    
+    const merged = [...storedFarmers];
+    profileFarmers.forEach(pf => {
+        const idStr = "FRM" + pf.id;
+        if (!merged.some(f => f.id === idStr || f.id === pf.id)) {
+            merged.push({
+                id: idStr,
+                name: pf.name,
+                location: pf.location || 'Unknown',
+                crop: 'General Crops',
+                vStatus: 'Verified',
+                aStatus: 'Active',
+                isReal: true,
+                realId: pf.id
+            });
+        }
+    });
+    return merged;
+}
+
+function loadCombinedVendors() {
+    const storedVendors = JSON.parse(localStorage.getItem('km_vendors')) || initData.vendors;
+    const profiles = JSON.parse(localStorage.getItem('km_profiles')) || {};
+    const profileVendors = Object.values(profiles).filter(p => p.role === 'vendor');
+    
+    const merged = [...storedVendors];
+    profileVendors.forEach(pv => {
+        const idStr = "VND" + pv.id;
+        if (!merged.some(v => v.id === idStr || v.id === pv.id)) {
+            merged.push({
+                id: idStr,
+                name: pv.name,
+                type: 'Wholesaler',
+                activity: 'Medium',
+                vStatus: 'Verified',
+                isReal: true,
+                realId: pv.id
+            });
+        }
+    });
+    return merged;
+}
+
+function loadCombinedProducts() {
+    if (typeof State === 'undefined') return initData.products;
+    const realProducts = State.getProducts();
+    return realProducts.map(p => ({
+        id: p.id,
+        name: p.name,
+        farmer: p.farmerName || 'Farmer User',
+        category: p.category,
+        qty: p.quantity + " " + p.unit,
+        bidStatus: p.status,
+        pStatus: p.pStatus || 'Approved',
+        isReal: true,
+        realId: p.id
+    }));
+}
+
+function updateRealProfileStatus(realId, vStatus, aStatus) {
+    const profiles = JSON.parse(localStorage.getItem('km_profiles')) || {};
+    if (profiles[realId]) {
+        if (vStatus) profiles[realId].vStatus = vStatus;
+        if (aStatus) profiles[realId].aStatus = aStatus;
+        localStorage.setItem('km_profiles', JSON.stringify(profiles));
+    }
+}
+
 // Load from localStorage or use initData
 let db = {
-    farmers: JSON.parse(localStorage.getItem('km_farmers')) || initData.farmers,
-    vendors: JSON.parse(localStorage.getItem('km_vendors')) || initData.vendors,
-    products: JSON.parse(localStorage.getItem('km_products')) || initData.products,
+    farmers: loadCombinedFarmers(),
+    vendors: loadCombinedVendors(),
+    products: loadCombinedProducts(),
     inventory: JSON.parse(localStorage.getItem('km_inventory')) || initData.inventory,
     tickets: JSON.parse(localStorage.getItem('km_tickets')) || initData.tickets,
     complaints: JSON.parse(localStorage.getItem('km_complaints')) || initData.complaints,
@@ -79,8 +151,13 @@ menuItems.forEach(item => {
 
         pageTitle.textContent = item.querySelector('span').textContent;
 
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 1024) {
             sidebar.classList.remove('active');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (overlay) overlay.classList.remove('active');
+            if (menuIcon) {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
         }
 
         if (target === 'dashboard') animateCounters();
@@ -88,9 +165,70 @@ menuItems.forEach(item => {
     });
 });
 
-document.getElementById('menuToggle').addEventListener('click', () => {
-    sidebar.classList.toggle('active');
+const menuToggleBtn = document.getElementById('menuToggle');
+const menuIcon = menuToggleBtn ? menuToggleBtn.querySelector('i') : null;
+
+if (menuToggleBtn) {
+    menuToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('active');
+        const isActive = sidebar.classList.contains('active');
+        
+        let overlay = document.querySelector('.sidebar-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            document.body.appendChild(overlay);
+        }
+        
+        if (isActive) {
+            overlay.classList.add('active');
+        } else {
+            overlay.classList.remove('active');
+        }
+
+        if (menuIcon) {
+            if (isActive) {
+                menuIcon.className = 'fa-solid fa-xmark';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        }
+    });
+}
+
+// Add DOMContentLoaded overlay creation for admin layout
+document.addEventListener('DOMContentLoaded', () => {
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+    overlay.addEventListener('click', () => {
+        if (sidebar && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            if (menuIcon) {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        }
+    });
 });
+
+document.addEventListener('click', (e) => {
+    const overlay = document.querySelector('.sidebar-overlay');
+    if (window.innerWidth <= 1024 && sidebar) {
+        if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && (!menuToggleBtn || !menuToggleBtn.contains(e.target)) && (!overlay || !overlay.contains(e.target))) {
+            sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (menuIcon) {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        }
+    }
+});
+
 
 // ==========================================
 // 3. CLOCK & THEME
@@ -177,23 +315,152 @@ function renderVendors() {
     updateCounters();
 }
 
+function toggleProductDetails(productId) {
+    const detailsRow = document.getElementById(`details-${productId}`);
+    if (detailsRow) {
+        detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+    }
+}
+
+function adminSelectBid(bidId) {
+    if (confirm('Are you sure you want to select this bid? This will approve it, notify the farmer, and reject all other bids.')) {
+        State.adminSelectBid(bidId);
+        showToast('Bid approved and sent to farmer.');
+        db.products = loadCombinedProducts();
+        renderProducts();
+    }
+}
+
+function adminRejectBid(bidId) {
+    if (confirm('Are you sure you want to reject this bid?')) {
+        State.rejectBid(bidId);
+        showToast('Bid rejected.');
+        db.products = loadCombinedProducts();
+        renderProducts();
+    }
+}
+
+function removeAdminProduct(productId) {
+    if (confirm('Are you sure you want to remove this product? This will permanently delete it.')) {
+        State.removeProduct(productId);
+        showToast('Product removed.');
+        db.products = loadCombinedProducts();
+        renderProducts();
+    }
+}
+
 function renderProducts() {
     const tbody = document.getElementById('productsTableBody');
-    tbody.innerHTML = db.products.map((p, i) => `
-        <tr>
+    if (typeof State === 'undefined') return;
+    const realProducts = State.getProducts();
+    const allBids = State.getBids();
+    
+    tbody.innerHTML = realProducts.map((p, i) => {
+        const productBids = allBids.filter(b => b.productId === p.id);
+        const farmerProfile = (JSON.parse(localStorage.getItem('km_profiles')) || {})[p.farmerId] || {
+            name: p.farmerName || 'Unknown Farmer',
+            email: 'N/A',
+            phone: 'N/A',
+            location: p.location || 'Unknown'
+        };
+        
+        let statusLabel = p.status;
+        let rowClass = "";
+        if (p.status === 'Selected Bid Review') {
+            statusLabel = 'Awaiting Farmer';
+            rowClass = "row-reviewing";
+        } else if (p.status === 'Deal Active') {
+            statusLabel = 'Deal Active';
+            rowClass = "row-deal-active";
+        }
+        
+        return `
+        <tr class="product-row ${rowClass}" onclick="toggleProductDetails(${p.id})">
             <td>${p.id}</td>
             <td><strong>${p.name}</strong></td>
-            <td>${p.farmer}</td>
+            <td>${p.farmerName || 'Farmer User'}</td>
             <td>${p.category}</td>
-            <td>${p.qty}</td>
-            <td><span class="status-badge ${getStatusClass(p.pStatus)}">${p.pStatus}</span></td>
-            <td class="action-btns">
-                <button class="btn btn-primary" onclick="approveProduct(${i})"><i class="fa-solid fa-check"></i></button>
-                <button class="btn btn-warning" onclick="flagProduct(${i})"><i class="fa-solid fa-flag"></i></button>
-                <button class="btn btn-danger" onclick="removeProduct(${i})"><i class="fa-solid fa-trash"></i></button>
+            <td>${p.quantity} ${p.unit}</td>
+            <td><span class="status-badge ${getStatusClass(p.status)}">${statusLabel}</span></td>
+            <td class="action-btns" onclick="event.stopPropagation()">
+                <button class="btn btn-primary btn-sm" onclick="toggleProductDetails(${p.id})">
+                    <i class="fa-solid fa-eye"></i> View Bids (${productBids.length})
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="removeAdminProduct(${p.id})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </td>
         </tr>
-    `).join('');
+        <tr class="details-row" id="details-${p.id}" style="display: none; background: var(--secondary-color);">
+            <td colspan="7">
+                <div class="product-detail-panel" style="padding: 1.5rem; border-left: 4px solid var(--primary-green);">
+                    <div style="display: flex; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;"><i class="fa-solid fa-circle-info"></i> Product Details</h4>
+                            <p><strong>Min Price:</strong> ₹${p.minPrice}</p>
+                            <p><strong>Max Price:</strong> ₹${p.maxPrice || Math.round(p.minPrice * 1.3)}</p>
+                            <p><strong>Location:</strong> ${p.location}</p>
+                            <p><strong>End Time:</strong> ${new Date(p.endTime).toLocaleString()}</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;"><i class="fa-solid fa-user"></i> Farmer Details</h4>
+                            <p><strong>Name:</strong> ${farmerProfile.name}</p>
+                            <p><strong>Phone:</strong> ${farmerProfile.phone}</p>
+                            <p><strong>Email:</strong> ${farmerProfile.email}</p>
+                            <p><strong>Location:</strong> ${farmerProfile.location}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bids-section">
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.8rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem;"><i class="fa-solid fa-gavel"></i> Vendor Bids (${productBids.length})</h4>
+                        ${productBids.length === 0 ? `
+                            <p style="color: var(--text-muted); font-style: italic;">No bids placed on this product yet.</p>
+                        ` : `
+                            <div class="table-container" style="box-shadow: none; border: 1px solid #eee; margin: 0;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #fafafa; border-bottom: 1px solid #eee;">
+                                            <th style="padding: 0.8rem;">Vendor</th>
+                                            <th style="padding: 0.8rem;">Bid Amount</th>
+                                            <th style="padding: 0.8rem;">Bid Qty</th>
+                                            <th style="padding: 0.8rem;">Status</th>
+                                            <th style="padding: 0.8rem;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${productBids.sort((a,b) => b.amount - a.amount).map(bid => {
+                                            let actionHtml = '';
+                                            if (bid.status === 'Pending Admin Review' && p.status === 'Active') {
+                                                actionHtml = `
+                                                    <button class="btn btn-primary btn-xs" style="padding: 0.25rem 0.5rem; font-size: 0.7rem;" onclick="adminSelectBid(${bid.id})">Accept</button>
+                                                    <button class="btn btn-danger btn-xs" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background:#dc2626;" onclick="adminRejectBid(${bid.id})">Decline</button>
+                                                `;
+                                            } else {
+                                                const statusColor = bid.status === 'Accepted By Farmer' ? '#16a34a' : 
+                                                                   (bid.status === 'Selected By Admin' ? '#2563eb' : 
+                                                                   (bid.status === 'Rejected By Admin' || bid.status === 'Declined By Farmer' ? '#dc2626' : '#4b5563'));
+                                                actionHtml = `<span style="font-size:0.75rem; font-weight:800; color:${statusColor}; text-transform:uppercase;">${bid.status}</span>`;
+                                            }
+                                            return `
+                                                <tr style="border-bottom: 1px solid #eee;">
+                                                    <td style="padding: 0.8rem;"><strong>${bid.vendorName}</strong></td>
+                                                    <td style="padding: 0.8rem;">₹${bid.amount} / kg</td>
+                                                    <td style="padding: 0.8rem;">${bid.quantity} ${p.unit}</td>
+                                                    <td style="padding: 0.8rem;"><span class="status-badge ${getStatusClass(bid.status)}">${bid.status}</span></td>
+                                                    <td class="action-btns" style="padding: 0.8rem;">${actionHtml}</td>
+                                                </tr>
+                                            `;
+                                        }).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        `}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        `;
+    }).join('');
     updateCounters();
 }
 
@@ -259,28 +526,49 @@ function renderNotifications() {
     const list = document.getElementById('notificationsList');
     const badge = document.getElementById('notifBadge');
     
-    badge.textContent = db.notifications.length;
-    badge.style.display = db.notifications.length > 0 ? 'flex' : 'none';
+    const allNotifs = JSON.parse(localStorage.getItem('km_notifications')) || [];
+    const adminNotifs = allNotifs.filter(n => n.userId === 0);
+    
+    badge.textContent = adminNotifs.length;
+    badge.style.display = adminNotifs.length > 0 ? 'flex' : 'none';
 
-    if (db.notifications.length === 0) {
+    if (adminNotifs.length === 0) {
         list.innerHTML = `<div style="padding:15px; text-align:center; color:var(--text-muted)">No new notifications</div>`;
         return;
     }
 
-    list.innerHTML = db.notifications.map(n => {
+    list.innerHTML = adminNotifs.map(n => {
         let icon = 'fa-bell';
-        if(n.type === 'alert') icon = 'fa-triangle-exclamation';
-        if(n.type === 'warning') icon = 'fa-flag';
+        if (n.title.includes('Rejected') || n.title.includes('Declined')) icon = 'fa-triangle-exclamation';
+        else if (n.title.includes('Accepted') || n.title.includes('Approved')) icon = 'fa-circle-check';
+        
+        const timeStr = formatTimeAgo(new Date(n.timestamp));
         
         return `
         <div class="notification-item">
             <i class="fa-solid ${icon}" style="color:var(--primary-green)"></i>
             <div class="notification-content">
-                <p>${n.text}</p>
-                <span>${n.time}</span>
+                <p><strong>${n.title}</strong>: ${n.message}</p>
+                <span>${timeStr}</span>
             </div>
         </div>
     `}).join('');
+}
+
+function formatTimeAgo(date) {
+    if (isNaN(date.getTime())) return 'some time ago';
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return interval + " years ago";
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return interval + " months ago";
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return interval + " days ago";
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return interval + " hours ago";
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return interval + " mins ago";
+    return "just now";
 }
 
 // ==========================================
@@ -290,6 +578,9 @@ function renderNotifications() {
 function verifyFarmer(idx) {
     db.farmers[idx].vStatus = 'Verified';
     db.farmers[idx].aStatus = 'Active';
+    if (db.farmers[idx].isReal) {
+        updateRealProfileStatus(db.farmers[idx].realId, 'Verified', 'Active');
+    }
     saveDB();
     renderFarmers();
     showToast(`Farmer ${db.farmers[idx].name} verified successfully.`);
@@ -298,6 +589,9 @@ function verifyFarmer(idx) {
 function suspendFarmer(idx) {
     if(confirm(`Are you sure you want to suspend farmer ${db.farmers[idx].name}?`)) {
         db.farmers[idx].aStatus = 'Suspended';
+        if (db.farmers[idx].isReal) {
+            updateRealProfileStatus(db.farmers[idx].realId, null, 'Suspended');
+        }
         saveDB();
         renderFarmers();
         showToast('Farmer suspended.');
@@ -306,6 +600,9 @@ function suspendFarmer(idx) {
 
 function verifyVendor(idx) {
     db.vendors[idx].vStatus = 'Verified';
+    if (db.vendors[idx].isReal) {
+        updateRealProfileStatus(db.vendors[idx].realId, 'Verified', null);
+    }
     saveDB();
     renderVendors();
     showToast(`Vendor ${db.vendors[idx].name} verified.`);
@@ -313,6 +610,9 @@ function verifyVendor(idx) {
 
 function restrictVendor(idx) {
     db.vendors[idx].vStatus = 'Restricted';
+    if (db.vendors[idx].isReal) {
+        updateRealProfileStatus(db.vendors[idx].realId, 'Restricted', null);
+    }
     saveDB();
     renderVendors();
     showToast('Vendor restricted.');
@@ -529,4 +829,17 @@ window.addEventListener('DOMContentLoaded', () => {
     renderNotifications();
     animateCounters();
     initCharts();
+
+    if (typeof State !== 'undefined') {
+        State.listenToChanges(() => {
+            db.farmers = loadCombinedFarmers();
+            db.vendors = loadCombinedVendors();
+            db.products = loadCombinedProducts();
+            renderFarmers();
+            renderVendors();
+            renderProducts();
+            renderNotifications();
+            updateCounters();
+        });
+    }
 });

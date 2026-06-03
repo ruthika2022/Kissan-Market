@@ -1,113 +1,195 @@
+/* ========================================================
+   RESPONSIVE DESIGN STYLESHEET (KISSAN MARKET)
+   ======================================================== */
+
+/* Backdrop Overlay for collapsible sidebar */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Base Styles & Transitions */
+.sidebar {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.main-content, .main-panel {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================================
+   TABLET & MOBILE SCREENS (under 1024px)
+   ======================================================== */
 @media (max-width: 1024px) {
+    /* Collapsible Sidebar overrides */
     .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 280px !important;
         position: fixed !important;
         top: 0;
-        left: 0;
+        left: -280px !important;
+        transform: translateX(0) !important;
+        width: 260px !important;
         height: 100vh !important;
-        z-index: 2000 !important;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        z-index: 1000 !important;
+        box-shadow: none;
     }
 
     .sidebar.active {
-        transform: translateX(0);
+        left: 0 !important;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15) !important;
     }
 
-    .main-panel, .main-content {
+    .main-content, .main-panel {
         margin-left: 0 !important;
         width: 100% !important;
     }
 
-    .topbar, .header {
-        border-radius: 0 !important;
+    /* Header controls */
+    .header, .topbar {
+        padding: 1rem 1.5rem !important;
+        height: auto !important;
+        min-height: 70px;
+    }
+
+    .hamburger, .menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--primary-color, #8b4a2b);
+        margin-right: 15px;
+        z-index: 1001;
+        transition: transform 0.2s ease;
+    }
+
+    .hamburger:hover, .menu-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    /* Align columns inside layout */
+    .dashboard-layout {
+        flex-direction: column;
+    }
+}
+
+/* ========================================================
+   MEDIUM PORTRAITS & LANDSCAPES (under 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Responsive spacing inside containers */
+    .container {
+        padding: 1.25rem !important;
+    }
+
+    /* Grids stack to single columns */
+    .grid-2, .grid-3, .stats-grid, .dashboard-grid, .charts-grid, .marketplace-grid, .product-grid, .role-grid, .cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+
+    /* Align profiles and section headings */
+    .section-header, .table-controls, .header-left, .header-right {
+        gap: 0.8rem;
+    }
+
+    .header-left h2, .section-header h3 {
+        font-size: 1.3rem !important;
+    }
+
+    /* Table Responsiveness container wrapping */
+    .table-container, .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+    }
+
+    .table-container table, .table-wrapper table {
+        min-width: 700px; /* Forces table scrollbar in mobile containers instead of squishing text */
+    }
+
+    /* Forms */
+    .form-row, .grid-3-col {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Hide redundant profile details on smaller displays to preserve alignment */
+    .user-info, .admin-info, .user-meta {
+        display: none !important;
+    }
+    
+    .user-profile, .admin-profile {
+        gap: 0 !important;
+    }
+
+    /* Profile page grids */
+    .profile-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+}
+
+/* ========================================================
+   SMALL SMARTPHONE SCREENS (under 480px)
+   ======================================================== */
+@media (max-width: 480px) {
+    /* Full-width styling for interactive buttons */
+    .btn, .auth-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem !important;
+    }
+
+    .action-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .action-btns .btn {
+        width: 100%;
+    }
+
+    /* Compact stats card dimensions */
+    .stat-card {
         padding: 1rem !important;
     }
 
-    .menu-toggle, .hamburger {
-        display: block !important;
-    }
-}
-
-/* --- Grid Adjustments --- */
-@media (max-width: 1200px) {
-    .dashboard-grid, .stat-grid, .stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .dashboard-grid, .stat-grid, .stats-grid {
-        grid-template-columns: 1fr !important;
+    .stat-icon {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.25rem !important;
     }
 
-    .analytics-row, .grid-2, .grid-3 {
-        grid-template-columns: 1fr !important;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem !important;
-    }
-
-    .section-header, .table-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 1rem;
-    }
-
-    .search-wrapper, .search-box {
-        width: 100% !important;
-        flex: 1 !important;
-    }
-}
-
-/* --- Table Responsiveness --- */
-.table-container, .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 12px;
-}
-
-table {
-    min-width: 800px; /* Force scroll on small screens */
-}
-
-/* --- Form Adjustments --- */
-@media (max-width: 480px) {
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .modal {
+    /* Form and modal formatting */
+    .modal-content, .modal {
+        padding: 1.25rem !important;
+        border-radius: 12px !important;
         width: 95% !important;
-        padding: 1.5rem !important;
     }
 
-    .avatar {
-        width: 35px;
-        height: 35px;
+    /* Chatbox layout adjustments for small phones */
+    .chat-container {
+        width: 90% !important;
+        right: 5% !important;
+        bottom: 85px !important;
+        height: 380px !important;
     }
-
-    .user-meta, .user-info {
-        display: none;
-    }
-}
-
-/* --- Utilities --- */
-.fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Fix for overlapping elements */
-img {
-    max-width: 100%;
-    height: auto;
 }

@@ -32,7 +32,10 @@ body {
     top: 0;
     left: 0;
     overflow-y: auto;
+    transition: left 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
 }
+
 
 /* LOGO */
 

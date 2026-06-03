@@ -412,3 +412,42 @@ setInterval(
     fetchMarketPrices,
     300000
 );
+
+// ======================================
+// SIDEBAR COLLAPSE & RESPONSIVE TOGGLE
+// ======================================
+document.addEventListener("DOMContentLoaded", function() {
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const menuIcon = menuBtn ? menuBtn.querySelector("i") : null;
+
+    if (menuBtn && sidebar) {
+        menuBtn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("show");
+            sidebar.classList.toggle("active");
+            if (menuIcon) {
+                if (sidebar.classList.contains("show")) {
+                    menuIcon.classList.remove("bx-menu");
+                    menuIcon.classList.add("bx-x");
+                } else {
+                    menuIcon.classList.remove("bx-x");
+                    menuIcon.classList.add("bx-menu");
+                }
+            }
+        });
+    }
+
+    document.addEventListener("click", function(e) {
+        if (window.innerWidth <= 768 && sidebar && sidebar.classList.contains("show")) {
+            if (!sidebar.contains(e.target) && (!menuBtn || !menuBtn.contains(e.target))) {
+                sidebar.classList.remove("show");
+                sidebar.classList.remove("active");
+                if (menuIcon) {
+                    menuIcon.classList.remove("bx-x");
+                    menuIcon.classList.add("bx-menu");
+                }
+            }
+        }
+    });
+});
