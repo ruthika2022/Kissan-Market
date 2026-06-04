@@ -283,11 +283,18 @@
                   <p id="view-email">farmer@example.com</p>
                   <input type="email" id="edit-email" style="display: none" />
                 </div>
-                <div class="detail-group">
-                  <label>Phone Number</label>
-                  <p id="view-phone">+91 98765 43210</p>
-                  <input type="number" id="edit-phone" style="display: none" />
-                </div>
+             <div class="detail-group">
+  <label>Phone Number</label>
+  <p id="view-phone">8765432109</p>
+  <input
+    type="tel"
+    id="edit-phone"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    inputmode="numeric"
+    style="display: none"
+  />
+</div>
                 <div class="detail-group">
                   <label>Farm Location</label>
                   <p id="view-location">Nashik, Maharashtra</p>

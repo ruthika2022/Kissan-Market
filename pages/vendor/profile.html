@@ -6,7 +6,7 @@
     <title>My Profile - Kissan Market</title>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/vendor.css" />
-    <link rel="stylesheet" href="../../css/chat.css">
+    <link rel="stylesheet" href="../../css/chat.css" />
     <style>
       .profile-container {
         max-width: 1000px;
@@ -121,68 +121,60 @@
       <!-- Sidebar -->
       <!-- SIDEBAR -->
 
-<aside class="sidebar">
+      <aside class="sidebar">
+        <a href="dashboard.html" class="sidebar-logo"> 🚚 Kissan Market </a>
 
-    <a href="dashboard.html" class="sidebar-logo">
-        🚚 Kissan Market
-    </a>
-
-    <ul class="sidebar-menu">
-
-        <li class="menu-item">
+        <ul class="sidebar-menu">
+          <li class="menu-item">
             <a href="dashboard.html" class="menu-link">
-                <span>📊</span>
-                Dashboard
+              <span>📊</span>
+              Dashboard
             </a>
-        </li>
+          </li>
 
-        <li class="menu-item">
+          <li class="menu-item">
             <a href="marketplace.html" class="menu-link">
-                <span>🛒</span>
-                Market place
+              <span>🛒</span>
+              Market place
             </a>
-        </li>
+          </li>
 
-        <li class="menu-item">
+          <li class="menu-item">
             <a href="marketprice.html" class="menu-link active">
-                <span>📈</span>
-                Market Price
+              <span>📈</span>
+              Market Price
             </a>
-        </li>
+          </li>
 
-        <li class="menu-item">
+          <li class="menu-item">
             <a href="my-bids.html" class="menu-link">
-                <span>⚖️</span>
-                My Bids
+              <span>⚖️</span>
+              My Bids
             </a>
-        </li>
+          </li>
 
-        <li class="menu-item">
+          <li class="menu-item">
             <a href="notifications.html" class="menu-link">
-                <span>🔔</span>
-                Notifications
+              <span>🔔</span>
+              Notifications
             </a>
-        </li>
+          </li>
 
-        <li class="menu-item">
+          <li class="menu-item">
             <a href="profile.html" class="menu-link">
-                <span>👤</span>
-                My Profile
+              <span>👤</span>
+              My Profile
             </a>
-        </li>
+          </li>
+        </ul>
 
-    </ul>
-
-    <div class="sidebar-footer">
-
-        <a href="../../index.html" class="menu-link">
+        <div class="sidebar-footer">
+          <a href="../../index.html" class="menu-link">
             <span>🚪</span>
             Logout
-        </a>
-
-    </div>
-
-</aside>
+          </a>
+        </div>
+      </aside>
 
       <main class="main-content">
         <header class="header">
@@ -221,12 +213,12 @@
                     />
                   </div>
                   <h2 id="profile-name-display">Vendor Name</h2>
-                  <p style="color: #1976d2; font-weight: 700; margin-top: 5px">
+                  <!-- <p style="color: #1976d2; font-weight: 700; margin-top: 5px">
                     Certified Vendor
-                  </p>
+                  </p> -->
 
                   <div class="stats-grid">
-                    <div class="stat-card">
+                    <!-- <div class="stat-card">
                       <h4 >₹0</h4>
                       <p>Purchases</p>
                     </div>
@@ -241,7 +233,7 @@
                     <div class="stat-card">
                       <h4 id="stat-active-orders">0</h4>
                       <p>Incoming</p>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
 
@@ -288,8 +280,15 @@
                 </div>
                 <div class="detail-group">
                   <label>Phone Number</label>
-                  <p id="view-phone">+91 87654 32109</p>
-                  <input type="text" id="edit-phone" style="display: none" />
+                  <p id="view-phone">8765432109</p>
+                  <input
+                    type="tel"
+                    id="edit-phone"
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    inputmode="numeric"
+                    style="display: none"
+                  />
                 </div>
                 <div class="detail-group">
                   <label>Operating City</label>
@@ -395,54 +394,31 @@
 
     <!-- CHAT ICON -->
 
-<div class="chat-icon" id="chatIcon">
-    💬
-</div>
+    <div class="chat-icon" id="chatIcon">💬</div>
 
-<!-- CHAT BOX -->
+    <!-- CHAT BOX -->
 
-<div class="chat-container" id="chatContainer">
+    <div class="chat-container" id="chatContainer">
+      <!-- HEADER -->
 
-    <!-- HEADER -->
-
-    <div class="chat-header">
-
+      <div class="chat-header">
         <h3 class="c-box">Customer Care</h3>
 
-        <span id="closeChat">
-            ✖
-        </span>
+        <span id="closeChat"> ✖ </span>
+      </div>
 
+      <div class="chat-body" id="chatBody">
+        <div class="admin-msg">👋 Hello! How can we help you?</div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type message..." />
+
+        <button id="sendBtn">Send</button>
+      </div>
     </div>
 
-
-    <div class="chat-body" id="chatBody">
-
-        <div class="admin-msg">
-            👋 Hello! How can we help you?
-        </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-        <input 
-            type="text" 
-            id="chatInput"
-            placeholder="Type message..."
-        >
-
-        <button id="sendBtn">
-            Send
-        </button>
-
-    </div>
-
-</div>
-
-
-<script src="../../js/chat.js"></script>
+    <script src="../../js/chat.js"></script>
 
     <script src="../../js/app.js"></script>
     <script src="../../js/vendor.js"></script>
