@@ -69,14 +69,14 @@
                 align-items: center;
               "
             >
-              <div>
+              <div >
                 <h3>Active Bidding Overview</h3>
-                <p style="color: var(--text-muted)">
+                <p style="color: var(--text-muted) ">
                   Manage incoming bids for your listed vegetables.
                 </p>
               </div>
               <span class="btn btn-outline"
-                >Total Bids: <span id="total-bid-count">0</span></span
+                >Total Bids: <span id="total-bid-count">5</span></span
               >
             </div>
           </div>
@@ -139,7 +139,7 @@
         const container = document.getElementById("bids-container");
         const empty = document.getElementById("empty-bids");
 
-        document.getElementById("total-bid-count").innerText = bids.length;
+        <!-- document.getElementById("total-bid-count").innerText = bids.length; -->
 
         if (bids.length === 0) {
           empty.style.display = "block";
