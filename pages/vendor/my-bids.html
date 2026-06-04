@@ -105,7 +105,7 @@
               style="width: 100%; border-collapse: collapse; text-align: left"
             >
               <thead>
-                <tr style="border-bottom: 2px solid var(--secondary-color)">
+                <tr style="border-bottom: 2px solid var(--secondary-color); width: 100%">
                   <th style="padding: 1rem">Product</th>
                   <th style="padding: 1rem">Farmer</th>
                   <th style="padding: 1rem">My Bid</th>
@@ -270,11 +270,11 @@
                     </td>
                     <td style="padding: 1.2rem;">
                         <p style="font-weight: 700; color: var(--primary-color);">₹${bid.amount}</p>
-                        ${bid.status === "countered" ? `<p style="font-size: 0.7rem; color: #e65100;">Farmer Counter: ₹${bid.counterAmount}</p>` : !isWinning && highestBid ? `<p style="font-size: 0.7rem; color: var(--text-muted);">High: ₹${highestBid.amount}</p>` : ""}
+                        ${bid.status === "countered" ? `<p style="font-size: 0.7rem; color: #e65100;">Farmer Counter: ₹${bid.counterAmount}</p>` : !isWinning && highestBid ? `<p style="font-size: 0.7rem; color: var(--text-muted);"></p>` : ""}
                     </td>
                     <td style="padding: 1.2rem;">
-                        <span style="padding: 0.3rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 800; background: ${statusBg}; color: ${statusColor}; border: 1px solid ${statusColor}44;">
-                            ${statusText}
+                        <span style="padding: 0.3rem 0.6rem; width: 100%; border-radius: 20px; font-size: 0.75rem; font-weight: 800; background: ${statusBg}; color: ${statusColor}; border: 1px solid ${statusColor}44;">
+                            Pending 
                         </span>
                     </td>
                     <td style="padding: 1.2rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">
