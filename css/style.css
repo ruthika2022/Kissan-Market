@@ -71,6 +71,8 @@ h1, h2, h3, h4 {
     background: var(--bg-light);
     border-radius: var(--border-radius);
     padding: 1.5rem;
+        width: 48%;
+    margin-left: 20%;
     box-shadow: var(--card-shadow);
     border: 1px solid var(--glass-border);
     transition: transform var(--transition-fast);

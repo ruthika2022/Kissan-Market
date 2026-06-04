@@ -215,6 +215,7 @@
 
 .fade-in {
     animation: slideUp 0.4s ease forwards;
+    width: 80%;
 }
 
 /* Scrollbar */
